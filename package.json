@@ -1,0 +1,22 @@
+{
+  "name": "project-atelier",
+  "version": "1.0.0",
+  "description": "deceptanomanoms wulz!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fec-deceptanomanom/project-atelier.git"
+  },
+  "keywords": [
+    "fec"
+  ],
+  "author": "deceptanomanoms",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fec-deceptanomanom/project-atelier/issues"
+  },
+  "homepage": "https://github.com/fec-deceptanomanom/project-atelier#readme"
+}
