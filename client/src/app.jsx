@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import AppCSSLight from './appLight.module.css';
 import AppCSSDark from './appDark.module.css';
 import ProductOverview from './components/productOverview/ProductOverview';
