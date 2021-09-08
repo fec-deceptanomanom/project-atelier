@@ -10,7 +10,6 @@ const StyleThumbnailGrid = ( props ) => {
       {props.styles.map(style => {
         return <StyleThumbnail data={style}/>
       })}
-      {/* <StyleThumbnail /> */}
     </div>
   );
 }

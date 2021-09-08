@@ -1,0 +1,42 @@
+#ProductOverview {
+  border: 2px dashed gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-overview-top {
+  order: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.product-overview-bottom {
+  order: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.product-overview-image {
+  order: 0;
+  flex: 2 0 auto;
+}
+
+.product-overview-info {
+  order: 1;
+  flex: 1 0 auto;
+}
+
+.product-overview-description {
+  order: 0;
+  flex: 2 0 auto;
+}
+
+.product-overview-features {
+  order: 1;
+  flex: 1 0 auto;
+}
+
+.vl {
+  border-left: 3px solid gray;
+  height: auto;
+}
