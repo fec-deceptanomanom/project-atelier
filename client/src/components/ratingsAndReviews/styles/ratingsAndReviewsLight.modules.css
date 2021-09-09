@@ -1,0 +1,49 @@
+.ratings-reviews * {
+  margin: 10px;
+}
+
+#ratingsAndReviews {
+  border: 2px dashed black;
+  display: flex;
+  flex-direction: row;
+}
+
+.ratingsAndScale{
+  order: 0;
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed black;
+}
+
+.reviewsList{
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 3 0 auto;
+}
+
+.reviewList{
+  border: 2px dashed black;
+}
+
+.review{
+  background-color: grey;
+  border: 2px dashed blue;
+}
+.starRatings{
+  border: 2px dashed red;
+  order: 0;
+  flex: 2 0 auto;
+}
+
+.ratingBars{
+  border: 2px dashed yellow;
+  order: 1;
+  flex: 2 0 auto;
+}
+
+.sizeComfortScale{
+  border: 2px dashed purple;
+  order: 2;
+  flex: 1 0 auto;
+}

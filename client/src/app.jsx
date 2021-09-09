@@ -21,8 +21,8 @@ class App extends React.Component {
         <h1 className={AppCSSDark.testBanner}>And I'm loaded from the Dark Mode style sheet!</h1>
         <ProductOverview />
         <RelatedItems />
-        <RatingsAndReviews />
         <QuestionsAndAnswers />
+        <RatingsAndReviews />
 
       </div>
     );
