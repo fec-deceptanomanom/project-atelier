@@ -7,7 +7,6 @@ import ProductImage from './subcomponents/ProductImage.jsx';
 import ProductInfo from './subcomponents/ProductInfo.jsx';
 import ProductDescription from './subcomponents/ProductDescription.jsx';
 import ProductFeatures from './subcomponents/ProductFeatures.jsx';
-// import StyleThumbnailGrid from './subcomponents/StyleThumbnailGrid.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class ProductOverview extends React.Component {
 
   render() {
     return (
-      <div id={CSSCommon['ProductOverview']}>
+      <div id={CSSCommon['ProductOverview']} className={CSSCommon['product-overview']}>
         {/* <h1 className={this.state.darkmode ? CSSLight.testBanner : CSSDark.testBanner}>Product Overview</h1> */}
         <div className={CSSCommon['product-overview-top']}>
           <ProductImage />

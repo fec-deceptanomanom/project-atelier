@@ -1,3 +1,7 @@
+.product-overview * {
+  padding: 10px;
+}
+
 #ProductOverview {
   border: 2px dashed gray;
   display: flex;
@@ -17,21 +21,25 @@
 }
 
 .product-overview-image {
+  border: 2px dashed greenyellow;
   order: 0;
   flex: 2 0 auto;
 }
 
 .product-overview-info {
+  border: 2px dashed blue;
   order: 1;
   flex: 1 0 auto;
 }
 
 .product-overview-description {
+  border: 2px dashed purple;
   order: 0;
   flex: 2 0 auto;
 }
 
 .product-overview-features {
+  border: 2px dashed cyan;
   order: 1;
   flex: 1 0 auto;
 }
@@ -40,3 +48,26 @@
   border-left: 3px solid gray;
   height: auto;
 }
+
+.style-thumbnail-grid {
+  display: flex;
+  flex-direction: row;
+}
+
+.style-thumbnail {
+  /* background: grey; */
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  order: 1;
+  flex: 1 0 auto;
+}
+
+/* .style-thumbnail-a {
+  background: grey;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  order: 1;
+  flex: 1 0 auto;
+} */
