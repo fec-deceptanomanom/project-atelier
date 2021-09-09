@@ -1,21 +1,31 @@
 import React from 'react';
-import CSSLight from './ratingsAndReviewsLight.modules.css';
-import CSSDark from './ratingsAndReviewsDark.modules.css';
+import CSSLight from './styles/ratingsAndReviewsLight.modules.css';
+import CSSDark from './styles/ratingsAndReviewsDark.modules.css';
+import ReviewsList from './subComponents/reviewList.jsx';
+import StarRatings from './subComponents/starRatings.jsx';
+import SizeComfortScale from './subComponents/sizeComfortScale.jsx';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      darkMode: false,
     };
   }
 
   render() {
+    //add if statement to switch between light & dark
     return (
-      <div id="RatingsAndReviews">
-        <h1 className={CSSLight.testBanner}>Testing from Ratings and Reviews</h1>
+      <div id={CSSLight['ratingsAndReviews']} className={CSSLight['ratings-reviews']}>
+        <div className={CSSLight['ratingsAndScale']}>
+          <StarRatings />
+          <SizeComfortScale />
+        </div>
+        <div className={CSSLight['reviewsList']}>
+          <ReviewsList />
+        </div>
       </div>
-    );
+    )
   }
 }
 
