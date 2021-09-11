@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productInfo: {},
-      styleInfo: {}
+      styleInfo: {},
       darkmode: false,
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
