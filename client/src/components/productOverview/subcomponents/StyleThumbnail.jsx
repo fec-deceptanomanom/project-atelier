@@ -18,7 +18,7 @@ const StyleThumbnail = ( props ) => {
     //     </Link>
     //   </div>
     // </Router>
-    <button className={CSSCommon['style-thumbnail']}>{props.data}</button>
+    <button className={CSSCommon['style-thumbnail']}>{props.data.name}</button>
   );
 }
 
