@@ -11,17 +11,33 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      darkmode: false,
     };
+    this.darkmodeToggle = this.darkmodeToggle.bind(this);
+  }
+
+  darkmodeToggle() {
+    const toggleState = !this.state.darkmode;
+    this.setState({ darkmode: toggleState });
   }
 
   render() {
+    let CSSStyle = AppCSSLight;
+    let bannerText = 'I\'m loaded in Light Mode!';
+    if (this.state.darkmode === true) {
+      CSSStyle = AppCSSDark;
+      bannerText = 'And now I\'m loaded in Dark Mode!';
+    }
     return (
       <div id="App">
-        <h1 className={AppCSSLight.testBanner}>I'm loaded from the Light Mode style sheet!</h1>
-        <h1 className={AppCSSDark.testBanner}>And I'm loaded from the Dark Mode style sheet!</h1>
+        <label className={CSSStyle.switch}>
+          <input onChange={this.darkmodeToggle} type="checkbox"></input>
+          <span className={CSSStyle.slider}></span>
+        </label>
+        <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
         <ProductOverview />
         <RelatedItems />
-        <QuestionsAndAnswers />
+        <QuestionsAndAnswers darkmode={this.state.darkmode} />
         <RatingsAndReviews />
 
       </div>

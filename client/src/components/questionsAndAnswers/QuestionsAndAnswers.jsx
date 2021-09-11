@@ -10,11 +10,16 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      darkmode: false,
+      darkmode: props.darkmode,
     };
-    this.darkmodeToggle = this.darkmodeToggle.bind(this);
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
+  }
+
+  componentDidUpdate(prevprops) {
+    if (this.props.darkmode !== prevprops.darkmode) {
+      this.setState({ darkmode: this.props.darkmode })
+    }
   }
 
   modalOpen(e) {
@@ -41,10 +46,6 @@ class QuestionsAndAnswers extends React.Component {
     modal.style.display = "none";
   }
 
-  darkmodeToggle() {
-    const toggleState = !this.state.darkmode;
-    this.setState({ darkmode: toggleState });
-  }
 
   render() {
     let CSSStyle = CSSLight;
@@ -54,10 +55,6 @@ class QuestionsAndAnswers extends React.Component {
     return (
       <div id="QandA" className={CSSStyle.QandABox}>
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
-        <label className={CSSStyle.switch}>
-          <input onChange={this.darkmodeToggle} type="checkbox"></input>
-          <span className={CSSStyle.slider}></span>
-        </label>
         <SearchBar CSSStyle={CSSStyle} />
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} />
         <SubmitQuestionForm CSSStyle={CSSStyle} closeQuestionForm={this.modalClose}/>
