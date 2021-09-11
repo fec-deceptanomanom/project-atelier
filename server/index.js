@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 // Get the API key and set it as default for ALL axios requests
-const secrets = require('../secret.json');
+const secrets = require('../.secret.json');
 
 const app = express();
 const port = 3000;
