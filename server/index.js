@@ -9,23 +9,45 @@ const port = 3000;
 // Set the static served page
 app.use(express.static(__dirname + '/../client/dist'));
 
-
+// Set the authorization header with the API key
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 axios.defaults.headers.common['Authorization'] = secrets.GitHub_API_KEY;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.get('/productInfo/:id', (req, res) => {
+  // Get the product info
+  const productInfo = new Promise((resolve, reject) => {
+    axios.get(API_URL + '/products/' + req.params.id)
+      .then((results) => {
+        resolve(results.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  })
+  .catch((error) => {
+    res.send(error);
+  });
 
-// Example API call, will be modified later
-app.get('/products', (req, res) => {
-  axios.get(API_URL + '/products')
-    .then(function (results) {
-      res.send(results.data);
-    })
-    .catch(function (error) {
-      res.send(error);
+  // Get the product styles
+  const styleInfo = new Promise((resolve, reject) => {
+    axios.get(API_URL + '/products/' + req.params.id + '/styles')
+      .then((results) => {
+        resolve(results.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+
+  Promise.all([productInfo, styleInfo]).then((results) => {
+    res.send({
+      productInfo: results[0],
+      styleInfo: results[1]
     });
+  })
 });
 
 app.listen(port, () => {
