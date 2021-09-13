@@ -4,8 +4,8 @@ import CSSCommon from '../styles/productOverview.module.css';
 const ProductDescription = ( props ) => {
   return (
     <div className={CSSCommon['product-overview-description']}>
-      <h2>[Slogan]</h2>
-      <h1>[Description]</h1>
+      <h2>{props.info.productInfo.slogan}</h2>
+      <p>{props.info.productInfo.description}</p>
     </div>
   );
 }
