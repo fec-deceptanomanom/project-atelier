@@ -2,7 +2,7 @@ import React from 'react';
 import CSSLight from './relatedItemsLight.module.css';
 import CSSDark from './relatedItemsDark.module.css';
 
-class QuestionsAndAnswers extends React.Component {
+class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,4 +19,4 @@ class QuestionsAndAnswers extends React.Component {
   }
 }
 
-export default QuestionsAndAnswers;
+export default RelatedItems;
