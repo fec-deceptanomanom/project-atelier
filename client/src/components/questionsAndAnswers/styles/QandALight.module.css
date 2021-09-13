@@ -3,6 +3,54 @@
   background-color: lavender;
 }
 
+/* MAIN Q&A WIDGET BOX START */
+
+.QandABox {
+  border: 5px dotted black;
+  padding: 10px;
+  background-color:lavenderblush;
+}
+
+/* MAIN Q&A WIDGET BOX END */
+
+/* SEARCH BAR START */
+
+.searchBar {
+  margin: 5px;
+  padding: 5px;
+  height: 50px;
+  border: 4px dotted black;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchBox {
+  order: 0;
+  flex: 2 1 auto;
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+}
+
+.searchButton {
+  float: right;
+  padding: 17px;
+  height: 50px;
+  width: 50px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+.searchBar button:hover {
+  background: #ccc;
+}
+
+/* SEARCH BAR END */
 
 /* QUESTION LIST START */
 
@@ -45,48 +93,14 @@
 
 /* ANSWERS ENTRIES END */
 
-/* MAIN Q&A WIDGET BOX START */
+/* MORE QUESTIONS START */
 
-.QandABox {
-  border: 5px dotted black;
-  padding: 10px;
-  background-color:lavenderblush;
-}
-
-/* MAIN Q&A WIDGET BOX END */
-
-/* SEARCH BAR START */
-
-.searchBar {
-  margin: 5px;
-  padding: 5px;
-  height: 50px;
+.moreQuestions {
   border: 4px dotted black;
+  margin: 4px;
 }
 
-input[type=text] {
-  padding: 15px;
-  font-size: 17px;
-  border: none;
-  float: left;
-  width: 90%;
-}
-
-.searchBar button {
-  float: right;
-  padding: 17px;
-  height: 50px;
-  width: 50px;
-  background: #ddd;
-  border: none;
-  cursor: pointer;
-}
-
-.searchBar button:hover {
-  background: #ccc;
-}
-
-/* SEARCH BAR END */
+/* MORE QUESTIONS END */
 
 /* MODAL SUBMISSION FORM START */
 
@@ -124,12 +138,3 @@ input[type=text] {
   cursor: pointer;
 }
 /* MODAL SUBMISSION FORM END */
-
-/* MORE QUESTIONS START */
-
-.moreQuestions {
-  border: 4px dotted black;
-  margin: 4px;
-}
-
-/* MORE QUESTIONS END */
