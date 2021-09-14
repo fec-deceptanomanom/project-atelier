@@ -6,17 +6,16 @@ import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
 const ProductInfo = ( props ) => {
   // props.currentStyle.name + ' ' +
   if (props.currentStyle) {
-    console.log(props.currentStyle);
     return (
       <div className={CSSCommon['product-overview-info']}>
         <div className={CSSCommon['product-overview-info-top']}>
           <div className={CSSCommon['indented']}>
             <h5>Reviews</h5>
-            <h3>{props.info.productInfo.category}</h3>
-            <h2>{props.info.productInfo.name}</h2>
-            <h3>{'$' + props.info.productInfo.default_price}</h3>
+            <h3>{props.info.product.category}</h3>
+            <h2>{props.info.product.name}</h2>
+            <h3>{'$' + props.info.product.default_price}</h3>
             <h3>STYLE > {props.currentStyle.name}</h3>
-            <StyleThumbnailGrid styles={props.info.styleInfo} />
+            <StyleThumbnailGrid styles={props.info.styles} />
           </div>
           <div className={CSSCommon['deadspace']}></div>
         </div>

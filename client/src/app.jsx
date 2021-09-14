@@ -49,7 +49,7 @@ class App extends React.Component {
           <span className={CSSStyle.slider}></span>
         </label>
         <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
-        <ProductOverview data={this.state}/>
+        <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo}}/>
         <RelatedItems />
         <QuestionsAndAnswers darkmode={this.state.darkmode} />
         <RatingsAndReviews />

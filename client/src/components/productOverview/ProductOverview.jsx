@@ -18,8 +18,8 @@ class ProductOverview extends React.Component {
   }
 
   setDefaultStyle() {
-    if (this.props.data.styleInfo.results) {
-      let defaultStyle = this.props.data.styleInfo.results.filter(style => style['default?'])[0];
+    if (this.props.data.styles.results) {
+      let defaultStyle = this.props.data.styles.results.filter(style => style['default?'])[0];
       this.setState({
         ...this.state,
         currentStyle: defaultStyle
