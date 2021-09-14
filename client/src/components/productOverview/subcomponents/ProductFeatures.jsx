@@ -5,10 +5,11 @@ const ProductFeatures = ( props ) => {
   if (props.info.product.features) {
     return (
       <div className={CSSCommon['product-overview-features']}>
-        <h1>{JSON.stringify(props.info.product.features)}</h1>
-        {props.info.product.features.map(feature => (
-          <p>{feature.feature + ': ' + feature.value}</p>
-        ))}
+        <ul>
+          {props.info.product.features.map(feature => (
+            <li key={props.info.product.features.indexOf(feature)}>{feature.feature + ': ' + feature.value}</li>
+          ))}
+        </ul>
       </div>
     );
   } else {
