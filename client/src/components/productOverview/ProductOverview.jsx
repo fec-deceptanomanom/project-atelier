@@ -24,7 +24,15 @@ class ProductOverview extends React.Component {
         ...this.state,
         currentStyle: defaultStyle
       });
+      this.setNewStyle = this.setNewStyle.bind(this);
     }
+  }
+
+  setNewStyle(style) {
+    this.setState({
+      ...this.state,
+      currentStyle: style
+    });
   }
 
   componentDidMount() {
@@ -42,7 +50,7 @@ class ProductOverview extends React.Component {
       <div id={CSSCommon['ProductOverview']} className={CSSCommon['product-overview']}>
         <div className={CSSCommon['product-overview-top']}>
           <ProductImage info={this.props.data} currentStyle={this.state.currentStyle}/>
-          <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle}/>
+          <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle}/>
         </div>
         <div className={CSSCommon['product-overview-bottom']}>
           <ProductDescription info={this.props.data}/>

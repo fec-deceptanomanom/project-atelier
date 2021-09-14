@@ -6,6 +6,13 @@ import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
 const ProductInfo = ( props ) => {
   // props.currentStyle.name + ' ' +
   if (props.currentStyle) {
+    let priceElement;
+    if (props.currentStyle.sale_price) {
+      priceElement = (<h3><strike>{' $' + props.currentStyle.original_price}</strike>{' $' + props.currentStyle.sale_price}</h3>)
+    } else {
+      priceElement = (<h3>{' $' + props.currentStyle.original_price}</h3>)
+    }
+
     return (
       <div className={CSSCommon['product-overview-info']}>
         <div className={CSSCommon['product-overview-info-top']}>
@@ -13,9 +20,9 @@ const ProductInfo = ( props ) => {
             <h5>Reviews</h5>
             <h3>{props.info.product.category}</h3>
             <h2>{props.info.product.name}</h2>
-            <h3>{'$' + props.info.product.default_price}</h3>
+            {priceElement}
             <h3>STYLE > {props.currentStyle.name}</h3>
-            <StyleThumbnailGrid styles={props.info.styles} />
+            <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
           </div>
           <div className={CSSCommon['deadspace']}></div>
         </div>
