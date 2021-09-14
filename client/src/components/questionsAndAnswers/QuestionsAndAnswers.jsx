@@ -5,12 +5,15 @@ import QuestionsList from './subcomponents/QuestionsList';
 import SearchBar from './subcomponents/SearchBar';
 import SubmitQuestionForm from './subcomponents/SubmitQuestionForm';
 import SubmitAnswerForm from './subcomponents/SubmitAnswerForm';
+import dummyData from './dummyData';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       darkmode: props.darkmode,
+      questionData: dummyData.questionList,
+      answerData: dummyData.answerList,
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
@@ -19,6 +22,9 @@ class QuestionsAndAnswers extends React.Component {
   componentDidUpdate(prevprops) {
     if (this.props.darkmode !== prevprops.darkmode) {
       this.setState({ darkmode: this.props.darkmode })
+    }
+    if (this.props.questionData !== prevprops.questionData) {
+      this.setState({ questionData: this.props.questionData })
     }
   }
 
@@ -56,12 +62,12 @@ class QuestionsAndAnswers extends React.Component {
       <div id="QandA" className={CSSStyle.QandABox}>
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} />
-        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} />
+        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.questionData} answerData={this.state.answerData} />
         <SubmitQuestionForm CSSStyle={CSSStyle} closeQuestionForm={this.modalClose}/>
         <SubmitAnswerForm CSSStyle={CSSStyle} closeAnswerForm={this.modalClose} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
-          <button id="moreQuestions">See More Questions (WIP)</button>
-          <button id="QuestionFormBtn" onClick={this.modalOpen}>Ask A Question</button>
+          <button id="moreQuestions">More Answered Questions (WIP)</button>
+          <button id="QuestionFormBtn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
         </div>
       </div>
     );
