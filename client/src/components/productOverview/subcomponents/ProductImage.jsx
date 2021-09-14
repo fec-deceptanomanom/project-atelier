@@ -5,7 +5,7 @@ const ProductImage = ( props ) => {
   if (props.currentStyle) {
     return (
       <div className={CSSCommon['product-overview-image']}>
-        <img src={props.currentStyle.photos[0].url} height='400'></img>
+        <img className={CSSCommon['main-img']} src={props.currentStyle.photos[0].url}></img>
       </div>
     );
   } else {
