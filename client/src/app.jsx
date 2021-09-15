@@ -61,7 +61,7 @@ class App extends React.Component {
       CSSStyle = AppCSSDark;
       bannerText = 'And now I\'m loaded in Dark Mode!';
     }
-    if (this.state.validProduct) {
+    if (this.state.validProduct && this.state.productInfo.id) {
       return (
         <div id="App">
           <label className={CSSStyle.switch}>
@@ -75,6 +75,8 @@ class App extends React.Component {
           <RatingsAndReviews />
         </div>
       );
+    } else if (this.state.validProduct) {
+      return (<p>Loading...</p>)
     } else {
       return (
         <div>
