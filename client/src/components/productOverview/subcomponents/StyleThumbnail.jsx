@@ -6,19 +6,7 @@ import CSSDark from '../styles/productOverviewDark.module.css';
 
 const StyleThumbnail = ( props ) => {
   return (
-    // <Router>
-    //   <div className={CSSCommon['style-thumbnail']}>
-    //     <Link
-    //       className={CSSCommon['style-thumbnail-a']}
-    //       role="button"
-    //       to={'/' + props.data}
-    //       onClick={() => console.log('You clicked me!')}
-    //       >
-    //       {/* {props.data} */}
-    //     </Link>
-    //   </div>
-    // </Router>
-    <button className={CSSCommon['style-thumbnail']}>{props.data.name}</button>
+    <button className={CSSCommon['style-thumbnail']} onClick={() => props.onStyleClick(props.style)}>{props.style.name}</button>
   );
 }
 
