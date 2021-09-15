@@ -68,7 +68,12 @@ app.get('/productInfo/:id', (req, res) => {
     });
   })
   .catch((error) => {
-    res.send(error);
+    // console.log(JSON.stringify(error, null, 2));
+    if (error.message && error.message === "Request failed with status code 404") {
+      res.status(404).send("Not found.");
+    } else {
+      res.send(error);
+    }
   })
 });
 

@@ -16,7 +16,11 @@ class App extends React.Component {
       styleInfo: {},
       reviewInfo: {},
       darkmode: false,
-      validProduct: true
+      validProduct: true,
+      displayError: {
+        status: '',
+        message: ''
+      }
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
   }
@@ -30,21 +34,25 @@ class App extends React.Component {
     const defaultId = '47421'; // Saved for debugging
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
-      if (data.name && data.name === "Error") {
-        this.setState({
-          ...this.state,
-          validProduct: false
-        });
-      } else {
-        this.setState({
-          // Keep current state info...
-          ...this.state,
-          // ...then unpack the api info
-          ...data,
-          validProduct: true
-        });
-        console.log(data);
-      }
+      this.setState({
+        // Keep current state info...
+        ...this.state,
+        // ...then unpack the api info
+        ...data,
+        validProduct: true
+      });
+      console.log(data);
+    })
+    .fail((error) => {
+      // console.log(error);
+      this.setState({
+        ...this.state,
+        validProduct: false,
+        displayError: {
+          status: error.status,
+          message: error.statusText
+        }
+      });
     });
   }
 
@@ -72,8 +80,8 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <h1>404</h1>
-          <h3>Product not found</h3>
+          <h1>{this.state.displayError.status}</h1>
+          <h3>{this.state.displayError.message}</h3>
         </div>
       );
     }
