@@ -6,8 +6,11 @@ const secrets = require('../.secret.json');
 const app = express();
 const port = 3000;
 
-// Set the static served page
-app.use(express.static(__dirname + '/../client/dist'));
+// Set the static served page for landing page
+app.use('/', express.static(__dirname + '/../landingClient/dist'));
+
+// Set the static served page for product info
+app.use('/p/:product_id', express.static(__dirname + '/../client/dist'));
 
 // Set the authorization header with the API key
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
@@ -24,9 +27,9 @@ app.get('/productInfo/:id', (req, res) => {
         reject(error);
       });
   })
-  .catch((error) => {
-    res.send(error);
-  });
+  // .catch((error) => {
+  //   res.send(error);
+  // });
 
   // Get the product styles
   const styleInfo = new Promise((resolve, reject) => {
@@ -38,9 +41,9 @@ app.get('/productInfo/:id', (req, res) => {
         reject(error);
       });
   })
-  .catch((error) => {
-    res.send(error);
-  });
+  // .catch((error) => {
+  //   res.send(error);
+  // });
 
   // Get the product reviews data
   const reviewInfo = new Promise((resolve, reject) => {
@@ -52,16 +55,20 @@ app.get('/productInfo/:id', (req, res) => {
         reject(error);
       });
   })
-  .catch((error) => {
-    res.send(error);
-  });
+  // .catch((error) => {
+  //   res.send(error);
+  // });
 
-  Promise.all([productInfo, styleInfo, reviewInfo]).then((results) => {
+  Promise.all([productInfo, styleInfo, reviewInfo])
+  .then((results) => {
     res.send({
       productInfo: results[0],
       styleInfo: results[1],
       reviewInfo: results[2]
     });
+  })
+  .catch((error) => {
+    res.send(error);
   })
 });
 

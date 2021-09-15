@@ -16,6 +16,7 @@ class App extends React.Component {
       styleInfo: {},
       reviewInfo: {},
       darkmode: false,
+      validProduct: true
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
   }
@@ -26,15 +27,25 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.get('http://localhost:3000/productInfo/47421', (data, status) => {
-      this.setState({
-        // Keep current state info...
-        ...this.state,
-        // ...then unpack the api info
-        ...data
-      });
-      console.log(data);
-    })
+    const defaultId = '47421'; // Saved for debugging
+    const urlId = window.location.href.split('/p/')[1].replace('/', '');
+    $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
+      if (data.name && data.name === "Error") {
+        this.setState({
+          ...this.state,
+          validProduct: false
+        });
+      } else {
+        this.setState({
+          // Keep current state info...
+          ...this.state,
+          // ...then unpack the api info
+          ...data,
+          validProduct: true
+        });
+        console.log(data);
+      }
+    });
   }
 
   render() {
@@ -44,20 +55,28 @@ class App extends React.Component {
       CSSStyle = AppCSSDark;
       bannerText = 'And now I\'m loaded in Dark Mode!';
     }
-    return (
-      <div id="App">
-        <label className={CSSStyle.switch}>
-          <input onChange={this.darkmodeToggle} type="checkbox"></input>
-          <span className={CSSStyle.slider}></span>
-        </label>
-        <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
-        <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
-        <RelatedItems />
-        <QuestionsAndAnswers darkmode={this.state.darkmode} />
-        <RatingsAndReviews />
-
-      </div>
-    );
+    if (this.state.validProduct) {
+      return (
+        <div id="App">
+          <label className={CSSStyle.switch}>
+            <input onChange={this.darkmodeToggle} type="checkbox"></input>
+            <span className={CSSStyle.slider}></span>
+          </label>
+          <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
+          <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
+          <RelatedItems />
+          <QuestionsAndAnswers darkmode={this.state.darkmode} />
+          <RatingsAndReviews />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>404</h1>
+          <h3>Product not found</h3>
+        </div>
+      );
+    }
   }
 }
 
