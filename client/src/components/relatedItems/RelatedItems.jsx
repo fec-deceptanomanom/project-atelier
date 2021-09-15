@@ -9,8 +9,14 @@ class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      relatedItems: []
     };
+  }
+
+  componentDidMount() {
+    // GET /products/:product_id/related
+    //update state to equal [ id, id, id]
+
   }
 
   render() {
