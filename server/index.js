@@ -1,6 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-// Get the API key and set it as default for ALL axios requests
 const secrets = require('../.secret.json');
 
 const app = express();
@@ -12,8 +11,9 @@ app.use('/', express.static(__dirname + '/../landingClient/dist'));
 // Set the static served page for product info
 app.use('/p/:product_id', express.static(__dirname + '/../client/dist'));
 
-// Set the authorization header with the API key
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+
+// Set the authorization header with the API key as default for ALL axios requests
 axios.defaults.headers.common['Authorization'] = secrets.GitHub_API_KEY;
 
 app.get('/productInfo/:id', (req, res) => {
@@ -26,10 +26,7 @@ app.get('/productInfo/:id', (req, res) => {
       .catch((error) => {
         reject(error);
       });
-  })
-  // .catch((error) => {
-  //   res.send(error);
-  // });
+  });
 
   // Get the product styles
   const styleInfo = new Promise((resolve, reject) => {
@@ -40,10 +37,7 @@ app.get('/productInfo/:id', (req, res) => {
       .catch((error) => {
         reject(error);
       });
-  })
-  // .catch((error) => {
-  //   res.send(error);
-  // });
+  });
 
   // Get the product reviews data
   const reviewInfo = new Promise((resolve, reject) => {
@@ -54,10 +48,7 @@ app.get('/productInfo/:id', (req, res) => {
       .catch((error) => {
         reject(error);
       });
-  })
-  // .catch((error) => {
-  //   res.send(error);
-  // });
+  });
 
   Promise.all([productInfo, styleInfo, reviewInfo])
   .then((results) => {
@@ -68,7 +59,6 @@ app.get('/productInfo/:id', (req, res) => {
     });
   })
   .catch((error) => {
-    // console.log(JSON.stringify(error, null, 2));
     if (error.message && error.message === "Request failed with status code 404") {
       res.status(404).send("Not found.");
     } else {

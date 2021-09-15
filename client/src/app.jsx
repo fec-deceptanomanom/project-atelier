@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const defaultId = '47421'; // Saved for debugging
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
       this.setState({
@@ -44,7 +43,6 @@ class App extends React.Component {
       console.log(data);
     })
     .fail((error) => {
-      // console.log(error);
       this.setState({
         ...this.state,
         validProduct: false,
