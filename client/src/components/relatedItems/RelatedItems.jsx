@@ -13,11 +13,7 @@ class RelatedItems extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // GET /products/:product_id/related
-    //update state to equal [ id, id, id]
-
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -31,5 +27,7 @@ class RelatedItems extends React.Component {
     );
   }
 }
+
+// expected prop.types: array
 
 export default RelatedItems;

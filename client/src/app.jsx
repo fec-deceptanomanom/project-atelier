@@ -15,6 +15,7 @@ class App extends React.Component {
       productInfo: {},
       styleInfo: {},
       reviewInfo: {},
+      relatedIDs: [],
       darkmode: false,
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
@@ -52,7 +53,7 @@ class App extends React.Component {
         </label>
         <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
         <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
-        <RelatedItems />
+        <RelatedItems ids={this.state.relatedIDs}/>
         <QuestionsAndAnswers darkmode={this.state.darkmode} />
         <RatingsAndReviews />
 
