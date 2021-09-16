@@ -16,6 +16,7 @@ class App extends React.Component {
       styleInfo: {},
       reviewInfo: {},
       relatedIDs: [],
+      questionsList: [],
       darkmode: false,
       validProduct: true,
       displayError: {
@@ -34,6 +35,7 @@ class App extends React.Component {
   componentDidMount() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
+      console.log('get request data', data);
       this.setState({
         // Keep current state info...
         ...this.state,
@@ -41,7 +43,6 @@ class App extends React.Component {
         ...data,
         validProduct: true
       });
-      console.log(data);
     })
     .fail((error) => {
       this.setState({
@@ -72,7 +73,7 @@ class App extends React.Component {
           <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
           <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
           <RelatedItems />
-          <QuestionsAndAnswers darkmode={this.state.darkmode} />
+          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} />
           <RatingsAndReviews />
         </div>
       );

@@ -5,15 +5,12 @@ import QuestionsList from './subcomponents/QuestionsList';
 import SearchBar from './subcomponents/SearchBar';
 import SubmitQuestionForm from './subcomponents/SubmitQuestionForm';
 import SubmitAnswerForm from './subcomponents/SubmitAnswerForm';
-import dummyData from './dummyData';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       darkmode: props.darkmode,
-      questionData: dummyData.questionList,
-      answerData: dummyData.answerList,
       formTarget: null,
     };
     this.modalOpen = this.modalOpen.bind(this);
@@ -21,12 +18,15 @@ class QuestionsAndAnswers extends React.Component {
     this.postForm = this.postForm.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      darkmode: this.props.darkmode,
+    })
+  }
+
   componentDidUpdate(prevprops) {
     if (this.props.darkmode !== prevprops.darkmode) {
       this.setState({ darkmode: this.props.darkmode })
-    }
-    if (this.props.questionData !== prevprops.questionData) {
-      this.setState({ questionData: this.props.questionData })
     }
   }
 
@@ -78,11 +78,12 @@ class QuestionsAndAnswers extends React.Component {
     if (this.state.darkmode === true) {
       CSSStyle = CSSDark;
     }
+    //console.log('props', this.props.questionsList);
     return (
       <div id="QandA" className={CSSStyle.QandABox}>
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} />
-        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.questionData} answerData={this.state.answerData} />
+        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.props.questionsList} answerData={this.state.answerData} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeQuestionForm={this.modalClose}/>
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeAnswerForm={this.modalClose} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>

@@ -16,6 +16,7 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 // Set the authorization header with the API key as default for ALL axios requests
 axios.defaults.headers.common['Authorization'] = secrets.GitHub_API_KEY;
 
+
 app.get('/productInfo/:id', (req, res) => {
   // Get the product info
   const productInfo = new Promise((resolve, reject) => {
@@ -63,13 +64,25 @@ app.get('/productInfo/:id', (req, res) => {
     res.send(error);
   });
 
-  Promise.all([productInfo, styleInfo, reviewInfo])
+  // Get the initial question list. currently only returns up to the first 5 questions, which is wrong
+  const questionsList = new Promise((resolve, reject) => {
+    axios.get(API_URL + '/qa/questions?product_id=' + req.params.id)
+      .then(results => {
+        resolve(results.data);
+      })
+      .catch(error => {
+        reject(error);
+      })
+  });
+
+  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, questionsList])
   .then((results) => {
     res.send({
       productInfo: results[0],
       styleInfo: results[1],
       reviewInfo: results[2],
-      relatedIDs: results[3]
+      relatedIDs: results[3],
+      questionsList : results[4],
     });
   })
   .catch((error) => {
