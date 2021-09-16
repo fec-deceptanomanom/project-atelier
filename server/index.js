@@ -55,12 +55,26 @@ app.get('/productInfo/:id', (req, res) => {
   .catch((error) => {
     res.send(error);
   });
+  // Get the related product data ids
+  const relatedIDs = new Promise((resolve, reject) => {
+    axios.get(API_URL + '/products/' + req.params.id + '/related')
+      .then((results) => {
+        resolve(results.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  })
+  .catch((error) => {
+    res.send(error);
+  });
 
-  Promise.all([productInfo, styleInfo, reviewInfo]).then((results) => {
+  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs]).then((results) => {
     res.send({
       productInfo: results[0],
       styleInfo: results[1],
-      reviewInfo: results[2]
+      reviewInfo: results[2],
+      relatedIDs: results[3]
     });
   })
 });
