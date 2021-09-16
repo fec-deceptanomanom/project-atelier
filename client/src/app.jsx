@@ -17,6 +17,11 @@ class App extends React.Component {
       reviewInfo: {},
       relatedIDs: [],
       darkmode: false,
+      validProduct: true,
+      displayError: {
+        status: '',
+        message: ''
+      }
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
   }
@@ -27,15 +32,27 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.get('http://localhost:3000/productInfo/47421', (data, status) => {
+    const urlId = window.location.href.split('/p/')[1].replace('/', '');
+    $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
       this.setState({
         // Keep current state info...
         ...this.state,
         // ...then unpack the api info
-        ...data
+        ...data,
+        validProduct: true
       });
       console.log(data);
     })
+    .fail((error) => {
+      this.setState({
+        ...this.state,
+        validProduct: false,
+        displayError: {
+          status: error.status,
+          message: error.statusText
+        }
+      });
+    });
   }
 
   render() {
@@ -45,20 +62,30 @@ class App extends React.Component {
       CSSStyle = AppCSSDark;
       bannerText = 'And now I\'m loaded in Dark Mode!';
     }
-    return (
-      <div id="App">
-        <label className={CSSStyle.switch}>
-          <input onChange={this.darkmodeToggle} type="checkbox"></input>
-          <span className={CSSStyle.slider}></span>
-        </label>
-        <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
-        <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
-        <RelatedItems ids={this.state.relatedIDs}/>
-        <QuestionsAndAnswers darkmode={this.state.darkmode} />
-        <RatingsAndReviews />
-
-      </div>
-    );
+    if (this.state.validProduct && this.state.productInfo.id) {
+      return (
+        <div id="App">
+          <label className={CSSStyle.switch}>
+            <input onChange={this.darkmodeToggle} type="checkbox"></input>
+            <span className={CSSStyle.slider}></span>
+          </label>
+          <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
+          <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
+          <RelatedItems />
+          <QuestionsAndAnswers darkmode={this.state.darkmode} />
+          <RatingsAndReviews />
+        </div>
+      );
+    } else if (this.state.validProduct) {
+      return (<p>Loading...</p>)
+    } else {
+      return (
+        <div>
+          <h1>{this.state.displayError.status}</h1>
+          <h3>{this.state.displayError.message}</h3>
+        </div>
+      );
+    }
   }
 }
 
