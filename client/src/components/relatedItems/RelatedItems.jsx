@@ -15,13 +15,16 @@ class RelatedItems extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('Related IDs', this.props)
-    const ids = this.props.ids
-
-    //I need to make 4 get REQs
-    //make four promises and then Promise.all
-    // on resolve add the data to state.related items.
-
+    const ids = this.props.ids;
+    console.log('Related IDs', ids)
+    $.get({
+      url: 'http://localhost:3000/relatedItems',
+      data: JSON.stringify(ids),
+      dataType: 'json',
+      success: data => {
+        console.log(data);
+      }
+    })
   }
 
   render() {

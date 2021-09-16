@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const axios = require('axios');
 // Get the API key and set it as default for ALL axios requests
 const secrets = require('../.secret.json');
@@ -78,6 +79,11 @@ app.get('/productInfo/:id', (req, res) => {
     });
   })
 });
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.get('/relatedItems', (req, res) => {
+  console.log('REQ.BODY is', req.body);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
