@@ -1,4 +1,19 @@
 .testBanner {
-  color: orange;
+  margin: 1%;
+  color: rgb(124, 93, 34);
   background-color: lightsalmon;
+}
+
+.related {
+  border: 4px dashed brown;
+}
+
+.relatedCarousel {
+  border: 2px dashed rgb(80, 24, 24);
+  margin: 2px
+}
+
+.outfitCarousel {
+  border: 2px dashed rgba(224, 88, 88, 0.507);
+  margin: 2px
 }

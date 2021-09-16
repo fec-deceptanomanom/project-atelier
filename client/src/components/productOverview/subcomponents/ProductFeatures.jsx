@@ -2,11 +2,19 @@ import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
 const ProductFeatures = ( props ) => {
-  return (
-    <div className={CSSCommon['product-overview-features']}>
-      <h1>[Features]</h1>
-    </div>
-  );
+  if (props.info.product.features) {
+    return (
+      <div className={CSSCommon['product-overview-features']}>
+        <ul>
+          {props.info.product.features.map(feature => (
+            <li key={props.info.product.features.indexOf(feature)}>{feature.feature + ': ' + feature.value}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
+    return (<h1>Loading...</h1>)
+  }
 }
 
 export default ProductFeatures;

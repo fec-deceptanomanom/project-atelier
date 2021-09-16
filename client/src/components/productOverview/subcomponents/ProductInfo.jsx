@@ -3,20 +3,36 @@ import CSSCommon from '../styles/productOverview.module.css';
 
 import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
 
+const getRoundedRating = function(ratings) {
+  let ratingSum = 0;
+  let ratingQuantity = 0;
+  for (const [key, value] of Object.entries(ratings)) {
+    ratingSum += (Number(key) * Number(value));
+    ratingQuantity += Number(value);
+  }
+  return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
+}
+
+const getPriceElement = function(currentStyle) {
+  if (currentStyle.sale_price) {
+    return (<h3><strike>{' $' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
+  } else {
+    return (<h3>{' $' + currentStyle.original_price}</h3>);
+  }
+}
+
 const ProductInfo = ( props ) => {
-  // props.currentStyle.name + ' ' +
   if (props.currentStyle) {
-    console.log(props.currentStyle);
     return (
       <div className={CSSCommon['product-overview-info']}>
         <div className={CSSCommon['product-overview-info-top']}>
           <div className={CSSCommon['indented']}>
-            <h5>Reviews</h5>
-            <h3>{props.info.productInfo.category}</h3>
-            <h2>{props.info.productInfo.name}</h2>
-            <h3>{'$' + props.info.productInfo.default_price}</h3>
+            <h5>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}</h5>
+            <h3>{props.info.product.category}</h3>
+            <h2>{props.info.product.name}</h2>
+            {getPriceElement(props.currentStyle)}
             <h3>STYLE > {props.currentStyle.name}</h3>
-            <StyleThumbnailGrid styles={props.info.styleInfo} />
+            <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
           </div>
           <div className={CSSCommon['deadspace']}></div>
         </div>
