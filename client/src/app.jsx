@@ -15,6 +15,7 @@ class App extends React.Component {
       productInfo: {},
       styleInfo: {},
       reviewInfo: {},
+      relatedIDs: [],
       darkmode: false,
       validProduct: true,
       displayError: {
