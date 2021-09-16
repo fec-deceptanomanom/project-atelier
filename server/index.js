@@ -42,10 +42,25 @@ app.get('/productInfo/:id', (req, res) => {
     res.send(error);
   });
 
-  Promise.all([productInfo, styleInfo]).then((results) => {
+  // Get the product reviews data
+  const reviewInfo = new Promise((resolve, reject) => {
+    axios.get(API_URL + '/reviews/meta?product_id=' + req.params.id)
+      .then((results) => {
+        resolve(results.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+
+  Promise.all([productInfo, styleInfo, reviewInfo]).then((results) => {
     res.send({
       productInfo: results[0],
-      styleInfo: results[1]
+      styleInfo: results[1],
+      reviewInfo: results[2]
     });
   })
 });

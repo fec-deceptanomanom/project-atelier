@@ -2,11 +2,15 @@ import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
 const ProductImage = ( props ) => {
-  return (
-    <div className={CSSCommon['product-overview-image']}>
-      <h1>[Image]</h1>
-    </div>
-  );
+  if (props.currentStyle) {
+    return (
+      <div className={CSSCommon['product-overview-image']}>
+        <img className={CSSCommon['main-img']} src={props.currentStyle.photos[0].url}></img>
+      </div>
+    );
+  } else {
+    return (<h1>Loading...</h1>)
+  }
 }
 
 export default ProductImage;

@@ -14,6 +14,7 @@ class App extends React.Component {
     this.state = {
       productInfo: {},
       styleInfo: {},
+      reviewInfo: {},
       darkmode: false,
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
@@ -27,9 +28,10 @@ class App extends React.Component {
   componentDidMount() {
     $.get('http://localhost:3000/productInfo/47421', (data, status) => {
       this.setState({
+        // Keep current state info...
         ...this.state,
-        productInfo: data.productInfo,
-        styleInfo: data.styleInfo
+        // ...then unpack the api info
+        ...data
       });
       console.log(data);
     })
@@ -49,7 +51,7 @@ class App extends React.Component {
           <span className={CSSStyle.slider}></span>
         </label>
         <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
-        <ProductOverview data={this.state}/>
+        <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
         <RelatedItems />
         <QuestionsAndAnswers darkmode={this.state.darkmode} />
         <RatingsAndReviews />

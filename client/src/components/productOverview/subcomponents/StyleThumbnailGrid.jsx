@@ -9,7 +9,7 @@ const StyleThumbnailGrid = ( props ) => {
   return (
     <div className={CSSCommon['style-thumbnail-grid']}>
       {props.styles.results ? props.styles.results.map(style => {
-        return <StyleThumbnail data={style} key={props.styles.results.indexOf(style)}/>
+        return <StyleThumbnail style={style} onStyleClick={props.onStyleClick} key={props.styles.results.indexOf(style)}/>
       }) : <></>}
     </div>
   );
