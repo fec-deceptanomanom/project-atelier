@@ -7,7 +7,7 @@ const QuestionEntry = (props) => {
   //console.log(props.questionData);
   return (
     <div className={CSSStyle.questionEntry}>
-      <h3>Q: {props.questionData["question_body"]}</h3>
+      <h3 id={'question-' + props.questionData['question_id']}>Q: {props.questionData['question_body']}</h3>
       <div id="question-info">
           <p className={CSSStyle.smallText}>Helpful?</p>
           <p id="rate-question" className={CSSStyle.smallText}>Yes</p>

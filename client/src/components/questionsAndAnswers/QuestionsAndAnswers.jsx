@@ -14,9 +14,11 @@ class QuestionsAndAnswers extends React.Component {
       darkmode: props.darkmode,
       questionData: dummyData.questionList,
       answerData: dummyData.answerList,
+      formTarget: null,
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
+    this.postForm = this.postForm.bind(this);
   }
 
   componentDidUpdate(prevprops) {
@@ -30,12 +32,16 @@ class QuestionsAndAnswers extends React.Component {
 
   modalOpen(e) {
     const target = e.target.attributes.id.value;
-    //console.log('CLICKED', target);
     let modal;
     if (target === 'AnswerFormBtn') {
       modal = document.getElementById('AnswerForm');
+      const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
+      console.log('CLICKED', targetName);
+      this.setState({formTarget: targetName})
     } else if (target === 'QuestionFormBtn') {
       modal = document.getElementById('QuestionForm');
+      const targetName = this.state.questionData['product_id'];
+      this.setState({formTarget: targetName})
     }
     modal.style.display = "block";
   }
@@ -50,6 +56,20 @@ class QuestionsAndAnswers extends React.Component {
       modal = document.getElementById('QuestionForm');
     }
     modal.style.display = "none";
+    this.setState({formTarget: null})
+  }
+
+  // mock POST function that actually belongs in app.jsx
+  postForm(e) {
+    e.preventDefault();
+    let data = {};
+    // if answer form
+    data.body = document.getElementById('answer-text').value;
+    data.name = document.getElementById('answer-nickname').value;
+    data.email = document.getElementById('answer-email').value;
+    data.photos = document.getElementById('photo-upload').value;
+    console.log(data);
+    // else if question form
   }
 
 
@@ -63,8 +83,8 @@ class QuestionsAndAnswers extends React.Component {
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} />
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.questionData} answerData={this.state.answerData} />
-        <SubmitQuestionForm CSSStyle={CSSStyle} closeQuestionForm={this.modalClose}/>
-        <SubmitAnswerForm CSSStyle={CSSStyle} closeAnswerForm={this.modalClose} />
+        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeQuestionForm={this.modalClose}/>
+        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeAnswerForm={this.modalClose} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
           <button id="moreQuestions">More Answered Questions (WIP)</button>
           <button id="QuestionFormBtn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
