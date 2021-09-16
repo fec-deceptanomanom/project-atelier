@@ -18,9 +18,10 @@ class RelatedItems extends React.Component {
   render() {
     return (
       <div className={CSSLight.related} id="RelatedItems">
-        <h1 className={CSSLight.testBanner}>Testing from Related Items</h1>
+        <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
-          <RelatedCarousel />
+          {console.log('RELATED ITEMS PROPS', this.props.ids)}
+          <RelatedCarousel ids={this.props.ids}/>
           <OutfitCarousel />
         </div>
       </div>

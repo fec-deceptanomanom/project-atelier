@@ -1,20 +1,22 @@
 import React from 'react';
+import CSSLight from '.././relatedItemsLight.module.css';
+import CSSDark from '.././relatedItemsDark.module.css';
+
 import ComparisonModal from './ComparisonModal.jsx';
 
 const RelatedCard = (props) => {
 
   const starButton = (
     <div>
-      <button onClick={'display ComparisionModal'}></button>
+      <button onClick={() => {}} value='Star Button'>Star Button</button>
     </div>
   );
 
   return (
-    <div>
-      <h2>I am the Related Product Card</h2>
-      <button onClick={'render ComparisonModal '}></button>
-
-      <img>Preview Image</img>
+    <div className={CSSLight.relatedCard}>
+      <h2>I am a Related Product Card</h2>
+      {starButton}
+      <h3>Preview Image</h3>
 
       <ul>
         <li>Product Category</li>

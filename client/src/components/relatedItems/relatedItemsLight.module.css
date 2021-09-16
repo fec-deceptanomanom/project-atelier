@@ -13,7 +13,13 @@
   margin: 2px
 }
 
+.relatedCard {
+  border: 2px inset rgb(238, 114, 211);
+  margin: 2px
+}
+
 .outfitCarousel {
   border: 2px dashed rgba(224, 88, 88, 0.507);
   margin: 2px
 }
+
