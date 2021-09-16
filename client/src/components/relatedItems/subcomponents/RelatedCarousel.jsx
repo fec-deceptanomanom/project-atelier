@@ -18,7 +18,7 @@ class RelatedCarousel extends React.Component {
   // })
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.ids !== this.props) {
-      console.log('hello');
+      //do something
     }
   }
   render () {
