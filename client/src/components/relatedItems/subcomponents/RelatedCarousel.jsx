@@ -11,24 +11,19 @@ class RelatedCarousel extends React.Component {
 
       }
     }
-  // const ids = this.props.ids || []; //will be the result of a map <RelatedCard
-  //for each id render a card
-  // const cardList = ids.map( id => {
-  //   return <RelatedCard id={id}/>
-  // })
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.ids !== this.props) {
-      //do something
-    }
-  }
+
+
   render () {
 
+    const cards = this.props.items.map( (item, i) => {
+      return <li key={i}> <RelatedCard cardInfo={item} /> </li>
+    })
     return (
       <div className={CSSLight.relatedCarousel}>
         <h2>I am the Related Carousel</h2>
         <div>
           <LeftButton />
-          <RelatedCard />
+          <ul>{cards}</ul>
           <RightButton />
         </div>
       </div>

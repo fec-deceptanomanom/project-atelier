@@ -1,7 +1,6 @@
 import React from 'react';
 import CSSLight from './relatedItemsLight.module.css';
 import CSSDark from './relatedItemsDark.module.css';
-import $ from 'jquery';
 import axios from 'axios';
 
 import RelatedCarousel from './subcomponents/RelatedCarousel.jsx'
