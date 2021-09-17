@@ -7,6 +7,8 @@ const secrets = require('../.secret.json');
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 // Set the static served page
 app.use(express.static(__dirname + '/../client/dist'));
 
@@ -79,10 +81,14 @@ app.get('/productInfo/:id', (req, res) => {
     });
   })
 });
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+
 app.get('/relatedItems', (req, res) => {
-  console.log('REQ.BODY is', req.body);
+  // console.log('REQ.query is', typeof Object.keys(req.query)[0]);
+  console.log('REQ.Query Stringified', (Object.keys(req.query)[0]));
+  const idString = Object.keys(req.query)[0];
+  const ids = idString.split(',');
+  console.log('IDS', ids);
+  res.status(200).send(ids);
 })
 
 app.listen(port, () => {

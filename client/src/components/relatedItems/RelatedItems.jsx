@@ -20,7 +20,7 @@ class RelatedItems extends React.Component {
     $.get({
       url: 'http://localhost:3000/relatedItems',
       data: JSON.stringify(ids),
-      dataType: 'json',
+      // dataType: 'json',
       success: data => {
         console.log(data);
       }
