@@ -3,48 +3,6 @@
   background-color: lavender;
 }
 
-
-/* QUESTION LIST START */
-
-.questionsList {
-  border: 4px dotted black;
-  margin: 4px;
-}
-
-/* QUESTION LIST END */
-
-/* QUESTION ENTRY START */
-
-.questionEntry {
-  border: 3px dotted black;
-  margin: 3px;
-}
-
-/* QUESTION ENTRY END */
-
-/* ANSWERS LIST START */
-
-.answersList {
-  border: 2px dotted black;
-  margin: 2px;
-}
-
-/* ANSWERS LIST END */
-
-/* ANSWERS ENTRIES START */
-
-.answerEntry {
-  border: 1px dotted black;
-  margin: 2px;
-}
-
-.p {
-  background-color: lavender;
-  color: purple;
-}
-
-/* ANSWERS ENTRIES END */
-
 /* MAIN Q&A WIDGET BOX START */
 
 .QandABox {
@@ -54,7 +12,6 @@
 }
 
 /* MAIN Q&A WIDGET BOX END */
-
 /* SEARCH BAR START */
 
 .searchBar {
@@ -64,15 +21,21 @@
   border: 4px dotted black;
 }
 
-input[type=text] {
+.searchForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchBox {
+  order: 0;
+  flex: 2 1 auto;
   padding: 15px;
   font-size: 17px;
   border: none;
   float: left;
-  width: 90%;
 }
 
-.searchBar button {
+.searchButton {
   float: right;
   padding: 17px;
   height: 50px;
@@ -87,7 +50,51 @@ input[type=text] {
 }
 
 /* SEARCH BAR END */
+/* QUESTION LIST START */
 
+.questionsList {
+  border: 4px dotted black;
+  margin: 4px;
+}
+
+/* QUESTION LIST END */
+/* QUESTION ENTRY START */
+
+.questionEntry {
+  border: 3px dotted black;
+  margin: 3px;
+}
+
+/* QUESTION ENTRY END */
+/* ANSWERS LIST START */
+
+.answersList {
+  border: 2px dotted black;
+  margin: 2px;
+}
+
+/* ANSWERS LIST END */
+/* ANSWERS ENTRIES START */
+
+.answerEntry {
+  border: 1px dotted black;
+  margin: 2px;
+}
+
+.p {
+  background-color: lavender;
+  color: purple;
+}
+
+/* ANSWERS ENTRIES END */
+/* MORE QUESTIONS START */
+
+.moreQuestions {
+  border: 4px dotted black;
+  margin: 4px;
+}
+
+/* MORE QUESTIONS END */
 /* MODAL SUBMISSION FORM START */
 
 .modal {
@@ -124,12 +131,3 @@ input[type=text] {
   cursor: pointer;
 }
 /* MODAL SUBMISSION FORM END */
-
-/* MORE QUESTIONS START */
-
-.moreQuestions {
-  border: 4px dotted black;
-  margin: 4px;
-}
-
-/* MORE QUESTIONS END */
