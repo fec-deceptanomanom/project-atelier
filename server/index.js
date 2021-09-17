@@ -1,9 +1,11 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const axios = require('axios');
 const secrets = require('../.secret.json');
 
 const app = express();
 const port = 3000;
+
 
 // Set the static served page for landing page
 app.use('/', express.static(__dirname + '/../landingClient/dist'));
