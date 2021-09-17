@@ -2,6 +2,7 @@ import React from 'react';
 import CSSLight from './relatedItemsLight.module.css';
 import CSSDark from './relatedItemsDark.module.css';
 import $ from 'jquery';
+import axios from 'axios';
 
 import RelatedCarousel from './subcomponents/RelatedCarousel.jsx'
 import OutfitCarousel from './subcomponents/OutfitCarousel.jsx'
@@ -14,18 +15,37 @@ class RelatedItems extends React.Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     const ids = this.props.ids;
     console.log('Related IDs', ids)
-    $.get({
-      url: 'http://localhost:3000/relatedItems',
-      data: JSON.stringify(ids),
-      // dataType: 'json',
-      success: data => {
-        console.log(data);
-      }
+
+    Promise.all(
+      ids.map(id => {
+        return new Promise((resolve, reject) => {
+          axios.get(`http://localhost:3000/productInfo/${id}`)
+            .then(response => {
+              console.log(response.data);
+              resolve(response.data);
+            })
+            .catch(err => {
+              console.error(err);
+            })
+        })
+      })
+    )
+    .then(results => {
+      console.log('RESULTS ARE:', results);
+      this.setState({
+        relatedItems: results
+      })
     })
+    .catch(err => {
+      console.error(err);
+    })
+
   }
+
+  componentDidUpdate() { }
 
   render() {
     return (
@@ -33,7 +53,7 @@ class RelatedItems extends React.Component {
         <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
-          <RelatedCarousel ids={this.props.ids}/>
+          <RelatedCarousel ids={this.props.ids} />
           <OutfitCarousel />
         </div>
       </div>
