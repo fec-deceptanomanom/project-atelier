@@ -17,14 +17,13 @@ class RelatedItems extends React.Component {
 
   componentDidMount() {
     const ids = this.props.ids;
-    console.log('Related IDs', ids)
 
     Promise.all(
       ids.map(id => {
         return new Promise((resolve, reject) => {
           axios.get(`http://localhost:3000/productInfo/${id}`)
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               resolve(response.data);
             })
             .catch(err => {
@@ -34,7 +33,7 @@ class RelatedItems extends React.Component {
       })
     )
     .then(results => {
-      console.log('RESULTS ARE:', results);
+      // console.log('RESULTS ARE:', results);
       this.setState({
         relatedItems: results
       })
@@ -53,7 +52,7 @@ class RelatedItems extends React.Component {
         <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
-          <RelatedCarousel ids={this.props.ids} />
+          <RelatedCarousel ids={this.props.ids} items={this.state.relatedItems}/>
           <OutfitCarousel />
         </div>
       </div>

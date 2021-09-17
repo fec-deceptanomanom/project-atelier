@@ -96,16 +96,6 @@ app.get('/productInfo/:id', (req, res) => {
   })
 });
 
-// app.get('/relatedItems', (req, res) => {
-//   // console.log('REQ.query is', typeof Object.keys(req.query)[0]);
-//   console.log('REQ.Query Stringified', (Object.keys(req.query)[0]));
-//   const idString = Object.keys(req.query)[0];
-//   const ids = idString.split(',');
-//   console.log('IDS', ids);
-//   res.status(200).send(ids);
-//   // res.redirect('/productInfo/:id')
-// })
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 })
