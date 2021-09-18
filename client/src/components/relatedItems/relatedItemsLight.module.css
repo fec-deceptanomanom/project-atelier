@@ -13,7 +13,33 @@
   margin: 2px
 }
 
+.relatedCard {
+  border: 2px inset rgb(238, 114, 211);
+  margin: 2px
+}
+
+.scroller {
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  overflow: auto;
+}
+.card {
+  display: flex;
+
+  padding: 2%;
+  flex-basis: 16%;
+  flex-grow: 1;
+}
+
+.thumbnail {
+  max-width: 75%;
+  height: 66%;
+}
+
 .outfitCarousel {
   border: 2px dashed rgba(224, 88, 88, 0.507);
   margin: 2px
 }
+

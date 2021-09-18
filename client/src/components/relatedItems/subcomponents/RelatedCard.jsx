@@ -1,29 +1,44 @@
 import React from 'react';
+import CSSLight from '.././relatedItemsLight.module.css';
+import CSSDark from '.././relatedItemsDark.module.css';
+
 import ComparisonModal from './ComparisonModal.jsx';
 
-const RelatedCard = (props) => {
+class RelatedCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  const starButton = (
-    <div>
-      <button onClick={'display ComparisionModal'}></button>
-    </div>
-  );
+    }
+  }
 
-  return (
-    <div>
-      <h2>I am the Related Product Card</h2>
-      <button onClick={'render ComparisonModal '}></button>
+  findDefaultPhoto(results) {
+    let defal = results.find(result => result['default?']);
+    return defal.photos[0].thumbnail_url
+  }
 
-      <img>Preview Image</img>
+  render() {
+    const starButton = (
+      <div>
+        <button onClick={() => { }} value='Star Button'>Star Button</button>
+      </div>
+    );
+    const info = this.props.cardInfo.productInfo;
+    // const thumbnail = this.findDefaultPhoto(this.props.cardInfo.styleInfo.results);
 
-      <ul>
-        <li>Product Category</li>
-        <li>Product Name</li>
-        <li>Price</li>
-        <li>Star Rating</li>
-      </ul>
-    </div>
-  )
+    return (
+      <div className={CSSLight.relatedCard}>
+        <h2>{info.name}</h2>
+        <h4>{info.category}</h4>
+        {starButton}
+        <img className={CSSLight.thumbnail} src='https://cdn15.bestreviews.com/images/v4desktop/product-matrix/dmi-crutches--push-button-adjustable-crutches-f94027.jpg' alt='404'></img>
+        <ul>
+          <li>{info.default_price}</li>
+          <li>Star Rating</li>
+        </ul>
+      </div>
+    )
+  }
 }
 
 

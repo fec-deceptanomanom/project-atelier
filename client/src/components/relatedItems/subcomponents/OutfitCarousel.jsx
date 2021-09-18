@@ -1,5 +1,6 @@
 import React from 'react';
 import CSSLight from './../relatedItemsLight.module.css';
+
 import OutfitCard from './OutfitCard.jsx';
 import AddToOutfit from './AddToOutfit.jsx';
 

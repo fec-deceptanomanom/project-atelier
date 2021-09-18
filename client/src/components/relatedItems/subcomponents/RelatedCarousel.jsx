@@ -4,18 +4,31 @@ import RelatedCard from './RelatedCard.jsx';
 import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
-const RelatedCarousel = (props) => {
-  const cardList = []; //will be the result of a map <RelatedCard
-  return (
-    <div className={CSSLight.relatedCarousel}>
-      <h2>I am the Related Carousel</h2>
-      <div>
+class RelatedCarousel extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+
+      }
+    }
+
+
+  render () {
+
+    const cards = this.props.items.map( (item, i) => {
+      return <div className={CSSLight.card} key={i}> <RelatedCard cardInfo={item} /> </div>
+    })
+    return (
+      <div className={CSSLight.relatedCarousel}>
+
         <LeftButton />
-        {cardList}
+        <div className={CSSLight.scroller}>
+          {cards}
+        </div>
         <RightButton />
       </div>
-    </div>
-  );
+    )
+  };
 };
 
 
