@@ -10,12 +10,6 @@ import Reviews from  '../subComponents/reviews.jsx'
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("Product Overview", function() {
-  it("Should run without issue", function() {
-    expect(1).toEqual(1);
-  })
-});
-
 describe('ReviewList Inclusion', () => {
   it('renders without crashing and contains X element', () => {
     const wrapper = Enzyme.shallow(<ReviewList />);
