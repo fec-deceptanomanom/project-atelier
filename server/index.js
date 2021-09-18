@@ -96,7 +96,7 @@ app.get('/productInfo/:id', (req, res) => {
       reviewInfo: results[2],
       relatedIDs: results[3],
       questionsList : results[4],
-      reviews: results[5],
+      reviews: results[5]
     });
   })
   .catch((error) => {
