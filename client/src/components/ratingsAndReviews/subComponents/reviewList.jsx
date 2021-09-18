@@ -3,7 +3,7 @@ import Reviews from './reviews.jsx';
 import CSSLight from '../styles/ratingsAndReviewsLight.modules.css';
 
 const ReviewsList = (props) => {
-  console.log('Reviewlist Props:', props)
+  // console.log('Reviewlist Props:', props)
  return (
    <div className={CSSLight['reviewList']}>
      <h4>{props.data.count} reviews</h4>

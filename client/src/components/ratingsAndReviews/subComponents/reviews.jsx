@@ -2,11 +2,11 @@ import React from 'react';
 import CSSLight from '../styles/ratingsAndReviewsLight.modules.css';
 
 const Reviews = (props) => {
-  console.log('Reviews props, ' , props)
+  // console.log('Reviews props, ' , props)
   return (
     <div className="reviewsDiv">
-      {props.reviews.map((review) => {
-        return (<div className={CSSLight["review"]}>
+      {props.reviews.map((review, i) => {
+        return (<div key={i} className={CSSLight["review"]}>
           <div key="rating">{review.rating}</div>
           <div key="username">{review.reviewer_name}</div>
           <div key="date">{review.date}</div>
