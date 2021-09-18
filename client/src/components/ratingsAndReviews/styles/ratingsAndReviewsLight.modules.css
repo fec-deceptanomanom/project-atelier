@@ -25,11 +25,10 @@
 .reviewList{
   border: 2px dashed black;
 }
+<<<<<<< HEAD
 
-.review{
-  background-color: grey;
-  border: 2px dashed blue;
-}
+=======
+>>>>>>> 368ebf3ecff19ed08b43636d9922ae93d5517209
 .starRatings{
   border: 2px dashed red;
   order: 0;
@@ -46,4 +45,13 @@
   border: 2px dashed purple;
   order: 2;
   flex: 1 0 auto;
+}
+
+.reviewsDiv{
+  border: 2px black;
+}
+
+.review{
+  background-color: grey;
+  border: 2px dashed blue;
 }

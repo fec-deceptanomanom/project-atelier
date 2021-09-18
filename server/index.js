@@ -52,6 +52,17 @@ app.get('/productInfo/:id', (req, res) => {
         reject(error);
       });
   });
+
+  const reviews = new Promise((resolve, reject) => {
+    axios.get(API_URL + '/reviews?product_id=' + req.params.id)
+      .then((results) => {
+        resolve(results.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+
   // Get the related product data ids
   const relatedIDs = new Promise((resolve, reject) => {
     axios.get(API_URL + '/products/' + req.params.id + '/related')
@@ -77,7 +88,7 @@ app.get('/productInfo/:id', (req, res) => {
       })
   });
 
-  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, questionsList])
+  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, questionsList, reviews])
   .then((results) => {
     res.send({
       productInfo: results[0],
@@ -85,6 +96,7 @@ app.get('/productInfo/:id', (req, res) => {
       reviewInfo: results[2],
       relatedIDs: results[3],
       questionsList : results[4],
+      reviews: results[5]
     });
   })
   .catch((error) => {

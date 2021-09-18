@@ -33,7 +33,7 @@ describe('SizeComfortScale Inclusion', () => {
 });
 
 describe('StarRatings Inclusion', () => {
-  it('renders without crashing and contains X element', () => {
+  it('renders without crashing ', () => {
     const wrapper = Enzyme.shallow(<StarRatings />);
     const tester = <div>Star Ratings Here</div>
     expect(wrapper.contains(tester)).toEqual(true);
@@ -41,9 +41,15 @@ describe('StarRatings Inclusion', () => {
 });
 
 describe('Reviews Inclusion', () => {
-  it('renders without crashing and contains X element', () => {
+  it('renders without crashing', () => {
     const wrapper = Enzyme.shallow(<Reviews />);
-    const tester = <div>This is a review.</div>;
     expect(wrapper.contains(tester)).toEqual(true);
+  });
+});
+
+describe('<ReviewList />', () => {
+  it('Should find correct props data', () => {
+    const wrapper = Enzyme.shallow(<ReviewList data="data" />);
+    expect(wrapper.props().data).to.equal("data");
   });
 });
