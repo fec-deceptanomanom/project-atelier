@@ -11,6 +11,7 @@ const sortQuestions = function(questions) {
 
 const QuestionsList = (props) => {
   const CSSStyle = props.CSSStyle;
+  console.log(props.questionData);
   if (props.questionData.results.length >= 2) {
     const sortedQuestions = sortQuestions(props.questionData.results);
     let questionList = [sortedQuestions[0], sortedQuestions[1]];
