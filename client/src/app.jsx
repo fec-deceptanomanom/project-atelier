@@ -17,6 +17,7 @@ class App extends React.Component {
       reviewInfo: {},
       relatedIDs: [],
       questionsList: [],
+      reviews: {},
       darkmode: false,
       validProduct: true,
       displayError: {
@@ -74,7 +75,7 @@ class App extends React.Component {
           <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
           <RelatedItems ids={this.state.relatedIDs}/>
           <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} />
-          <RatingsAndReviews />
+          <RatingsAndReviews reviewList={this.state.reviews} reviewsInfo={this.state.reviewInfo} />
         </div>
       );
     } else if (this.state.validProduct) {
