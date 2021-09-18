@@ -16,16 +16,16 @@ class RelatedCarousel extends React.Component {
   render () {
 
     const cards = this.props.items.map( (item, i) => {
-      return <li key={i}> <RelatedCard cardInfo={item} /> </li>
+      return <div className={CSSLight.card} key={i}> <RelatedCard cardInfo={item} /> </div>
     })
     return (
       <div className={CSSLight.relatedCarousel}>
-        <h2>I am the Related Carousel</h2>
-        <div>
-          <LeftButton />
-          <ul>{cards}</ul>
-          <RightButton />
+
+        <LeftButton />
+        <div className={CSSLight.scroller}>
+          {cards}
         </div>
+        <RightButton />
       </div>
     )
   };
