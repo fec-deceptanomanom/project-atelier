@@ -24,14 +24,14 @@ class RelatedCard extends React.Component {
       </div>
     );
     const info = this.props.cardInfo.productInfo;
-    const thumbnail = this.findDefaultPhoto(this.props.cardInfo.styleInfo.results);
+    // const thumbnail = this.findDefaultPhoto(this.props.cardInfo.styleInfo.results);
 
     return (
       <div className={CSSLight.relatedCard}>
         <h2>{info.name}</h2>
         <h4>{info.category}</h4>
         {starButton}
-        <img className={CSSLight.thumbnail} src={thumbnail} alt='404'></img>
+        <img className={CSSLight.thumbnail} src='https://cdn15.bestreviews.com/images/v4desktop/product-matrix/dmi-crutches--push-button-adjustable-crutches-f94027.jpg' alt='404'></img>
         <ul>
           <li>{info.default_price}</li>
           <li>Star Rating</li>
