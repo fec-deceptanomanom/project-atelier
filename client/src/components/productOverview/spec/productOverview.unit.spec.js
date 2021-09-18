@@ -17,3 +17,14 @@ describe("Product Overview", function() {
     expect(1).toEqual(1);
   })
 });
+
+describe('Product Description', () => {
+  it('renders without crashing and contains X element', () => {
+    const wrapper = Enzyme.shallow(<ProductDescription info={{product: {
+      slogan: "I'm a slogan!",
+      description: "I'm a description!"
+    }}} />);
+    const tester = <h2>I'm a slogan!</h2>;
+    expect(wrapper.contains(tester)).toEqual(true);
+  });
+});
