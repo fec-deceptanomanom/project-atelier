@@ -10,8 +10,9 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      darkmode: props.darkmode,
+      darkmode: false,
       formTarget: null,
+      productID: null,
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
@@ -21,6 +22,7 @@ class QuestionsAndAnswers extends React.Component {
   componentDidMount() {
     this.setState({
       darkmode: this.props.darkmode,
+      productID: this.props.questionsList['product_id'],
     })
   }
 
@@ -40,7 +42,7 @@ class QuestionsAndAnswers extends React.Component {
       this.setState({formTarget: targetName})
     } else if (target === 'QuestionFormBtn') {
       modal = document.getElementById('QuestionForm');
-      const targetName = this.state.questionData['product_id'];
+      const targetName = this.state.productID;
       this.setState({formTarget: targetName})
     }
     modal.style.display = "block";
