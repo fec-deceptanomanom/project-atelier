@@ -4,7 +4,7 @@ import CSSCommon from '../styles/productOverview.module.css';
 const ProductImage = ( props ) => {
   if (props.currentStyle) {
     let imageElement;
-    if (props.currentStyle.photos[0].url !== null) {
+    if (props.currentStyle.photos[0] && props.currentStyle.photos[0].url !== null) {
       imageElement = (<img className={CSSCommon['main-img']} src={props.currentStyle.photos[0].url} alt={"404"}></img>);
     } else {
       imageElement = (<p>Image not found</p>);

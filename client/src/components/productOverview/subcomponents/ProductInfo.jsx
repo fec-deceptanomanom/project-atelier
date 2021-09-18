@@ -15,9 +15,9 @@ const getRoundedRating = function(ratings) {
 
 const getPriceElement = function(currentStyle) {
   if (currentStyle.sale_price) {
-    return (<h3><strike>{' $' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
+    return (<h3 id={'productinfo-price'}><strike>{' $' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
   } else {
-    return (<h3>{' $' + currentStyle.original_price}</h3>);
+    return (<h3 id={'productinfo-price'}>{'$' + currentStyle.original_price}</h3>);
   }
 }
 
@@ -27,11 +27,11 @@ const ProductInfo = ( props ) => {
       <div className={CSSCommon['product-overview-info']}>
         <div className={CSSCommon['product-overview-info-top']}>
           <div className={CSSCommon['indented']}>
-            <h5>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}</h5>
-            <h3>{props.info.product.category}</h3>
-            <h2>{props.info.product.name}</h2>
+            <h5 id={'productinfo-star-rating'}>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}</h5>
+            <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
+            <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
             {getPriceElement(props.currentStyle)}
-            <h3>STYLE > {props.currentStyle.name}</h3>
+            <h3 id={'productinfo-stylename'}>STYLE > {props.currentStyle.name}</h3>
             <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
           </div>
           <div className={CSSCommon['deadspace']}></div>

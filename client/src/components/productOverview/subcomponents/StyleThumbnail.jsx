@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
