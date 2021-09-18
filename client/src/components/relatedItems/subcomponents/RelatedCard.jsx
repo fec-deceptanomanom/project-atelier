@@ -13,14 +13,14 @@ class RelatedCard extends React.Component {
   }
 
   findDefaultPhoto(results) {
-    let defal = results.find( result => result['default?']);
+    let defal = results.find(result => result['default?']);
     return defal.photos[0].thumbnail_url
   }
 
-  render () {
+  render() {
     const starButton = (
       <div>
-        <button onClick={() => {}} value='Star Button'>Star Button</button>
+        <button onClick={() => { }} value='Star Button'>Star Button</button>
       </div>
     );
     const info = this.props.cardInfo.productInfo;
@@ -28,19 +28,18 @@ class RelatedCard extends React.Component {
 
     return (
       <div className={CSSLight.relatedCard}>
-      <h2>{info.name}</h2>
-      {starButton}
-      <img src={thumbnail} alt='404'></img>
-      {console.log(thumbnail)}
-      <ul>
-      <li>{info.category}</li>
-      <li>{info.default_price}</li>
-      <li>Star Rating</li>
-      </ul>
+        <h2>{info.name}</h2>
+        <h4>{info.category}</h4>
+        {starButton}
+        <img className={CSSLight.thumbnail} src={thumbnail} alt='404'></img>
+        <ul>
+          <li>{info.default_price}</li>
+          <li>Star Rating</li>
+        </ul>
       </div>
-      )
+    )
   }
 }
 
 
-  export default RelatedCard;
+export default RelatedCard;
