@@ -4,29 +4,43 @@ import CSSDark from '.././relatedItemsDark.module.css';
 
 import ComparisonModal from './ComparisonModal.jsx';
 
-const RelatedCard = (props) => {
+class RelatedCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  const starButton = (
-    <div>
-      <button onClick={() => {}} value='Star Button'>Star Button</button>
-    </div>
-  );
+    }
+  }
 
-  return (
-    <div className={CSSLight.relatedCard}>
-      <h2>I am a Related Product Card</h2>
+  findDefaultPhoto(results) {
+    let defal = results.find( result => result['default?']);
+    return defal.photos[0].thumbnail_url
+  }
+
+  render () {
+    const starButton = (
+      <div>
+        <button onClick={() => {}} value='Star Button'>Star Button</button>
+      </div>
+    );
+    const info = this.props.cardInfo.productInfo;
+    const thumbnail = this.findDefaultPhoto(this.props.cardInfo.styleInfo.results);
+
+    return (
+      <div className={CSSLight.relatedCard}>
+      <h2>{info.name}</h2>
       {starButton}
-      <h3>Preview Image</h3>
-
+      <img src={thumbnail} alt='404'></img>
+      {console.log(thumbnail)}
       <ul>
-        <li>Product Category</li>
-        <li>Product Name</li>
-        <li>Price</li>
-        <li>Star Rating</li>
+      <li>{info.category}</li>
+      <li>{info.default_price}</li>
+      <li>Star Rating</li>
       </ul>
-    </div>
-  )
+      </div>
+      )
+  }
 }
 
 
-export default RelatedCard;
+  export default RelatedCard;
