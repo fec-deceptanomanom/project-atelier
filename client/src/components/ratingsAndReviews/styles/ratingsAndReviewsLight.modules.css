@@ -25,11 +25,6 @@
 .reviewList{
   border: 2px dashed black;
 }
-
-.review{
-  background-color: grey;
-  border: 2px dashed blue;
-}
 .starRatings{
   border: 2px dashed red;
   order: 0;
@@ -46,4 +41,13 @@
   border: 2px dashed purple;
   order: 2;
   flex: 1 0 auto;
+}
+
+.reviewsDiv{
+  border: 2px black;
+}
+
+.review{
+  background-color: grey;
+  border: 2px dashed blue;
 }
