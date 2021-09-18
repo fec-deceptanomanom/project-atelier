@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
+import ProductOverview from '../ProductOverview.jsx';
 import ProductDescription from '../subcomponents/ProductDescription.jsx';
 import ProductFeatures from '../subcomponents/ProductFeatures.jsx';
 import ProductImage from '../subcomponents/ProductImage.jsx';
@@ -13,6 +14,21 @@ import StyleThumbnail from '../subcomponents/StyleThumbnail.jsx';
 import sampleData from './sampleData.js';
 
 Enzyme.configure({ adapter: new Adapter() });
+
+describe('Product Overview', () => {
+  let data = {
+    product: sampleData.productInfo,
+    styles: sampleData.styleInfo,
+    reviews: sampleData.reviewInfo
+  };
+  it('renders without crashing and contains its elements when given valid data', () => {
+    const wrapper = Enzyme.shallow(<ProductOverview data={data} />);
+    expect(wrapper.find(ProductImage).length).toEqual(1);
+    expect(wrapper.find(ProductInfo).length).toEqual(1);
+    expect(wrapper.find(ProductDescription).length).toEqual(1);
+    expect(wrapper.find(ProductFeatures).length).toEqual(1);
+  });
+});
 
 describe('Product Description', () => {
   it('renders without crashing and contains its elements', () => {
