@@ -22,13 +22,32 @@ describe("Test suite set up", function() {
 Enzyme.configure({ adapter: new Adapter() });
 
 
-// Initial component tests
+// Initial component tests : do the components render correctly?
 
 describe('Answers Entry', () => {
   it('renders without crashing', () => {
     const wrapper = Enzyme.shallow(<AnswerEntry CSSStyle={CSSStyle} answerData={testData.results[0]["answers"][68]}/>);
     const element = <h3>A: </h3>
     expect(wrapper.contains(element)).toEqual(true);
+  });
+});
+
+describe('Answers List', () => {
+  it('renders without crashing with 2 child components', () => {
+    const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[1]["answers"]} />);
+    expect(wrapper.find('#AnswersList').length).toEqual(1);
+  });
+  it('renders without crashing with 1 child component', () => {
+    const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[0]["answers"]} />);
+    expect(wrapper.find('#AnswersList').length).toEqual(1);
+  });
+  it('renders without crashing with 0 child components', () => {
+    const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={[]} />);
+    expect(wrapper.find('#AnswersList').length).toEqual(1);
+  });
+  it('renders without crashing with 2 child component even with more than 2 answers', () => {
+    const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[2]["answers"]} />);
+    expect(wrapper.find('#AnswersList').length).toEqual(1);
   });
 });
 
@@ -40,10 +59,33 @@ describe('Question Entry', () => {
   });
 });
 
+describe('Questions List', () => {
+  it('renders without crashing with 2 child components', () => {
+    const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle} openAnswerForm={() => {return false}} questionData={{"product_id": "5",
+    "results": [testData.results[0], testData.results[1]]}} />);
+    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+  });
+  it('renders without crashing with 1 child component', () => {
+    const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle}  openAnswerForm={() => {return false}} questionData={{"product_id": "5",
+    "results": [testData.results[0]]}} />);
+    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+  });
+  it('renders without crashing with 0 child components', () => {
+    const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle} openAnswerForm={() => {return false}} questionData={{"product_id": "5",
+    "results": []}} />);
+    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+  });
+  it('renders without crashing with 2 child component even with more than 2 answers', () => {
+    const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle} openAnswerForm={() => {return false}} questionData={{"product_id": "5",
+    "results": [testData.results[0], testData.results[1], testData.results[2]]}} />);
+    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+  });
+});
+
 describe('SearchBar', () => {
   it('renders without crashing', () => {
     const wrapper = Enzyme.shallow(<SearchBar CSSStyle={CSSStyle} />);
-    const element = <button type="submit" className={CSSStyle.searchButton}><i className="fas fa-search"></i></button>
-    expect(wrapper.contains(element)).toEqual(true);
+    expect(wrapper.find('#SearchBar').length).toEqual(1);
+    expect(wrapper.find('#SearchForm').length).toEqual(1);
   });
 });

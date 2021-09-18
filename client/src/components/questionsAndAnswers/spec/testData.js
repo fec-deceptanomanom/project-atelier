@@ -45,7 +45,40 @@ const testData = {
           }
         }
       },
-      // ...
+      {
+        "question_id": 39,
+        "question_body": "Why is this product cheaper here than other sites?",
+        "question_date": "2018-10-18T00:00:00.000Z",
+        "asker_name": "williamsmith",
+        "question_helpfulness": 4,
+        "reported": false,
+        "answers": {
+          98: {
+            "id": 98,
+            "body": "We are selling it here without any markup from the middleman!",
+            "date": "2018-08-18T00:00:00.000Z",
+            "answerer_name": "Seller",
+            "helpfulness": 4,
+            "photos": []
+          },
+          99: {
+            "id": 99,
+            "body": "Some of the seams started splitting the first time I wore it!",
+            "date": "2019-11-28T00:00:00.000Z",
+            "answerer_name": "sillyguy",
+            "helpfulness": 6,
+            "photos": [],
+          },
+          100: {
+            "id": 100,
+            "body": "9 lives",
+            "date": "2019-11-12T00:00:00.000Z",
+            "answerer_name": "iluvdogz",
+            "helpfulness": 31,
+            "photos": [],
+          }
+        }
+      }
   ]
 };
 

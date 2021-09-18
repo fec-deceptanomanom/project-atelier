@@ -83,7 +83,7 @@ class QuestionsAndAnswers extends React.Component {
       <div id="QandA" className={CSSStyle.QandABox}>
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} />
-        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.props.questionsList} answerData={this.state.answerData} />
+        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.props.questionsList} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeQuestionForm={this.modalClose}/>
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeAnswerForm={this.modalClose} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>

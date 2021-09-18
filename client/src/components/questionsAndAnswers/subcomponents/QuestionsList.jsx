@@ -16,7 +16,7 @@ const QuestionsList = (props) => {
     const sortedQuestions = sortQuestions(props.questionData.results);
     let questionList = [sortedQuestions[0], sortedQuestions[1]];
     return (
-      <div className={CSSStyle.questionsList}>
+      <div id="QuestionsList" className={CSSStyle.questionsList}>
         {questionList.map((question, index) => {
           return <QuestionEntry key={index} CSSStyle={CSSStyle} questionData={question} openAnswerForm={props.openAnswerForm}/>
         })}
@@ -24,13 +24,13 @@ const QuestionsList = (props) => {
     );
   } else if (props.questionData.results.length === 1) {
     return (
-      <div className={CSSStyle.questionsList}>
+      <div id="QuestionsList" className={CSSStyle.questionsList}>
         <QuestionEntry CSSStyle={CSSStyle} questionData={props.questionData.results[0]} openAnswerForm={props.openAnswerForm}/>
       </div>
     );
   } else {
     return (
-      <div className={CSSStyle.questionsList}>
+      <div id="QuestionsList" className={CSSStyle.questionsList}>
        <h5>Sorry, no one has asked any questions yet!</h5>
       </div>
     );
