@@ -4,29 +4,47 @@ import CSSDark from '.././relatedItemsDark.module.css';
 
 import ComparisonModal from './ComparisonModal.jsx';
 
-const RelatedCard = (props) => {
+class RelatedCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  const starButton = (
-    <div>
-      <button onClick={() => {}} value='Star Button'>Star Button</button>
-    </div>
-  );
+    }
+  }
 
-  return (
-    <div className={CSSLight.relatedCard}>
-      <h2>I am a Related Product Card</h2>
-      {starButton}
-      <h3>Preview Image</h3>
+  render() {
+    const starButton = (
+      <div>
+        <button onClick={() => {}} value='Star Button'>Star Button</button>
+      </div>
+    );
+    let thumbnail = 'Loading';
 
-      <ul>
-        <li>Product Category</li>
-        <li>Product Name</li>
-        <li>Price</li>
-        <li>Star Rating</li>
-      </ul>
-    </div>
-  )
+
+    return(
+      <div className={CSSLight.relatedCard}>
+        <h2>Loading</h2>
+        {starButton}
+        <img src={thumbnail} alt='Loading' width='50'></img>
+
+        <ul>
+          <li>Product Category</li>
+          <li>Product Name</li>
+          <li>Price</li>
+          <li>Star Rating</li>
+        </ul>
+      </div>
+    )
+
+  }
 }
+  // if (this.props.cardInfo.styleInfo.results[0].photos[0].thumbnail_url) {
+  //   thumbnail = this.props.cardInfo.styleInfo.results[0].photos[0].thumbnail_url;
+  // }
+
+// if props.carInfo exists do b
+
+// else depict message saying not founded
 
 
 export default RelatedCard;
