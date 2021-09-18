@@ -20,7 +20,7 @@ class RelatedCarousel extends React.Component {
     })
     return (
       <div className={CSSLight.relatedCarousel}>
-
+        <h3>Carousel</h3>
         <LeftButton />
         <div className={CSSLight.scroller}>
           {cards}
