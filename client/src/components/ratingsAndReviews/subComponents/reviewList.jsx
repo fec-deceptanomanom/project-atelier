@@ -15,7 +15,7 @@ const ReviewsList = (props) => {
       <button id={"reviewslist-more-reviews-button"}>More Reviews</button>
       <button id={"reviewslist-add-review-button"}>Add Review</button>
     </div>
- );
+  );
 }
 
 export default ReviewsList;
