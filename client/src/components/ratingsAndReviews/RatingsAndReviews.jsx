@@ -19,7 +19,7 @@ class RatingsAndReviews extends React.Component {
 
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     //add if statement to switch between light & dark
     return (
       <div id={CSSLight['ratingsAndReviews']} className={CSSLight['ratings-reviews']}>
