@@ -5,8 +5,8 @@ const StarRatings = (props) => {
   // console.log('Star rating props, ', props)
   return (
     <div>
-      <div className={CSSLight['starRatings']}>{getAvg(props)} stars</div>
-      <div className={CSSLight['ratingBars']}>Rating bars here</div>
+      <div id={'starRatings-average'} className={CSSLight['starRatings']}>{getAvg(props)} stars</div>
+      <div id={'starRatings-bars'} className={CSSLight['ratingBars']}>Rating bars here</div>
     </div>
   );
 }
