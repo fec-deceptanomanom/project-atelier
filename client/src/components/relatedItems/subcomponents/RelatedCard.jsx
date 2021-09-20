@@ -50,13 +50,13 @@ class RelatedCard extends React.Component {
 
     return (
       <div className={CSSLight.relatedCard}>
-        <h2 className={CSSLight.leftText}>{info.name}</h2>
-        <h4 className={CSSLight.leftText}>{info.category}</h4>
+        <p className={CSSLight.name}>{info.name}</p>
+        <h4 className={CSSLight.category}>Department: {info.category}</h4>
           {starButton}
         <img className={CSSLight.thumbnail} src={this.state.photo} alt='Image not Found'></img>
         <ul>
-          <li>{info.default_price}</li>
-          <li>Star Rating</li>
+          <li>Price: {info.default_price}</li>
+          <li>Star Rating: ****</li>
         </ul>
       </div>
     )
