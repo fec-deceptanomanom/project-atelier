@@ -1,5 +1,33 @@
 import React from 'react';
 
+const fileUpdate = (e) => {
+  const fileInput = document.getElementById('photo-upload');
+  if (fileInput.files.length > 5) {
+    alert('Sorry, only 5 files are allowed to be uploaded.')
+    return;
+  }
+  const previewDiv = document.querySelector('#photo-preview');
+  const files = document.querySelector('input[type=file').files;
+
+  const readAndPreview = function(file) {
+    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      const reader = new FileReader();
+      reader.addEventListener("load", function() {
+        const image = new Image();
+        image.height = 100;
+        image.title = file.name;
+        image.src = this.result;
+        previewDiv.appendChild(image);
+      }, false);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+  }
+}
+
 const SubmitAnswerForm = (props) => {
   const CSSStyle = props.CSSStyle;
   return (
@@ -16,7 +44,8 @@ const SubmitAnswerForm = (props) => {
         <label htmlFor="answer-text">*Your Answer:</label><br></br>
         <textarea id="answer-text" required="required" rows="10"></textarea><br></br>
         <label htmlFor="photo-upload">Upload a Photo:</label><br></br>
-        <input id="photo-upload" type="file" multiple></input><br></br>
+        <input id="photo-upload" type="file" multiple onChange={fileUpdate}></input><br></br>
+        <div id="photo-preview"></div>
         <br></br>
         <input type="submit"></input>
       </form>
