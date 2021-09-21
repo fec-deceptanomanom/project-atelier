@@ -10,7 +10,8 @@ class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedItems: []
+      relatedItems: [],
+      carouselItems: [] //max 4
     };
   }
 
@@ -33,14 +34,15 @@ class RelatedItems extends React.Component {
     )
     .then(results => {
       // console.log('RESULTS ARE:', results);
+      let displayItems = results.slice(0,4);
       this.setState({
-        relatedItems: results
+        relatedItems: results,
+        carouselItems: displayItems
       })
     })
     .catch(err => {
       console.error(err);
     })
-
   }
 
   componentDidUpdate() { }
@@ -51,7 +53,7 @@ class RelatedItems extends React.Component {
         <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
-          <RelatedCarousel ids={this.props.ids} items={this.state.relatedItems}/>
+          <RelatedCarousel items={this.state.carouselItems}/>
           <OutfitCarousel />
         </div>
       </div>

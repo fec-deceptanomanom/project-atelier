@@ -13,30 +13,69 @@
   margin: 2px
 }
 
-.relatedCard {
-  border: 2px inset rgb(238, 114, 211);
-  margin: 2px
-}
-
 .scroller {
   align-content: center;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  overflow: auto;
+  overflow: hidden;
 }
-.card {
-  display: flex;
 
-  padding: 2%;
-  flex-basis: 16%;
-  flex-grow: 1;
+.arrow {
+  /* display: flex; */
+  margin: 10% 0%;
+  /* line-height: 40%; */
+  background-color: grey;
+  width: auto;
+  height: fit-content;
+  border-radius: 50%;
+}
+
+.arrow:hover {
+  background-color: rgb(187, 180, 180);
+}
+
+.relatedCard {
+  border: .20em inset rgb(232, 245, 158);
+  margin: .1em;
+  display: flex;
+  flex-direction: column;
+
+  /* justify-content: center; */
+  align-items: right;
+  width: 14em;
+}
+
+.name {
+  /* display: flex; */
+  text-align: right;
+  font: medium sans-serif;
+  margin: .5em .25em .25em;
+}
+
+.categoryValue {
+  font: small sans-serif;
+  color:rgb(0, 0, 0);
+  text-align: right;
+  margin: .05em .25em .25em;
+}
+
+.category {
+  font: 300 x-small sans-serif;
+  white-space: pre;
+  color: darkgrey;
+  text-align: right;
+  margin: .25em .25em .05em;
 }
 
 .thumbnail {
+  min-height: 50%;
+  min-width: 60%;
   max-width: 75%;
-  height: 66%;
+  max-height: 66%;
+  margin: .2em;
 }
+
 
 .outfitCarousel {
   border: 2px dashed rgba(224, 88, 88, 0.507);
