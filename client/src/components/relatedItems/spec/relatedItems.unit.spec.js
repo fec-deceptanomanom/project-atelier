@@ -33,7 +33,7 @@ describe('Related Carousel', () => {
 describe('Related Card', () => {
   it('should find the header Label', () => {
     const wrapper = Enzyme.shallow(<RelatedCard cardInfo={sampleData[0]}/>);
-    const tester = <li>Star Rating</li>
+    const tester = <li>Star Rating: ****</li>
     expect(wrapper.contains(tester)).toEqual(true);
   })
 })

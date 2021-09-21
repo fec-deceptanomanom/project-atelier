@@ -7,11 +7,32 @@ import RightButton from './RightButton.jsx';
 class RelatedCarousel extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-
-      }
     }
 
+    componentDidMount() {
+    }
+    componentDidUpdate() {
+      //handleScroll(direction),
+    }
+
+    // sliceItems(items) {
+    //   let slicedItems = items.slice(0,4);
+    //   console.log('I AM RUNNING in sliceItems DEF\nSLICED is:', sliced)
+
+    //   return slicedItems;
+    // }
+
+    goLeft() {
+
+    }
+
+    goRight() {
+
+    }
+
+    // handleScroll(direction) {
+
+    // }
 
   render () {
 
