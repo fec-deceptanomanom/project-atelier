@@ -1,10 +1,13 @@
 import React from 'react';
+import CSSLight from '../relatedItemsLight.module.css';
 
 const RightButton = (props) => {
 
   return (
     <div>
-    <button>GO Right</button>
+      <i className="fa fa-arrow-right fa-3x"
+         aria-hidden="true">
+      </i>
   </div>
   )
 }
