@@ -130,4 +130,12 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.photoThumbnail {
+  height: 100px;
+}
+
+.photoRemove {
+  color: red;
+}
 /* MODAL SUBMISSION FORM END */
