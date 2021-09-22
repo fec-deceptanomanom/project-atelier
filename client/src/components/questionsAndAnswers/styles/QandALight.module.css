@@ -73,6 +73,10 @@
   margin: 2px;
 }
 
+.showMore{
+  display: none;
+}
+
 /* ANSWERS LIST END */
 /* ANSWERS ENTRIES START */
 
