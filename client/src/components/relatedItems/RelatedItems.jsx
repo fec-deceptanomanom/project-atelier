@@ -11,8 +11,14 @@ class RelatedItems extends React.Component {
     super(props);
     this.state = {
       relatedItems: [],
-      carouselItems: [] //max 4
+      carouselItems: [], //max 4
+      leftButton: true,
+      rightButton: true,
+      counter: 0
     };
+    this.goRight = this.goRight.bind(this);
+    this.goLeft = this.goLeft.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
@@ -34,15 +40,80 @@ class RelatedItems extends React.Component {
     )
     .then(results => {
       // console.log('RESULTS ARE:', results);
+      if (results.length < 4) {
+        let displayItems = results.slice(0,4);
+        let length = results.length;
+        this.setState({
+          relatedItems: results,
+          carouselItems: displayItems,
+          leftButton: false,
+          rightButton: false,
+      })
+      }
       let displayItems = results.slice(0,4);
       this.setState({
         relatedItems: results,
-        carouselItems: displayItems
+        carouselItems: displayItems,
+        leftButton: false
       })
     })
     .catch(err => {
       console.error(err);
     })
+  }
+
+  goLeft() {
+    let length = this.state.carouselItems.length; //4
+    let count = length - this.state.counter - 1; //5 - 4 = 1
+    let newList = this.state.carouselItems.map( (item, i) => {
+      count++;
+      return this.state.relatedItems[count];
+    });
+    if (newList[0] === this.state.relatedItems[0]) {
+      this.setState({
+        carouselItems: newList,
+        counter: 0,
+        rightButton: true,
+        leftButton: false
+      });
+    } else {
+      this.setState({
+        carouselItems: newList,
+        counter: count,
+        rightButton: true
+      });
+    }
+  }
+
+  goRight() {
+    let count = this.state.counter;
+    let length = this.state.relatedItems.length //5
+    let newList = this.state.carouselItems.map( (item, i) => {
+      count++;
+      return this.state.relatedItems[count];
+    });
+    if (count > length - this.state.carouselItems.length)  {
+      //get rid of right button
+      this.setState({
+        carouselItems: newList,
+        counter: count,
+        rightButton: false,
+        leftButton: true
+      })
+    } else {
+      this.setState({
+        carouselItems: newList,
+        counter: count,
+        leftButton: true
+      })
+    }
+  }
+
+  handleScroll(e) {
+    let dir = e.target.className[12]; // dir = 'l' || 'r'
+    console.log('DIR is ', dir);
+    dir === 'l' ? this.goLeft() : this.goRight();
+    //`go${direction}()`;
   }
 
   componentDidUpdate() { }
@@ -53,7 +124,10 @@ class RelatedItems extends React.Component {
         <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
-          <RelatedCarousel items={this.state.carouselItems}/>
+          <RelatedCarousel items={this.state.carouselItems}
+                           left={this.state.leftButton}
+                           right={this.state.rightButton}
+                           handleClick={this.handleScroll} />
           <OutfitCarousel />
         </div>
       </div>
