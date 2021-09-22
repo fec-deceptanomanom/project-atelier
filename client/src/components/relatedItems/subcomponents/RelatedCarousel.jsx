@@ -5,56 +5,89 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 class RelatedCarousel extends React.Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {}
+  componentDidUpdate() {}
+
+  getRoundedRating(ratings) {
+    let ratingSum = 0;
+    let ratingQuantity = 0;
+    for (const [key, value] of Object.entries(ratings)) {
+      ratingSum += (Number(key) * Number(value));
+      ratingQuantity += Number(value);
     }
-
-    componentDidMount() {
-    }
-    componentDidUpdate() {
-      //handleScroll(direction),
-    }
-
-    // sliceItems(items) {
-    //   let slicedItems = items.slice(0,4);
-    //   console.log('I AM RUNNING in sliceItems DEF\nSLICED is:', sliced)
-
-    //   return slicedItems;
-    // }
-
-    goLeft() {
-
-    }
-
-    goRight() {
-
-    }
-
-    // handleScroll(direction) {
-
-    // }
+    return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
+  }
 
   render () {
 
     const cards = this.props.items.map( (item, i) => {
       return (
         <div className={CSSLight.card} key={i}>
-          <RelatedCard cardInfo={item} />
+          <RelatedCard cardInfo={item} stars={this.getRoundedRating} />
         </div>
       )
     })
 
-    return (
-      <div className={CSSLight.relatedCarousel}>
-        <h3>Carousel</h3>
-        <div className={CSSLight.scroller}>
-          <div className={CSSLight.arrow}><LeftButton /></div>
-            {cards}
-          <div className={CSSLight.arrow}><RightButton /></div>
+    if (!this.props.left) {
+      return (
+        <div className={CSSLight.relatedCarousel}>
+          <h3>Carousel</h3>
+          <div className={CSSLight.scroller}>
+              {cards}
+            <div className={CSSLight.arrow}>
+              <RightButton right={this.props.right}
+                           handleClick={this.props.goDir} />
+            </div>
+          </div>
+        </div>
+      )
+    }
+    if (!this.props.right) {
+      return (
+        <div className={CSSLight.relatedCarousel}>
+          <h3>Carousel</h3>
+          <div className={CSSLight.scroller}>
+            <div className={CSSLight.arrow}>
+              <LeftButton left={this.props.left}
+                          handleClick={this.props.goDir} />
+            </div>
+              {cards}
+          </div>
+        </div>
+      )
+    }
+    if (!this.props.left && !this.props.right) {
+      return (
+        <div className={CSSLight.relatedCarousel}>
+          <h3>Carousel</h3>
+          <div className={CSSLight.scroller}>
+              {cards}
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className={CSSLight.relatedCarousel}>
+          <h3>Carousel</h3>
+          <div className={CSSLight.scroller}>
+            <div className={CSSLight.arrow}>
+              <LeftButton left={this.props.left}
+                          handleClick={this.props.goDir} />
+            </div>
+              {cards}
+            <div className={CSSLight.arrow}>
+              <RightButton right={this.props.right}
+                           handleClick={this.props.goDir } />
+            </div>
 
-         </div>
-      </div>
-    )
+          </div>
+        </div>
+      )
+    }
   };
 };
 

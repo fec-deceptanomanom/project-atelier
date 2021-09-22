@@ -23,11 +23,8 @@ class RelatedCard extends React.Component {
   findThumbnail(item) {
     //select the first thumbnail found or give'em some crutches
     if (item === 'Not Found') { return this.state.crutches; }
-
     let photo = item.photos.find( photo => photo.thumbnail_url);
-
     if (!photo) { return this.state.crutches; }
-
     return photo.thumbnail_url;
   }
 
@@ -47,6 +44,7 @@ class RelatedCard extends React.Component {
       </div>
     );
     const info = this.props.cardInfo.productInfo;
+    const stars = this.props.cardInfo.reviewInfo.ratings;
 
     return (
       <div className={CSSLight.relatedCard}>
@@ -57,7 +55,7 @@ class RelatedCard extends React.Component {
         <img className={CSSLight.thumbnail} src={this.state.photo} alt='Image not Found'></img>
         <ul>
           <li>Price: {info.default_price}</li>
-          <li>Star Rating: ****</li>
+          <li>Stars: {this.props.stars(stars)}</li>
         </ul>
       </div>
     )
