@@ -16,7 +16,7 @@ class QuestionsAndAnswers extends React.Component {
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
-    this.postForm = this.postForm.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
@@ -62,16 +62,37 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   // mock POST function that actually belongs in app.jsx
-  postForm(e) {
+  submitForm(e) {
     e.preventDefault();
+    console.log('form target', this.state.formTarget);
     let data = {};
-    // if answer form
+    // if question form
+    if (this.state.formTarget === this.state.productID) {
+      data.body = document.getElementById('question-text').value;
+      data.name = document.getElementById('question-nickname').value;
+      data.email = document.getElementById('question-email').value;
+      data.product_id = this.state.productID;
+      console.log('question form data', data);
+
+    // else if answer form
+    } else {
+      //get photo array
+      let photoPreviews = document.getElementById('photo-preview').children;
+      let photos = [];
+      for (let i = 0; i < photoPreviews.length; i++) {
+        photos.push(photoPreviews[i].children[1]);
+      }
+      console.log('photos list', photos);
+      // actual file data is stored in image in file attribute
+      // NEED TO FIGURE OUT WHERE TO STORE IT
+
     data.body = document.getElementById('answer-text').value;
     data.name = document.getElementById('answer-nickname').value;
     data.email = document.getElementById('answer-email').value;
-    data.photos = document.getElementById('photo-upload').value;
-    console.log(data);
-    // else if question form
+    data.photos = photos;
+    console.log('answer form data', data);
+
+    }
   }
 
 
@@ -80,14 +101,14 @@ class QuestionsAndAnswers extends React.Component {
     if (this.state.darkmode === true) {
       CSSStyle = CSSDark;
     }
-    //console.log('props', this.props.questionsList);
+    //console.log('cssstyle', CSSStyle);
     return (
       <div id="QandA" className={CSSStyle.QandABox}>
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} />
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.props.questionsList} />
-        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeQuestionForm={this.modalClose}/>
-        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.postForm} closeAnswerForm={this.modalClose} />
+        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose}/>
+        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
           <button id="moreQuestions">More Answered Questions (WIP)</button>
           <button id="QuestionFormBtn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
