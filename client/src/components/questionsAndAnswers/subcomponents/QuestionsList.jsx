@@ -12,8 +12,8 @@ const sortQuestions = function(questions) {
 const QuestionsList = (props) => {
   const CSSStyle = props.CSSStyle;
   // console.log(props.questionData);
-  if (props.questionData.results.length >= 2) {
-    const sortedQuestions = sortQuestions(props.questionData.results);
+  if (props.questionData.length >= 2) {
+    const sortedQuestions = sortQuestions(props.questionData);
     let questionList = [sortedQuestions[0], sortedQuestions[1]];
     return (
       <div id="QuestionsList" className={CSSStyle.questionsList}>
@@ -22,7 +22,7 @@ const QuestionsList = (props) => {
         })}
       </div>
     );
-  } else if (props.questionData.results.length === 1) {
+  } else if (props.questionData.length === 1) {
     return (
       <div id="QuestionsList" className={CSSStyle.questionsList}>
         <QuestionEntry CSSStyle={CSSStyle} questionData={props.questionData.results[0]} openAnswerForm={props.openAnswerForm}/>

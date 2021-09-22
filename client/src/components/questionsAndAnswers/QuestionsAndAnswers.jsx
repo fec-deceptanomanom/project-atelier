@@ -13,16 +13,21 @@ class QuestionsAndAnswers extends React.Component {
       darkmode: false,
       formTarget: null,
       productID: null,
+      questions: [],
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.questionSearch = this.questionSearch.bind(this);
+    this.searchUpdate = this.searchUpdate.bind(this);
+    this.searchEnter = this.searchEnter.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       darkmode: this.props.darkmode,
       productID: this.props.questionsList['product_id'],
+      questions: this.props.questionsList.results,
     })
   }
 
@@ -61,7 +66,7 @@ class QuestionsAndAnswers extends React.Component {
     this.setState({formTarget: null})
   }
 
-  // mock POST function that actually belongs in app.jsx
+  // incomplete POST function
   submitForm(e) {
     e.preventDefault();
     console.log('form target', this.state.formTarget);
@@ -95,18 +100,58 @@ class QuestionsAndAnswers extends React.Component {
     }
   }
 
+  // search bar functionality
+
+    // as you type
+    searchUpdate(e) {
+      const contents = e.target.value;
+      if (contents.length < 3) {
+        //console.log('NOT ENOUGH TEXT', contents)
+        return
+      } else {
+        //console.log('TYPING', contents)
+        this.questionSearch(contents);
+      }
+    }
+    // hitting button
+    searchEnter(e) {
+      e.preventDefault();
+      const contents = e.target.children[0].value;
+      //console.log('HIT ENTER', contents);
+      this.questionSearch(contents);
+    }
+    // actual search
+    questionSearch(text) {
+      console.log('SEARCHING');
+      // get all the text and set it all to lower case for case matching
+      text = text.toLowerCase();
+      let questionText = this.state.questions.map(question => {
+        return question['question_body'].toLowerCase();
+      })
+      console.log('all lower case', text, questionText);
+      // iterate through the list looking for the search text
+      let matching = [];
+      questionText.map((question, index) => {
+        if (question.search(text) !== -1) {
+          matching.push(this.state.questions[index]);
+        }
+      })
+      console.log('matching', matching);
+      this.setState({questions: matching});
+    }
+
 
   render() {
     let CSSStyle = CSSLight;
     if (this.state.darkmode === true) {
       CSSStyle = CSSDark;
     }
-    //console.log('cssstyle', CSSStyle);
+    //console.log('questions', this.state.questions);
     return (
       <div id="QandA" className={CSSStyle.QandABox}>
         <h1 className={CSSStyle.testBanner}> Questions & Answers</h1>
-        <SearchBar CSSStyle={CSSStyle} />
-        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.props.questionsList} />
+        <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} />
+        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.questions} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose}/>
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
