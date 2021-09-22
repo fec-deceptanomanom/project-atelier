@@ -18,7 +18,7 @@ class RelatedItems extends React.Component {
     };
     this.goRight = this.goRight.bind(this);
     this.goLeft = this.goLeft.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
+    this.whichDir = this.whichDir.bind(this);
   }
 
   componentDidMount() {
@@ -109,7 +109,7 @@ class RelatedItems extends React.Component {
     }
   }
 
-  handleScroll(e) {
+  whichDir(e) {
     let dir = e.target.className[12]; // dir = 'l' || 'r'
     console.log('DIR is ', dir);
     dir === 'l' ? this.goLeft() : this.goRight();
@@ -127,7 +127,7 @@ class RelatedItems extends React.Component {
           <RelatedCarousel items={this.state.carouselItems}
                            left={this.state.leftButton}
                            right={this.state.rightButton}
-                           handleClick={this.handleScroll} />
+                           goDir={this.whichDir} />
           <OutfitCarousel />
         </div>
       </div>

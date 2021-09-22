@@ -5,22 +5,29 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 class RelatedCarousel extends React.Component {
-    constructor(props) {
-      super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    componentDidMount() {
+  componentDidMount() {}
+  componentDidUpdate() {}
+
+  getRoundedRating(ratings) {
+    let ratingSum = 0;
+    let ratingQuantity = 0;
+    for (const [key, value] of Object.entries(ratings)) {
+      ratingSum += (Number(key) * Number(value));
+      ratingQuantity += Number(value);
     }
-    componentDidUpdate() {
-      //handleScroll(direction),
-    }
+    return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
+  }
 
   render () {
 
     const cards = this.props.items.map( (item, i) => {
       return (
         <div className={CSSLight.card} key={i}>
-          <RelatedCard cardInfo={item} />
+          <RelatedCard cardInfo={item} stars={this.getRoundedRating} />
         </div>
       )
     })
@@ -33,7 +40,7 @@ class RelatedCarousel extends React.Component {
               {cards}
             <div className={CSSLight.arrow}>
               <RightButton right={this.props.right}
-                           handleClick={this.props.handleClick} />
+                           handleClick={this.props.goDir} />
             </div>
           </div>
         </div>
@@ -46,7 +53,7 @@ class RelatedCarousel extends React.Component {
           <div className={CSSLight.scroller}>
             <div className={CSSLight.arrow}>
               <LeftButton left={this.props.left}
-                          handleClick={this.props.handleClick} />
+                          handleClick={this.props.goDir} />
             </div>
               {cards}
           </div>
@@ -69,12 +76,12 @@ class RelatedCarousel extends React.Component {
           <div className={CSSLight.scroller}>
             <div className={CSSLight.arrow}>
               <LeftButton left={this.props.left}
-                          handleClick={this.props.handleClick} />
+                          handleClick={this.props.goDir} />
             </div>
               {cards}
             <div className={CSSLight.arrow}>
               <RightButton right={this.props.right}
-                           handleClick={this.props.handleClick} />
+                           handleClick={this.props.goDir } />
             </div>
 
           </div>
