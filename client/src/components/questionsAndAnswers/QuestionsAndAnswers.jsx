@@ -73,15 +73,25 @@ class QuestionsAndAnswers extends React.Component {
       data.email = document.getElementById('question-email').value;
       data.product_id = this.state.productID;
       console.log('question form data', data);
-      this.props.postForm('question', data);
+
     // else if answer form
     } else {
+      //get photo array
+      let photoPreviews = document.getElementById('photo-preview').children;
+      let photos = [];
+      for (let i = 0; i < photoPreviews.length; i++) {
+        photos.push(photoPreviews[i].children[1]);
+      }
+      console.log('photos list', photos);
+      // actual file data is stored in image in file attribute
+      // NEED TO FIGURE OUT WHERE TO STORE IT
+
     data.body = document.getElementById('answer-text').value;
     data.name = document.getElementById('answer-nickname').value;
     data.email = document.getElementById('answer-email').value;
-    data.photos = document.getElementById('photo-upload').value;
+    data.photos = photos;
     console.log('answer form data', data);
-      this.props.postForm('answer', data, this.state.formTarget);
+
     }
   }
 

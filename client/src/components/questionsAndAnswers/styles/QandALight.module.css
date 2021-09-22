@@ -134,4 +134,8 @@
 .photoThumbnail {
   height: 100px;
 }
+
+.photoRemove {
+  color: red;
+}
 /* MODAL SUBMISSION FORM END */

@@ -2,17 +2,6 @@ import React from 'react';
 import PhotoThumbnail from './PhotoThumbnail';
 
 
-// const previewDiv = document.querySelector('#photo-preview');
-// const files = document.querySelector('input[type=file').files;
-
-// const readAndPreview = function(file) {
-
-// if (files) {
-//   [].forEach.call(files, readAndPreview);
-// }
-
-
-
 class SubmitAnswerForm extends React.Component {
 
   constructor(props) {
@@ -22,13 +11,14 @@ class SubmitAnswerForm extends React.Component {
       maxFiles: false,
     };
     this.inputFile = this.inputFile.bind(this);
+    this.removeFile = this.removeFile.bind(this);
   }
 
   inputFile = (e) => {
     const fileInput = e.target;
     const previews = document.getElementById('photo-preview');
     let thumbnails = this.state.currentThumbnails;
-    console.log('currentThumbnails', this.state.currentThumbnails);
+   // console.log('currentThumbnails', this.state.currentThumbnails);
 
     if (fileInput.files.length > 5 || fileInput.files.length + thumbnails.length > 5) {
       alert('Sorry, only 5 files are allowed to be uploaded.')
@@ -37,10 +27,11 @@ class SubmitAnswerForm extends React.Component {
       for (let i = 0; i < fileInput.files.length; i++) {
         let file = fileInput.files[i];
         let url = URL.createObjectURL(file);
-        console.log('file, url', file, url);
+        //console.log('file, url', file, url);
         let image = {
           title: file.name,
           url,
+          file,
         };
         thumbnails.push(image);
       }
@@ -57,6 +48,20 @@ class SubmitAnswerForm extends React.Component {
   addFile = (e) => {
     const fileInput = document.getElementById('photo-upload');
     fileInput.click();
+  }
+
+  removeFile = (e) => {
+    const imageName = e.target.parentElement.parentElement.children[1].attributes.title.value;
+    //console.log(imageName)
+    let thumbnails = this.state.currentThumbnails;
+    //console.log('before', thumbnails);
+    for (let i = 0; i < thumbnails.length; i++) {
+      if (thumbnails[i].title === imageName) {
+        thumbnails.splice(i, 1);
+      }
+    }
+    //console.log('after', thumbnails);
+    this.setState({currentThumbnails: thumbnails});
   }
 
   render() {
@@ -81,7 +86,7 @@ class SubmitAnswerForm extends React.Component {
           <br></br>
           <div id="photo-preview">
             {(this.state.currentThumbnails || []).map((thumbnail, index) => {
-              return (<PhotoThumbnail CSSStyle={this.props.CSSStyle} key={index} data={thumbnail} />)
+              return (<PhotoThumbnail CSSStyle={this.props.CSSStyle} key={index} data={thumbnail} remove={this.removeFile} />)
               })
             }
           </div>

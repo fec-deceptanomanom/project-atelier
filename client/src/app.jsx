@@ -26,7 +26,6 @@ class App extends React.Component {
       }
     };
     this.darkmodeToggle = this.darkmodeToggle.bind(this);
-    this.postForm = this.postForm.bind(this);
   }
 
   darkmodeToggle() {
@@ -58,16 +57,6 @@ class App extends React.Component {
     });
   }
 
-  // POST request for question and answer forms
-  postForm(formType, formData, questionID) {
-    if (formType === 'question') {
-      console.log('recieved question form');
-    } else {
-      console.log('recieved answer form');
-    }
-
-  }
-
 
   render() {
     let CSSStyle = AppCSSLight;
@@ -86,7 +75,7 @@ class App extends React.Component {
           <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
           <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
           <RelatedItems ids={this.state.relatedIDs}/>
-          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} postForm={this.postForm} />
+          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} />
           <RatingsAndReviews reviewList={this.state.reviews} reviewsInfo={this.state.reviewInfo} />
         </div>
       );
