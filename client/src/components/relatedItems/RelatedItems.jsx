@@ -14,7 +14,8 @@ class RelatedItems extends React.Component {
       carouselItems: [], //max 4
       leftButton: true,
       rightButton: true,
-      counter: 0
+      counter: 0,
+      outfitItems: [1, 1, 1]
     };
     this.goRight = this.goRight.bind(this);
     this.goLeft = this.goLeft.bind(this);
@@ -128,7 +129,7 @@ class RelatedItems extends React.Component {
                            left={this.state.leftButton}
                            right={this.state.rightButton}
                            goDir={this.whichDir} />
-          <OutfitCarousel />
+          <OutfitCarousel outfits={this.state.outfitItems}/>
         </div>
       </div>
     );
