@@ -5,6 +5,7 @@ import QuestionsList from './subcomponents/QuestionsList';
 import SearchBar from './subcomponents/SearchBar';
 import SubmitQuestionForm from './subcomponents/SubmitQuestionForm';
 import SubmitAnswerForm from './subcomponents/SubmitAnswerForm';
+const $ = require('jquery');
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class QuestionsAndAnswers extends React.Component {
       formTarget: null,
       productID: null,
       questions: [],
+      displayError: null,
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
@@ -24,10 +26,27 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   componentDidMount() {
+    // GET request for questions
+    const urlId = window.location.href.split('/p/')[1].replace('/', '');
+    $.get(`http://localhost:3000/questions/${urlId}`, (data, status) => {
+      console.log('get request question data', data);
+      this.setState({
+        questions: data.results,
+        productID: data['product_id'],
+        displayError: null,
+      });
+    })
+    .fail((error) => {
+      this.setState({
+        displayError: {
+          status: error.status,
+          message: error.statusText
+        }
+      });
+    });
+    // other states to set
     this.setState({
       darkmode: this.props.darkmode,
-      productID: this.props.questionsList['product_id'],
-      questions: this.props.questionsList.results,
     })
   }
 
