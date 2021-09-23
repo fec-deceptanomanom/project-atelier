@@ -4,7 +4,7 @@ import QuestionEntry from './QuestionEntry';
 
 const QuestionsList = (props) => {
   const CSSStyle = props.CSSStyle;
-  // console.log(props.questionData);
+   console.log('incoming', props.questionData);
   if (props.questionData.length >= 2) {
     return (
       <div id="QuestionsList" className={CSSStyle.questionsList}>
@@ -16,7 +16,7 @@ const QuestionsList = (props) => {
   } else if (props.questionData.length === 1) {
     return (
       <div id="QuestionsList" className={CSSStyle.questionsList}>
-        <QuestionEntry CSSStyle={CSSStyle} questionData={props.questionData.results[0]} openAnswerForm={props.openAnswerForm}/>
+        <QuestionEntry CSSStyle={CSSStyle} questionData={props.questionData[0]} openAnswerForm={props.openAnswerForm}/>
       </div>
     );
   } else {

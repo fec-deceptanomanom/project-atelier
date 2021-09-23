@@ -157,6 +157,7 @@ class QuestionsAndAnswers extends React.Component {
       const contents = e.target.value;
       if (contents.length < 3) {
         //console.log('NOT ENOUGH TEXT', contents)
+        this.setState({displayedQuestions: [this.state.allQuestions[0], this.state.allQuestions[1]]});
         return
       } else {
         //console.log('TYPING', contents)
@@ -175,19 +176,21 @@ class QuestionsAndAnswers extends React.Component {
       //console.log('SEARCHING');
       // get all the text and set it all to lower case for case matching
       text = text.toLowerCase();
-      let questionText = this.state.questions.map(question => {
+      let questionText = this.state.allQuestions.map(question => {
         return question['question_body'].toLowerCase();
       })
       //console.log('all lower case', text, questionText);
       // iterate through the list looking for the search text
       let matching = [];
       questionText.map((question, index) => {
+        console.log('question', question);
         if (question.search(text) !== -1) {
-          matching.push(this.state.questions[index]);
+          matching.push(this.state.allQuestions[index]);
+          console.log('matches', matching)
         }
       })
-      //console.log('matching', matching);
-      this.setState({questions: matching});
+      //console.log('displayed', this.state.displayedQuestions);
+      this.setState({displayedQuestions: matching});
     }
 
 
