@@ -16,7 +16,7 @@ const getRoundedRating = function(ratings) {
 
 const getPriceElement = function(currentStyle) {
   if (currentStyle.sale_price) {
-    return (<h3 id={'productinfo-price'}><strike>{' $' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
+    return (<h3 id={'productinfo-price'} className={CSSCommon['onsale']}><strike>{'$' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
   } else {
     return (<h3 id={'productinfo-price'}>{'$' + currentStyle.original_price}</h3>);
   }
