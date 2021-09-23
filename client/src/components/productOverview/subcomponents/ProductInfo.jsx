@@ -2,6 +2,7 @@ import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
 import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
+import ProductSelections from './ProductSelections.jsx';
 
 const getRoundedRating = function(ratings) {
   let ratingSum = 0;
@@ -36,24 +37,7 @@ const ProductInfo = ( props ) => {
           </div>
           <div className={CSSCommon['deadspace']}></div>
         </div>
-        <div id='dropdown-row'>
-          <select defaultValue="default">
-            <option value="default" disabled hidden>Select size</option>
-            {Object.keys(props.currentStyle.skus).map(sku => (
-              <option key={Object.keys(props.currentStyle.skus).indexOf(sku)}>{props.currentStyle.skus[sku].size}</option>
-            ))}
-          </select>
-          <select defaultValue="default">
-            <option value="default" disabled hidden>Select quantity</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div id='btn-row'>
-          <button>Add to Bag</button>
-          <button>[STAR]</button>
-        </div>
+        <ProductSelections currentStyle={props.currentStyle}/>
       </div>
     );
   } else {
