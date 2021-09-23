@@ -1,7 +1,6 @@
 import React from 'react';
 import CSSLight from '../relatedItemsLight.module.css';
 
-
 const LeftButton = (props) => {
   if (!props.left) {
     return null;

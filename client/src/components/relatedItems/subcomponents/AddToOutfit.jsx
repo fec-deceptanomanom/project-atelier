@@ -3,11 +3,13 @@ import CSSLight from './../relatedItemsLight.module.css';
 
 
 const AddToOutfit = (props) => {
-  const plusIcon = <i className="icon-plus-sign icon-2x pull-left"></i>;
+  // const plusIcon = <i className="icon-plus-sign"></i>;
   return (
     <div className={CSSLight.btnAdd}>
-      {plusIcon}
-      Add to OUTfit!!
+      <div className={CSSLight.plusIcon}>
+        <i className="fa fa-plus-square fa-4x" aria-hidden="true"></i>
+        <p>Add to outfit</p>
+      </div>
     </div>
   )
 }
