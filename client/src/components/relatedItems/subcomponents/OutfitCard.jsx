@@ -1,4 +1,5 @@
 import React from 'react';
+import CSSLight from './../relatedItemsLight.module.css';
 
 const OufitCard = (props) => {
 
@@ -9,17 +10,15 @@ const OufitCard = (props) => {
   );
 
   return (
-    <div>
-      <h2>I am the Your Outfit Card</h2>
-      <button onClick={'render ComparisonModal '}></button>
-
-      <img>Preview Image</img>
-
+    <div className={CSSLight.outfitCard}>
+      <h4>Outfit Card</h4>
+      <p className={CSSLight.name}>name</p>
+      <p className={CSSLight.category}>Department:    </p>
+      <p className={CSSLight.categoryValue}>category</p>
+      <img className={CSSLight.thumbnail} alt='Image not Found'></img>
       <ul>
-        <li>Product Category</li>
-        <li>Product Name</li>
-        <li>Price</li>
-        <li>Star Rating</li>
+        <li>Price: </li>
+        <li>Stars: </li>
       </ul>
     </div>
   )
