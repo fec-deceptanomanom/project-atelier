@@ -77,27 +77,67 @@ app.get('/productInfo/:id', (req, res) => {
     res.send(error);
   });
 
-  // Get the initial question list. currently only returns up to the first 5 questions, which is wrong
-  const questionsList = new Promise((resolve, reject) => {
-    axios.get(API_URL + '/qa/questions?product_id=' + req.params.id)
-      .then(results => {
-        resolve(results.data);
-      })
-      .catch(error => {
-        reject(error);
-      })
-  });
 
-  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, questionsList, reviews])
+  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, reviews])
   .then((results) => {
     res.send({
       productInfo: results[0],
       styleInfo: results[1],
       reviewInfo: results[2],
       relatedIDs: results[3],
-      questionsList : results[4],
-      reviews: results[5]
+      reviews: results[4]
     });
+  })
+  .catch((error) => {
+    if (error.message && error.message === "Request failed with status code 404") {
+      res.status(404).send("Not found.");
+    } else {
+      res.send(error);
+    }
+  })
+});
+
+// seperating out questions GET request
+app.get('/questions/:id', (req, res) => {
+
+  // Get the initial question list. currently only returns up to the first 5 questions, which is wrong
+  const questionsList = [];
+  let oldCounter = 0;
+  let newCounter= 0;
+
+  const getNextPage = function() {
+    newCounter++;
+    const newPromise = new Promise((resolve, reject) => {
+      axios.get(API_URL + '/qa/questions?product_id=' + req.params.id + '&page=' + newCounter)
+        .then(results => {
+          console.log('fetched a page of questions');
+          oldCounter++
+          resolve(results.data);
+        })
+        .catch(error => {
+          console.log('no more questions');
+          reject(error);
+        })
+    });
+    questionsList.push(newPromise);
+  };
+
+  while (oldCounter === newCounter) {
+    getNextPage();
+  }
+
+  Promise.all(questionsList)
+  .then((results) => {
+    //console.log('PROMISE ALL RESULTS', results);
+    let questionsList = {
+      product_id: results[0]['product_id'],
+      results: []
+    };
+    results.map(entry => {
+     // console.log('entry', entry.results);
+      questionsList.results = questionsList.results.concat(entry.results);
+    })
+    res.send(questionsList);
   })
   .catch((error) => {
     if (error.message && error.message === "Request failed with status code 404") {

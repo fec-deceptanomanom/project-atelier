@@ -57,7 +57,6 @@ class App extends React.Component {
     });
   }
 
-
   render() {
     let CSSStyle = AppCSSLight;
     let bannerText = 'I\'m loaded in Light Mode!';
