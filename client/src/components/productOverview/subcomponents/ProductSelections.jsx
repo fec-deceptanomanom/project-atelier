@@ -5,6 +5,7 @@ import CSSDark from '../styles/productOverviewDark.module.css';
 
 import SizeSelection from './SizeSelection.jsx';
 import QuantitySelection from './QuantitySelection.jsx';
+import AddToBagButton from './AddToBagButton.jsx';
 
 const $ = require('jquery');
 
@@ -13,9 +14,20 @@ class ProductSelections extends React.Component {
     super(props);
     this.state = {
       sizeSelected: false,
-      currentSize: null
+      currentSize: null,
+      outOfStock: false
     };
     this.selectedSize = this.selectedSize.bind(this);
+  }
+
+  componentDidMount() {
+    let availableItems = Object.keys(this.props.currentStyle.skus).filter((sku) => this.props.currentStyle.skus[sku].quantity > 0);
+    if (availableItems.length === 0) {
+      this.setState({
+        ...this.state,
+        outOfStock: true
+      });
+    }
   }
 
   selectedSize() {
@@ -35,6 +47,7 @@ class ProductSelections extends React.Component {
             currentStyle={this.props.currentStyle}
             onSelect={this.selectedSize}
             sizeSelected={this.state.sizeSelected}
+            outOfStock={this.state.outOfStock}
           />
           <QuantitySelection
             currentStyle={this.props.currentStyle}
@@ -43,7 +56,7 @@ class ProductSelections extends React.Component {
           />
         </div>
         <div id='btn-row'>
-          <button>Add to Bag</button>
+          <AddToBagButton outOfStock={this.state.outOfStock}/>
           <button>[STAR]</button>
         </div>
       </div>
