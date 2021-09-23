@@ -57,6 +57,10 @@
   margin: 4px;
 }
 
+.showMoreQuestions{
+  display: none;
+}
+
 /* QUESTION LIST END */
 /* QUESTION ENTRY START */
 
@@ -71,6 +75,10 @@
 .answersList {
   border: 2px dotted black;
   margin: 2px;
+}
+
+.showMoreAnswers{
+  display: none;
 }
 
 /* ANSWERS LIST END */
