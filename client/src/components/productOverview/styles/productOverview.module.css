@@ -1,4 +1,24 @@
-.product-overview * {
+/* .product-overview * {
+  margin: 10px;
+} */
+
+#ProductOverview,
+.product-overview-top,
+.product-overview-bottom,
+.product-overview-image,
+.product-overview-info,
+.product-overview-info h1,
+.product-overview-info h2,
+.product-overview-info h3,
+.product-overview-info h4,
+.product-overview-info h5,
+.product-overview-info h6,
+.product-overview-description,
+.product-overview-features,
+.vl,
+.style-thumbnail,
+.style-thumbnail-grid,
+.product-selections * {
   margin: 10px;
 }
 
@@ -54,7 +74,7 @@
 }
 
 .style-thumbnail-grid {
-  margin: 0px;
+  /* margin: 0px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
@@ -86,4 +106,12 @@
   width: 50%;
   height: 500px;
   object-fit: cover;
+}
+
+.onsale {
+  color: red;
+}
+
+.onsale strike {
+  color: black;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
 import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
+import ProductSelections from './ProductSelections.jsx';
 
 const getRoundedRating = function(ratings) {
   let ratingSum = 0;
@@ -15,7 +16,7 @@ const getRoundedRating = function(ratings) {
 
 const getPriceElement = function(currentStyle) {
   if (currentStyle.sale_price) {
-    return (<h3 id={'productinfo-price'}><strike>{' $' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
+    return (<h3 id={'productinfo-price'} className={CSSCommon['onsale']}><strike>{'$' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
   } else {
     return (<h3 id={'productinfo-price'}>{'$' + currentStyle.original_price}</h3>);
   }
@@ -36,24 +37,7 @@ const ProductInfo = ( props ) => {
           </div>
           <div className={CSSCommon['deadspace']}></div>
         </div>
-        <div id='dropdown-row'>
-          <select defaultValue="default">
-            <option value="default" disabled hidden>Select size</option>
-            {Object.keys(props.currentStyle.skus).map(sku => (
-              <option key={Object.keys(props.currentStyle.skus).indexOf(sku)}>{props.currentStyle.skus[sku].size}</option>
-            ))}
-          </select>
-          <select defaultValue="default">
-            <option value="default" disabled hidden>Select quantity</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div id='btn-row'>
-          <button>Add to Bag</button>
-          <button>[STAR]</button>
-        </div>
+        <ProductSelections currentStyle={props.currentStyle}/>
       </div>
     );
   } else {
