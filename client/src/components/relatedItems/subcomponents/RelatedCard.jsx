@@ -29,7 +29,7 @@ class RelatedCard extends React.Component {
   }
 
   componentDidMount() {
-    const defaultItem = this.findDefaultResult(this.props.cardInfo.styleInfo.results);
+    const defaultItem = this.findDefaultResult(this.props.info.style.results);
     const thumbnail = this.findThumbnail(defaultItem);
 
     this.setState({
@@ -43,8 +43,8 @@ class RelatedCard extends React.Component {
         <button onClick={() => { }} value='Star Button'>Star Button</button>
       </div>
     );
-    const info = this.props.cardInfo.productInfo;
-    const stars = this.props.cardInfo.reviewInfo.ratings;
+    const info = this.props.info.product;
+    const stars = this.props.info.reviews.ratings;
 
     return (
       <div className={CSSLight.relatedCard}>

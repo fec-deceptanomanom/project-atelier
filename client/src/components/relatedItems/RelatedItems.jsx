@@ -40,23 +40,30 @@ class RelatedItems extends React.Component {
       })
     )
     .then(results => {
-      // console.log('RESULTS ARE:', results);
+      let relateds = results.map((res, i) => {
+        return {
+          product: res.productInfo,
+          style: res.styleInfo,
+          reviews: res.reviewInfo
+        };
+      });
+      console.log('RELATEDS ARE:', relateds);
       if (results.length < 4) {
-        let displayItems = results.slice(0,4);
-        let length = results.length;
+        // let displayItems = results.slice(0,4);
         this.setState({
-          relatedItems: results,
-          carouselItems: displayItems,
+          relatedItems: relateds,
+          carouselItems: relateds,
           leftButton: false,
           rightButton: false,
-      })
+        })
+      } else {
+        let displayItems = relateds.slice(0,4);
+        this.setState({
+          relatedItems: relateds,
+          carouselItems: displayItems,
+          leftButton: false
+        })
       }
-      let displayItems = results.slice(0,4);
-      this.setState({
-        relatedItems: results,
-        carouselItems: displayItems,
-        leftButton: false
-      })
     })
     .catch(err => {
       console.error(err);
@@ -94,7 +101,6 @@ class RelatedItems extends React.Component {
       return this.state.relatedItems[count];
     });
     if (count > length - this.state.carouselItems.length)  {
-      //get rid of right button
       this.setState({
         carouselItems: newList,
         counter: count,
@@ -111,10 +117,8 @@ class RelatedItems extends React.Component {
   }
 
   whichDir(e) {
-    let dir = e.target.className[12]; // dir = 'l' || 'r'
-    console.log('DIR is ', dir);
+    let dir = e.target.className[12];
     dir === 'l' ? this.goLeft() : this.goRight();
-    //`go${direction}()`;
   }
 
   componentDidUpdate() { }
