@@ -77,26 +77,15 @@ app.get('/productInfo/:id', (req, res) => {
     res.send(error);
   });
 
-  // Get the initial question list. currently only returns up to the first 5 questions, which is wrong
-  const questionsList = new Promise((resolve, reject) => {
-    axios.get(API_URL + '/qa/questions?product_id=' + req.params.id)
-      .then(results => {
-        resolve(results.data);
-      })
-      .catch(error => {
-        reject(error);
-      })
-  });
 
-  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, questionsList, reviews])
+  Promise.all([productInfo, styleInfo, reviewInfo, relatedIDs, reviews])
   .then((results) => {
     res.send({
       productInfo: results[0],
       styleInfo: results[1],
       reviewInfo: results[2],
       relatedIDs: results[3],
-      questionsList : results[4],
-      reviews: results[5]
+      reviews: results[4]
     });
   })
   .catch((error) => {

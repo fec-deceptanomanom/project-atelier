@@ -57,6 +57,10 @@
   margin: 4px;
 }
 
+.showMoreQuestions{
+  display: none;
+}
+
 /* QUESTION LIST END */
 /* QUESTION ENTRY START */
 
@@ -73,7 +77,7 @@
   margin: 2px;
 }
 
-.showMore{
+.showMoreAnswers{
   display: none;
 }
 

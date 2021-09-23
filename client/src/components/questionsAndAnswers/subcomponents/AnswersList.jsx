@@ -68,7 +68,7 @@ class AnswersList extends React.Component {
     if (answerList === null) {
       return (
         <div id="AnswersList" className={CSSStyle.answersList}>
-          <h5>Sorry, no onw has answered this question yet.</h5>
+          <h5>Sorry, no one has answered this question yet.</h5>
         </div>
       );
     } else {
@@ -78,7 +78,7 @@ class AnswersList extends React.Component {
             //console.log('answer', answer)
             return (<AnswerEntry key={index} answerData={answer} CSSStyle={CSSStyle} />)
           })}
-          <button id="showMoreAnswers" className={CSSStyle.showMore} onClick={this.showAnotherAnswer} >This should show more answers (WIP)</button>
+          <button id="showMoreAnswers" className={CSSStyle.showMoreAnswers} onClick={this.showAnotherAnswer} >Show More Answers</button>
         </div>
       );
     }
