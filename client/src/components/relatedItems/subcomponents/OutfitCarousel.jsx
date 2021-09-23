@@ -6,14 +6,21 @@ import AddToOutfit from './AddToOutfit.jsx';
 
 const OutfitCarousel = (props) => {
 
-  const OutfitCards = []; //map over OutfitCard.
-
+  let outfitItems = props.outfitItems || ['', '', ''];
+  outfitItems = outfitItems.map( (item, i) => {
+    return (
+      <div className={CSSLight.card} key={i}>
+        <OutfitCard />
+      </div>
+    )
+  });
+  // outfitItems ? : ;
   return (
     <div className={CSSLight.outfitCarousel}>
       <h2>Outfit Carousel</h2>
-      <div>
-        <AddToOutfit />
-        {OutfitCards}
+      <div className={CSSLight.scroller}>
+          <AddToOutfit />
+          {outfitItems}
       </div>
     </div>
 
