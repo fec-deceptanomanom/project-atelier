@@ -37,12 +37,14 @@ class RelatedCard extends React.Component {
   render() {
     const btnID = this.props.info.product.id;
     const starButton = (
-      <div>
-        <button id={btnID}
-                onClick={this.props.toggleModal}
-                value='Star Button'>
-            Star Button
-          </button>
+      <div className={CSSLight.starContainer}>
+        <p>Click to compare:
+          <i className="fa fa-star fa-lg"
+             aria-hidden="true"
+             id={btnID}
+             onClick={this.props.toggleModal}>
+          </i>
+        </p>
       </div>
     );
     const info = this.props.info.product;
