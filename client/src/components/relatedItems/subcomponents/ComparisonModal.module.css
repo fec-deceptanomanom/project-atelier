@@ -14,19 +14,48 @@
 
 /* Modal Content/Box */
 .modalContent {
+  position: flex;
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   animation-name: pullup;
-  animation-duration: .4s;
+  animation-duration: 1.25s;
 }
 @keyframes pullup {
-  from {bottom: -200px; opacity:0}
-  to {top:0; opacity:1}
+  from {
+    transform: translateY(200%);
+    opacity:.75;
+  }
+  to {
+    opacity:1;
+    transform: translateY(10%);
+  }
 }
-/* The Close Button */
+
+.comparison {
+  margin: 10px 25em;
+  border: 2px solid rgb(32, 32, 10);
+  padding: 8px;
+  min-width: 50%;
+  max-width: 75%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr.labels {
+  margin: 2px inherit 6px;
+}
+
+th,
+  td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
 .close {
   color: #aaa;
   float: right;
