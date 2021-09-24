@@ -109,6 +109,17 @@ ReactDOM.render(
  * elem = e.target. something??
  * component = e.target has a parent with name of [overview, related, , ]
  * tea = Date.now().toString()
- * localStorage.setItem("element, widget, time", "elem, component, tea");
-
+ * localStorage.setItem("time, element, widget, time");
+ *
+ * setInterval() every 60 secs
+ * check if state.interactions.length greater than 0 [{}, {}, {}] or localStorage
+ *
+ * post({
+ *  "/interactions"
+ *  data: localStorage get all items (should be strings)
+ *  sucess: ( data => {
+ *    localeStorage clear()
+ *  })
+ * })
+ *
  */
