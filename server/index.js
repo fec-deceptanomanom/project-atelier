@@ -2,10 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const secrets = require('../.secret.json');
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
+const { uploadFile } = require('./s3');
 
 const app = express();
 const port = 3000;
 
+app.use(express.json());
 
 // Set the static served page for landing page
 app.use('/', express.static(__dirname + '/../landingClient/dist'));
@@ -147,6 +151,77 @@ app.get('/questions/:id', (req, res) => {
     }
   })
 });
+
+app.post('/questions', upload.array('files'), (req, res) => {
+  console.log('RECIEVED QUESTION POST REQUEST', req.body);
+  //reformat to API standards
+  const questionData = {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    product_id: req.body.productID,
+  };
+  console.log('question data', questionData);
+  // POST request to API -> destination /qa/questions
+  axios.post(API_URL + '/qa/questions', questionData)
+    .then((response) => {
+      console.log(response)
+      res.json({message: 'Success'})
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.message && error.message === "Request failed with status code 404") {
+        res.status(404).send("Not found.");
+      } else {
+        res.send(error);
+      }
+    });
+})
+
+app.post('/answers', upload.array('files'), (req, res) => {
+  console.log('RECIEVED ANSWER POST REQUEST', req.body);
+  console.log('FILES', req.files)
+  let photoUploads = [];
+  // send photo files to AWS CloudFront and retrieve URLs for them
+  for (let i = 0; i < req.files.length; i++) {
+    photoUploads.push(uploadFile(req.files[i]));
+  }
+  Promise.all(photoUploads)
+  .then(results => {
+    // push urls to fanswerData.files
+    let urls = results.map(result => {
+      const distribution = 'https://d21pxc7zq467b0.cloudfront.net/'
+      return distribution + result.key;
+    })
+    // reformat to API standards
+    const questionID = req.body.question;
+    const answerData = {
+      body: req.body.body,
+      name: req.body.name,
+      email: req.body.email,
+      photos: urls,
+    }
+    return [questionID, answerData];
+  })
+  .then(data => {
+    // POST request to API -> destination /qa/questions/:question_id/answers
+    axios.post(API_URL + '/qa/questions/' + data[0] + '/answers', data[1])
+    .then((response) => {
+      console.log(response)
+      res.json({message: 'Success'})
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  })
+  .catch(error => {
+    if (error.message && error.message === "Request failed with status code 404") {
+      res.status(404).send("Not found.");
+    } else {
+      res.send(error);
+    }
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

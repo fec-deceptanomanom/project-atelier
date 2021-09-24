@@ -68,7 +68,8 @@ class App extends React.Component {
       return (
         <div id="App">
           <label className={CSSStyle.switch}>
-            <input onChange={this.darkmodeToggle} type="checkbox"></input>
+            <label htmlFor="nightmode">Nightmode:</label>
+            <input id="nightmode" name="nightmode" onChange={this.darkmodeToggle} type="checkbox"></input>
             <span className={CSSStyle.slider}></span>
           </label>
           <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
