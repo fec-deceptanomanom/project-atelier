@@ -27,10 +27,25 @@ class QuestionsAndAnswers extends React.Component {
     this.searchEnter = this.searchEnter.bind(this);
     this.showAnotherQuestion = this.showAnotherQuestion.bind(this);
     this.getPhotos = this.getPhotos.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
     // GET request for questions
+    this.getQuestions();
+    // other states to set
+    this.setState({
+      darkmode: this.props.darkmode,
+    })
+  }
+
+  componentDidUpdate(prevprops) {
+    if (this.props.darkmode !== prevprops.darkmode) {
+      this.setState({ darkmode: this.props.darkmode })
+    }
+  }
+
+  getQuestions() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/questions/${urlId}`, (data, status) => {
       console.log('get request question data', data);
@@ -56,16 +71,6 @@ class QuestionsAndAnswers extends React.Component {
         }
       });
     });
-    // other states to set
-    this.setState({
-      darkmode: this.props.darkmode,
-    })
-  }
-
-  componentDidUpdate(prevprops) {
-    if (this.props.darkmode !== prevprops.darkmode) {
-      this.setState({ darkmode: this.props.darkmode })
-    }
   }
 
   sortQuestions(questions) {
@@ -95,7 +100,7 @@ class QuestionsAndAnswers extends React.Component {
     if (target === 'AnswerFormBtn') {
       modal = document.getElementById('AnswerForm');
       const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
-      console.log('CLICKED', targetName);
+      //console.log('CLICKED', targetName);
       this.setState({formTarget: targetName})
     } else if (target === 'QuestionFormBtn') {
       modal = document.getElementById('QuestionForm');
@@ -141,14 +146,14 @@ class QuestionsAndAnswers extends React.Component {
       formData.append('name', document.getElementById('answer-nickname').value);
       formData.append('email', document.getElementById('answer-email').value);
       formData.append('question', this.state.formTarget);
-      console.log('STATE', this.state.photoFiles);
+      //console.log('STATE', this.state.photoFiles);
       let photos = this.state.photoFiles;
       for (let i = 0; i < photos.length; i++) {
         let photoFile = photos[i];
-        console.log(photoFile);
+        //console.log(photoFile);
         formData.append('files', photoFile);
       }
-      console.log('answer form data', formData);
+      //console.log('answer form data', formData);
       this.postForm('answer', formData);
     }
   }
@@ -168,6 +173,7 @@ class QuestionsAndAnswers extends React.Component {
       contentType: false,
       success: (data) => {
         console.log('post question/answer form', data);
+        this.getQuestions();
       },
       error: (error) => {
         this.setState({
@@ -213,10 +219,10 @@ class QuestionsAndAnswers extends React.Component {
       // iterate through the list looking for the search text
       let matching = [];
       questionText.map((question, index) => {
-        console.log('question', question);
+        //console.log('question', question);
         if (question.search(text) !== -1) {
           matching.push(this.state.allQuestions[index]);
-          console.log('matches', matching)
+          //console.log('matches', matching)
         }
       })
       //console.log('displayed', this.state.displayedQuestions);
