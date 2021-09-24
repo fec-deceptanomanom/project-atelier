@@ -39,34 +39,39 @@ class RelatedItems extends React.Component {
         })
       })
     )
-    .then(results => {
-      // console.log('RESULTS ARE:', results);
-      if (results.length < 4) {
-        let displayItems = results.slice(0,4);
-        let length = results.length;
-        this.setState({
-          relatedItems: results,
-          carouselItems: displayItems,
-          leftButton: false,
-          rightButton: false,
+      .then(results => {
+        let relateds = results.map((res, i) => {
+          return {
+            product: res.productInfo,
+            style: res.styleInfo,
+            reviews: res.reviewInfo
+          };
+        });
+        if (results.length < 4) {
+          this.setState({
+            relatedItems: relateds,
+            carouselItems: relateds,
+            leftButton: false,
+            rightButton: false,
+          })
+        } else {
+          let displayItems = relateds.slice(0, 4);
+          this.setState({
+            relatedItems: relateds,
+            carouselItems: displayItems,
+            leftButton: false
+          })
+        }
       })
-      }
-      let displayItems = results.slice(0,4);
-      this.setState({
-        relatedItems: results,
-        carouselItems: displayItems,
-        leftButton: false
+      .catch(err => {
+        console.error(err);
       })
-    })
-    .catch(err => {
-      console.error(err);
-    })
   }
 
   goLeft() {
     let length = this.state.carouselItems.length; //4
     let count = length - this.state.counter - 1; //5 - 4 = 1
-    let newList = this.state.carouselItems.map( (item, i) => {
+    let newList = this.state.carouselItems.map((item, i) => {
       count++;
       return this.state.relatedItems[count];
     });
@@ -89,12 +94,11 @@ class RelatedItems extends React.Component {
   goRight() {
     let count = this.state.counter;
     let length = this.state.relatedItems.length //5
-    let newList = this.state.carouselItems.map( (item, i) => {
+    let newList = this.state.carouselItems.map((item, i) => {
       count++;
       return this.state.relatedItems[count];
     });
-    if (count > length - this.state.carouselItems.length)  {
-      //get rid of right button
+    if (count > length - this.state.carouselItems.length) {
       this.setState({
         carouselItems: newList,
         counter: count,
@@ -111,10 +115,8 @@ class RelatedItems extends React.Component {
   }
 
   whichDir(e) {
-    let dir = e.target.className[12]; // dir = 'l' || 'r'
-    console.log('DIR is ', dir);
+    let dir = e.target.className[12];
     dir === 'l' ? this.goLeft() : this.goRight();
-    //`go${direction}()`;
   }
 
   componentDidUpdate() { }
@@ -126,10 +128,12 @@ class RelatedItems extends React.Component {
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
           <RelatedCarousel items={this.state.carouselItems}
-                           left={this.state.leftButton}
-                           right={this.state.rightButton}
-                           goDir={this.whichDir} />
-          <OutfitCarousel outfits={this.state.outfitItems}/>
+            pageItem={this.props.pageItem}
+            left={this.state.leftButton}
+            right={this.state.rightButton}
+            goDir={this.whichDir} />
+          <OutfitCarousel outfits={this.state.outfitItems}
+                          pageItem={this.props.pageItem} />
         </div>
       </div>
     );
