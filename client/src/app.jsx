@@ -99,3 +99,15 @@ class App extends React.Component {
 ReactDOM.render(
   <App />, document.getElementById('app'),
 );
+
+
+
+/**
+ * make a universal click handler for everything in body
+ *
+ * elem = e.target. something??
+ * component = e.target has a parent with name of [overview, related, , ]
+ * tea = Date.now().toString()
+ * localStorage.setItem("element, widget, time", "elem, component, tea");
+
+ */
