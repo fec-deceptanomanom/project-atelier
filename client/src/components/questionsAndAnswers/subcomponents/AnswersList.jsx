@@ -22,7 +22,7 @@ class AnswersList extends React.Component {
     if (answerValues.length > 2) {
       sortedList = this.sortAnswers(answerValues);
       answerList = [sortedList[0], sortedList[1]];
-      let button = document.getElementById('showMoreAnswers');
+      let button = document.getElementById('showMoreAnswers' + this.props.questionID);
       button.style.display = 'inline-block';
     } else if (answerValues.length === 2 ) {
       sortedList = this.sortAnswers(answerValues);
@@ -54,7 +54,7 @@ class AnswersList extends React.Component {
     currentAnswers.push(newAnswer);
     this.setState({displayedAnswers: currentAnswers});
     if (currentAnswers.length === this.state.sortedAnswers.length) {
-      let button = document.getElementById('showMoreAnswers');
+      let button = document.getElementById('showMoreAnswers' + this.props.questionID);
       button.style.display = 'none';
     }
   };
@@ -78,7 +78,7 @@ class AnswersList extends React.Component {
             //console.log('answer', answer)
             return (<AnswerEntry key={index} answerData={answer} CSSStyle={CSSStyle} />)
           })}
-          <button id="showMoreAnswers" className={CSSStyle.showMoreAnswers} onClick={this.showAnotherAnswer} >Show More Answers</button>
+          <button id={"showMoreAnswers" + this.props.questionID} className={CSSStyle.showMoreAnswers} onClick={this.showAnotherAnswer} >Show More Answers</button>
         </div>
       );
     }
