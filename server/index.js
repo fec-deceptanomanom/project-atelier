@@ -190,7 +190,7 @@ app.post('/answers', upload.array('files'), (req, res) => {
   .then(results => {
     // push urls to fanswerData.files
     let urls = results.map(result => {
-      const distribution = 'https://d21pxc7zq467b0.cloudfront.net/'
+      const distribution = secrets.AWS_DIST_URL;
       return distribution + result.key;
     })
     // reformat to API standards

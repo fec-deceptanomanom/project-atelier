@@ -4,7 +4,7 @@ import QuestionEntry from './QuestionEntry';
 
 const QuestionsList = (props) => {
   const CSSStyle = props.CSSStyle;
-   console.log('incoming', props.questionData);
+   //console.log('incoming', props.questionData);
   if (props.questionData.length >= 2) {
     return (
       <div id="QuestionsList" className={CSSStyle.questionsList}>
