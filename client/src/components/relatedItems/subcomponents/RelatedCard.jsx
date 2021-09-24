@@ -2,15 +2,12 @@ import React from 'react';
 import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
 
-import ComparisonModal from './ComparisonModal.jsx';
-
 class RelatedCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       photo: 'Loading...',
-      crutches: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn15.bestreviews.com%2Fimages%2Fv4desktop%2Fproduct-matrix%2Fdmi-crutches--push-button-adjustable-crutches-f94027.jpg&f=1&nofb=1'
-
+      crutches: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn15.bestreviews.com%2Fimages%2Fv4desktop%2Fproduct-matrix%2Fdmi-crutches--push-button-adjustable-crutches-f94027.jpg&f=1&nofb=1',
     }
   }
 
@@ -29,7 +26,7 @@ class RelatedCard extends React.Component {
   }
 
   componentDidMount() {
-    const defaultItem = this.findDefaultResult(this.props.cardInfo.styleInfo.results);
+    const defaultItem = this.findDefaultResult(this.props.info.style.results);
     const thumbnail = this.findThumbnail(defaultItem);
 
     this.setState({
@@ -38,13 +35,18 @@ class RelatedCard extends React.Component {
   }
 
   render() {
+    const btnID = this.props.info.product.id;
     const starButton = (
       <div>
-        <button onClick={() => { }} value='Star Button'>Star Button</button>
+        <button id={btnID}
+                onClick={this.props.toggleModal}
+                value='Star Button'>
+            Star Button
+          </button>
       </div>
     );
-    const info = this.props.cardInfo.productInfo;
-    const stars = this.props.cardInfo.reviewInfo.ratings;
+    const info = this.props.info.product;
+    const stars = this.props.info.reviews.ratings;
 
     return (
       <div className={CSSLight.relatedCard}>
