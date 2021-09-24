@@ -17,6 +17,7 @@ class QuestionsAndAnswers extends React.Component {
       allQuestions: [],
       displayedQuestions: [],
       displayError: null,
+      photoFiles: [],
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
@@ -25,6 +26,7 @@ class QuestionsAndAnswers extends React.Component {
     this.searchUpdate = this.searchUpdate.bind(this);
     this.searchEnter = this.searchEnter.bind(this);
     this.showAnotherQuestion = this.showAnotherQuestion.bind(this);
+    this.getPhotos = this.getPhotos.bind(this);
   }
 
   componentDidMount() {
@@ -116,38 +118,66 @@ class QuestionsAndAnswers extends React.Component {
     this.setState({formTarget: null})
   }
 
+  getPhotos(filesList) {
+    this.setState({photoFiles: filesList});
+  }
+
   // incomplete POST function
   submitForm(e) {
     e.preventDefault();
     //console.log('form target', this.state.formTarget);
-    let data = {};
+    let formData = new FormData();
     // if question form
     if (this.state.formTarget === this.state.productID) {
-      data.body = document.getElementById('question-text').value;
-      data.name = document.getElementById('question-nickname').value;
-      data.email = document.getElementById('question-email').value;
-      data.product_id = this.state.productID;
-      console.log('question form data', data);
-
+      formData.append('body', document.getElementById('question-text').value);
+      formData.append('name', document.getElementById('question-nickname').value);
+      formData.append('email', document.getElementById('question-email').value);
+      formData.append('productID', this.state.formTarget);
+      console.log('question form data', formData);
+      this.postForm('question', formData);
     // else if answer form
     } else {
-      //get photo array
-      let photoPreviews = document.getElementById('photo-preview').children;
-      let photos = [];
-      for (let i = 0; i < photoPreviews.length; i++) {
-        photos.push(photoPreviews[i].children[1]);
+      formData.append('body', document.getElementById('answer-text').value);
+      formData.append('name', document.getElementById('answer-nickname').value);
+      formData.append('email', document.getElementById('answer-email').value);
+      formData.append('question', this.state.formTarget);
+      console.log('STATE', this.state.photoFiles);
+      let photos = this.state.photoFiles;
+      for (let i = 0; i < photos.length; i++) {
+        let photoFile = photos[i];
+        console.log(photoFile);
+        formData.append('files', photoFile);
       }
-      //console.log('photos list', photos);
-      // actual file data is stored in image in file attribute
-      // NEED TO FIGURE OUT WHERE TO STORE IT
-
-    data.body = document.getElementById('answer-text').value;
-    data.name = document.getElementById('answer-nickname').value;
-    data.email = document.getElementById('answer-email').value;
-    data.photos = photos;
-    console.log('answer form data', data);
-
+      console.log('answer form data', formData);
+      this.postForm('answer', formData);
     }
+  }
+
+  postForm(formType, formData) {
+    let destination;
+    if (formType === 'question') {
+      destination = 'questions';
+    } else if (formType === 'answer') {
+      destination = 'answers';
+    }
+    $.ajax({
+      url: `http://localhost:3000/${destination}`,
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: (data) => {
+        console.log('post question/answer form', data);
+      },
+      error: (error) => {
+        this.setState({
+          displayError: {
+            status: error.status,
+            message: error.statusText
+          }
+        });
+      }
+    })
   }
 
   // search bar functionality
@@ -206,7 +236,7 @@ class QuestionsAndAnswers extends React.Component {
         <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} />
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose}/>
-        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} />
+        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
           <button id="ShowMoreQuestions" onClick={this.showAnotherQuestion}>Show More Questions</button>
           <button id="QuestionFormBtn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
