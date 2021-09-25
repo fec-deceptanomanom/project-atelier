@@ -32,7 +32,6 @@ class RelatedCarousel extends React.Component {
   }
 
   toggleModal(e) {
-    console.log('Card clicked\n', e.target.id);
     let item = this.findProdByID(e.target.id);
     this.setState({
       modal: !this.state.modal,
@@ -60,7 +59,7 @@ class RelatedCarousel extends React.Component {
 
     if (!this.props.left) {
       return (
-        <div className={CSSLight.relatedCarousel}>
+        <div id='related-carousel' className={CSSLight.relatedCarousel}>
           {/* conditional render */}
           {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
                                                 currentItem={this.props.pageItem}
@@ -79,7 +78,7 @@ class RelatedCarousel extends React.Component {
     }
     if (!this.props.right) {
       return (
-        <div className={CSSLight.relatedCarousel}>
+        <div id='related-carousel' className={CSSLight.relatedCarousel}>
                     {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
                                                 currentItem={this.props.pageItem}
                                                 stars={this.getRoundedRating}
@@ -97,7 +96,7 @@ class RelatedCarousel extends React.Component {
     }
     if (!this.props.left && !this.props.right) {
       return (
-        <div className={CSSLight.relatedCarousel}>
+        <div id='related-carousel' className={CSSLight.relatedCarousel}>
                     {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
                                                 currentItem={this.props.pageItem}
                                                 stars={this.getRoundedRating}
@@ -110,7 +109,7 @@ class RelatedCarousel extends React.Component {
       )
     } else {
       return (
-        <div className={CSSLight.relatedCarousel}>
+        <div id='related-carousel' className={CSSLight.relatedCarousel}>
                     {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
                                                 currentItem={this.props.pageItem}
                                                 stars={this.getRoundedRating}

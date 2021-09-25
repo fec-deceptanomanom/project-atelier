@@ -47,19 +47,19 @@ class RelatedCard extends React.Component {
         </p>
       </div>
     );
-    const info = this.props.info.product;
-    const stars = this.props.info.reviews.ratings;
+    const product = this.props.info.product;
+    const ratings = this.props.info.reviews.ratings;
 
     return (
       <div className={CSSLight.relatedCard}>
-        <p className={CSSLight.name}>{info.name}</p>
+        <p className={CSSLight.name}>{product.name}</p>
         <p className={CSSLight.category}>Department:    </p>
-        <p className={CSSLight.categoryValue}>{info.category}</p>
+        <p className={CSSLight.categoryValue}>{product.category}</p>
           {starButton}
         <img className={CSSLight.thumbnail} src={this.state.photo} alt='Image not Found'></img>
         <ul>
-          <li>Price: {info.default_price}</li>
-          <li>Stars: {this.props.stars(stars)}</li>
+          <li>Price: {product.default_price}</li>
+          <li>Stars: {this.props.stars(ratings)}</li>
         </ul>
       </div>
     )

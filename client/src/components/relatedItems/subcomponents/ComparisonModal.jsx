@@ -23,7 +23,7 @@ const ComparisonModal = (props) => {
   };
 
   return (
-    <div className={style.modal}>
+    <div id='comparison-modal' className={style.modal}>
       <div className={style.modalContent}>
         <i className="fa fa-times-circle fa=lg"
           aria-hidden="true"
