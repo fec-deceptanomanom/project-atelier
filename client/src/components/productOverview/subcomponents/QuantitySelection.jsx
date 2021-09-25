@@ -3,6 +3,8 @@ import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
+import { withClickTracker } from '../../../../lib/interactions.jsx';
+
 const QuantitySelection = (props) => {
   if (props.sizeSelected && props.currentSize !== null) {
     // Get the sku of the item related to the size selected
@@ -20,7 +22,7 @@ const QuantitySelection = (props) => {
       <select id={'product-quantity-selection'} defaultValue="default">
         <option value="default">1</option>
         {quantityRange.map((value, idx) => (
-          <option key={idx}>{value}</option>
+          <option key={idx} onClick={props.interaction("quantity-disabled", "prodoverview", "right now")}>{value}</option>
         ))}
       </select>
     );
@@ -33,4 +35,4 @@ const QuantitySelection = (props) => {
   }
 };
 
-export default QuantitySelection;
+export default withClickTracker(QuantitySelection);

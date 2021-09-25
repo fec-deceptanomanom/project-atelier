@@ -4,6 +4,10 @@ import CSSCommon from '../styles/productOverview.module.css';
 import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
 import ProductSelections from './ProductSelections.jsx';
 
+import { withClickTracker } from '../../../../lib/interactions.jsx';
+
+const parentComponent = "Product Overview";
+
 const getRoundedRating = function(ratings) {
   let ratingSum = 0;
   let ratingQuantity = 0;
@@ -14,13 +18,59 @@ const getRoundedRating = function(ratings) {
   return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
 }
 
-const getPriceElement = function(currentStyle) {
-  if (currentStyle.sale_price) {
-    return (<h3 id={'productinfo-price'} className={CSSCommon['onsale']}><strike>{'$' + currentStyle.original_price}</strike>{' $' + currentStyle.sale_price}</h3>);
+let ProductStarRating = (props) => {
+  const id = 'productinfo-star-rating';
+  return <h5
+    id={id}
+    onClick={() => props.interaction(id, parentComponent)}
+    >
+      {`Stars: ${getRoundedRating(props.ratings)}`}
+  </h5>;
+}
+ProductStarRating = withClickTracker(ProductStarRating);
+
+let ProductCategory = (props) => {
+  const id = 'productinfo-category';
+  return <h3 id={id} onClick={() => props.interaction(id, parentComponent)}>{props.category}</h3>
+}
+ProductCategory = withClickTracker(ProductCategory);
+
+let ProductName = (props) => {
+  const id = 'productinfo-name';
+  return <h2 id={id} onClick={() => props.interaction(id, parentComponent)}>{props.name}</h2>
+}
+ProductName = withClickTracker(ProductName);
+
+let ProductPrice = (props) => {
+  const id = 'productinfo-price';
+  if (props.currentStyle.sale_price) {
+    return (
+      <h3
+        id={'productinfo-price'}
+        className={CSSCommon['onsale']}
+        onClick={() => props.interaction(id, parentComponent)}
+      >
+        <strike>{'$' + props.currentStyle.original_price}</strike> {'$' + props.currentStyle.sale_price}
+      </h3>
+    );
   } else {
-    return (<h3 id={'productinfo-price'}>{'$' + currentStyle.original_price}</h3>);
+    return (
+      <h3
+        id={'productinfo-price'}
+        onClick={() => props.interaction(id, parentComponent)}
+      >
+        {'$' + props.currentStyle.original_price}
+      </h3>
+    );
   }
 }
+ProductPrice = withClickTracker(ProductPrice);
+
+let ProductStyleName = (props) => {
+  const id = 'productinfo-stylename';
+  return <h3 id={id} onClick={() => props.interaction(id, parentComponent)}>STYLE > {props.styleName}</h3>
+}
+ProductStyleName = withClickTracker(ProductStyleName);
 
 const ProductInfo = ( props ) => {
   if (props.currentStyle) {
@@ -28,14 +78,13 @@ const ProductInfo = ( props ) => {
       <div className={CSSCommon['product-overview-info']}>
         <div className={CSSCommon['product-overview-info-top']}>
           <div className={CSSCommon['indented']}>
-            <h5 id={'productinfo-star-rating'}>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}</h5>
-            <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
-            <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
-            {getPriceElement(props.currentStyle)}
-            <h3 id={'productinfo-stylename'}>STYLE > {props.currentStyle.name}</h3>
+            <ProductStarRating ratings={props.info.reviews.ratings}/>
+            <ProductCategory category={props.info.product.category}/>
+            <ProductName name={props.info.product.name}/>
+            <ProductPrice currentStyle={props.currentStyle}/>
+            <ProductStyleName styleName={props.currentStyle.name}/>
             <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
           </div>
-          <div className={CSSCommon['deadspace']}></div>
         </div>
         <ProductSelections currentStyle={props.currentStyle}/>
       </div>
@@ -46,4 +95,4 @@ const ProductInfo = ( props ) => {
 
 }
 
-export default ProductInfo;
+export default withClickTracker(ProductInfo);
