@@ -36,7 +36,7 @@ class App extends React.Component {
   componentDidMount() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
-      console.log('get request data', data);
+      // console.log('get request data', data);
       this.setState({
         // Keep current state info...
         ...this.state,
@@ -102,24 +102,3 @@ ReactDOM.render(
 );
 
 
-
-/**
- * make a universal click handler for everything in body
- *
- * elem = e.target. something??
- * component = e.target has a parent with name of [overview, related, , ]
- * tea = Date.now().toString()
- * localStorage.setItem("time, element, widget, time");
- *
- * setInterval() every 60 secs
- * check if state.interactions.length greater than 0 [{}, {}, {}] or localStorage
- *
- * post({
- *  "/interactions"
- *  data: localStorage get all items (should be strings)
- *  sucess: ( data => {
- *    localeStorage clear()
- *  })
- * })
- *
- */

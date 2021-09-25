@@ -6,7 +6,7 @@ const LeftButton = (props) => {
     return null;
   } else {
     return (
-      <div>
+      <div id="left-btn">
         <i className="fa fa-arrow-left fa-3x"
           aria-hidden="true"
           onClick={props.handleClick}>

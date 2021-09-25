@@ -6,7 +6,7 @@ const RightButton = (props) => {
     return null;
   } else {
     return (
-      <div>
+      <div id='right-btn'>
         <i className="fa fa-arrow-right fa-3x"
           aria-hidden="true"
           onClick={props.handleClick}>

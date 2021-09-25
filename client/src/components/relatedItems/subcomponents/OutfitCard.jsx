@@ -10,7 +10,7 @@ const OufitCard = (props) => {
   );
 
   return (
-    <div className={CSSLight.outfitCard}>
+    <div id='outfit-card' className={CSSLight.outfitCard}>
       <h4>Outfit Card</h4>
       <p className={CSSLight.name}>name</p>
       <p className={CSSLight.category}>Department:    </p>
