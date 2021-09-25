@@ -7,21 +7,21 @@ const QuestionsList = (props) => {
    //console.log('incoming', props.questionData);
   if (props.questionData.length >= 2) {
     return (
-      <div id="QuestionsList" className={CSSStyle.questionsList}>
+      <div id="QuestionsList" className={CSSStyle.questionsList} onClick={props.onClick}>
         {props.questionData.map((question, index) => {
-          return <QuestionEntry key={index} CSSStyle={CSSStyle} questionData={question} openAnswerForm={props.openAnswerForm}/>
+          return <QuestionEntry key={index} CSSStyle={CSSStyle} questionData={question} openAnswerForm={props.openAnswerForm} onClick={props.onClick} />
         })}
       </div>
     );
   } else if (props.questionData.length === 1) {
     return (
-      <div id="QuestionsList" className={CSSStyle.questionsList}>
-        <QuestionEntry CSSStyle={CSSStyle} questionData={props.questionData[0]} openAnswerForm={props.openAnswerForm}/>
+      <div id="QuestionsList" className={CSSStyle.questionsList} onClick={props.onClick}>
+        <QuestionEntry CSSStyle={CSSStyle} questionData={props.questionData[0]} openAnswerForm={props.openAnswerForm} onClick={props.onClick} />
       </div>
     );
   } else {
     return (
-      <div id="QuestionsList" className={CSSStyle.questionsList}>
+      <div id="QuestionsList" className={CSSStyle.questionsList} onClick={props.onClick}>
        <h5>Sorry, no one has asked any questions yet!</h5>
       </div>
     );
