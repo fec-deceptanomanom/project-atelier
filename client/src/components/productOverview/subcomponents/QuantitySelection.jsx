@@ -22,7 +22,7 @@ const QuantitySelection = (props) => {
       <select id={'product-quantity-selection'} defaultValue="default">
         <option value="default">1</option>
         {quantityRange.map((value, idx) => (
-          <option key={idx} onClick={props.interaction("quantity-disabled", "prodoverview", "right now")}>{value}</option>
+          <option key={idx}>{value}</option>
         ))}
       </select>
     );

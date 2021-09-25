@@ -22,7 +22,7 @@ let ProductStarRating = (props) => {
   const id = 'productinfo-star-rating';
   return <h5
     id={id}
-    onClick={() => props.interaction(id, parentComponent)}
+    onClick={() => props.clickTracker(id, parentComponent)}
     >
       {`Stars: ${getRoundedRating(props.ratings)}`}
   </h5>;
@@ -31,44 +31,38 @@ ProductStarRating = withClickTracker(ProductStarRating);
 
 let ProductCategory = (props) => {
   const id = 'productinfo-category';
-  return <h3 id={id} onClick={() => props.interaction(id, parentComponent)}>{props.category}</h3>
+  return <h3 id={id} onClick={() => props.clickTracker(id, parentComponent)}>{props.category}</h3>
 }
 ProductCategory = withClickTracker(ProductCategory);
 
 let ProductName = (props) => {
   const id = 'productinfo-name';
-  return <h2 id={id} onClick={() => props.interaction(id, parentComponent)}>{props.name}</h2>
+  return <h2 id={id} onClick={() => props.clickTracker(id, parentComponent)}>{props.name}</h2>
 }
 ProductName = withClickTracker(ProductName);
 
 let ProductPrice = (props) => {
   const id = 'productinfo-price';
-  if (props.currentStyle.sale_price) {
-    return (
-      <h3
-        id={'productinfo-price'}
-        className={CSSCommon['onsale']}
-        onClick={() => props.interaction(id, parentComponent)}
-      >
-        <strike>{'$' + props.currentStyle.original_price}</strike> {'$' + props.currentStyle.sale_price}
-      </h3>
-    );
-  } else {
-    return (
-      <h3
-        id={'productinfo-price'}
-        onClick={() => props.interaction(id, parentComponent)}
-      >
-        {'$' + props.currentStyle.original_price}
-      </h3>
-    );
-  }
+  const sale = props.currentStyle.sale_price !== null;
+  const salePrice = props.currentStyle.sale_price;
+  const regularPrice = props.currentStyle.original_price;
+
+  return (
+    <h3
+      id={id}
+      className={sale ? CSSCommon['onsale'] : ""}
+      onClick={() => props.clickTracker(id, parentComponent)}
+    >
+      {/* {sale ? (<strike>{'$' + regularPrice}</strike>) '$' + salePrice : '$' + regularPrice} */}
+      {sale ? <strike>{'$' + regularPrice}</strike> : '$' + regularPrice} {sale ? '$' + salePrice : ''}
+    </h3>
+  )
 }
 ProductPrice = withClickTracker(ProductPrice);
 
 let ProductStyleName = (props) => {
   const id = 'productinfo-stylename';
-  return <h3 id={id} onClick={() => props.interaction(id, parentComponent)}>STYLE > {props.styleName}</h3>
+  return <h3 id={id} onClick={() => props.clickTracker(id, parentComponent)}>STYLE > {props.styleName}</h3>
 }
 ProductStyleName = withClickTracker(ProductStyleName);
 

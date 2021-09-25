@@ -6,14 +6,14 @@ import CSSDark from '../styles/productOverviewDark.module.css';
 import { withClickTracker } from '../../../../lib/interactions.jsx';
 
 const StyleThumbnail = ( props ) => {
-  const {interaction, onStyleClick, style} = props;
+  const {clickTracker, onStyleClick, style} = props;
   const element = "style-thumbnail";
   const component = "Product Overview";
   return (
     <button
       className={CSSCommon[element]}
       onClick={() => {
-        interaction(element, component);
+        clickTracker(element, component);
         onStyleClick(style);
       }}
     >
