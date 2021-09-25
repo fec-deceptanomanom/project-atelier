@@ -5,11 +5,6 @@ function postInteraction(element, component) {
   console.log(`${element} clicked in ${component} component at ${Date.now()}!`);
 }
 
-/**
- *
- * @param {*} WrappedComponent
- * @returns a new component class
- */
 export const withClickTracker = (WrappedComponent) => {
   class WithClickTracker extends React.Component {
     render() {
