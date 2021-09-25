@@ -1,6 +1,8 @@
 import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
+import { withClickTracker } from '../../../../lib/interactions.jsx';
+
 const ProductImage = ( props ) => {
   if (props.currentStyle) {
     let imageElement;
@@ -10,7 +12,10 @@ const ProductImage = ( props ) => {
       imageElement = (<p>Image not found</p>);
     }
     return (
-      <div className={CSSCommon['product-overview-image']}>
+      <div
+        className={CSSCommon['product-overview-image']}
+        onClick={() => props.clickTracker('product-overview-image', 'Product Overview', 'now!')}
+      >
         {imageElement}
       </div>
     );
@@ -19,4 +24,4 @@ const ProductImage = ( props ) => {
   }
 }
 
-export default ProductImage;
+export default withClickTracker(ProductImage);

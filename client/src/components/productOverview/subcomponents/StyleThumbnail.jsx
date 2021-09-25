@@ -3,10 +3,24 @@ import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
+import { withClickTracker } from '../../../../lib/interactions.jsx';
+
 const StyleThumbnail = ( props ) => {
+  const {clickTracker, onStyleClick, style} = props;
+  const element = "style-thumbnail";
+  const component = "Product Overview";
   return (
-    <button className={CSSCommon['style-thumbnail']} onClick={() => props.onStyleClick(props.style)}>{props.style.name}</button>
+    <button
+      className={CSSCommon[element]}
+      onClick={() => {
+        clickTracker(element, component);
+        onStyleClick(style);
+      }}
+    >
+      {style.name}
+    </button>
   );
 }
 
-export default StyleThumbnail;
+// export default StyleThumbnail;
+export default withClickTracker(StyleThumbnail);
