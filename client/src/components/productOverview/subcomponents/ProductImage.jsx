@@ -14,7 +14,7 @@ const ProductImage = ( props ) => {
     return (
       <div
         className={CSSCommon['product-overview-image']}
-        onClick={() => props.clickTracker('product-overview-image', 'Product Overview', 'now!')}
+        onClick={() => props.clickTracker('product-overview-image', 'Product Overview')}
       >
         {imageElement}
       </div>

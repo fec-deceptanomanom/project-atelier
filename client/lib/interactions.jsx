@@ -13,3 +13,7 @@ export const withClickTracker = (WrappedComponent) => {
   }
   return WithClickTracker;
 }
+
+export const withClickTracker2 = () => {
+
+}

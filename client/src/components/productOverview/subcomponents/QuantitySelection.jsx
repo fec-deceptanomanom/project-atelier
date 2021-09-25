@@ -19,7 +19,10 @@ const QuantitySelection = (props) => {
 
     // Build the options list based on the quantityRange
     return (
-      <select id={'product-quantity-selection'} defaultValue="default">
+      <select id={'product-quantity-selection'}
+        defaultValue="default"
+        onChange={() => props.clickTracker('product-quantity-selection', 'Product Overview')}
+      >
         <option value="default">1</option>
         {quantityRange.map((value, idx) => (
           <option key={idx}>{value}</option>
