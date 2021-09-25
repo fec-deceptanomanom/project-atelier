@@ -3,8 +3,9 @@ import CSSLight from './relatedItemsLight.module.css';
 import CSSDark from './relatedItemsDark.module.css';
 import axios from 'axios';
 
-import RelatedCarousel from './subcomponents/RelatedCarousel.jsx'
-import OutfitList from './subcomponents/OutfitList.jsx'
+import { withClickTracker } from '../../../lib/interactions.jsx';
+import RelatedCarousel from './subcomponents/RelatedCarousel.jsx';
+import OutfitList from './subcomponents/OutfitList.jsx';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -123,7 +124,9 @@ class RelatedItems extends React.Component {
 
   render() {
     return (
-      <div className={CSSLight.related} id="RelatedItems">
+      <div className={CSSLight.related}
+           id="RelatedItems"
+           onClick={this.props.clickTracker}>
         <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
@@ -142,4 +145,4 @@ class RelatedItems extends React.Component {
 
 // expected prop.types: array
 
-export default RelatedItems;
+export default withClickTracker(RelatedItems);
