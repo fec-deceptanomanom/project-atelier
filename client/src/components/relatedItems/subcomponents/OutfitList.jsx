@@ -4,7 +4,7 @@ import CSSLight from './../relatedItemsLight.module.css';
 import OutfitCard from './OutfitCard.jsx';
 import AddToOutfit from './AddToOutfit.jsx';
 
-const OutfitCarousel = (props) => {
+const Outfitlist = (props) => {
 
   let outfitItems = props.outfitItems || ['', '', ''];
   outfitItems = outfitItems.map( (item, i) => {
@@ -16,7 +16,7 @@ const OutfitCarousel = (props) => {
   });
   // outfitItems ? : ;
   return (
-    <div className={CSSLight.outfitCarousel}>
+    <div id='outfit-list'className={CSSLight.outfitCarousel}>
       <h2>Outfit Carousel</h2>
       <div className={CSSLight.scroller}>
           <AddToOutfit />
@@ -27,4 +27,4 @@ const OutfitCarousel = (props) => {
   )
 }
 
-export default OutfitCarousel;
+export default Outfitlist;

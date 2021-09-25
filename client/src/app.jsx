@@ -36,7 +36,7 @@ class App extends React.Component {
   componentDidMount() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
-      console.log('get request data', data);
+      // console.log('get request data', data);
       this.setState({
         // Keep current state info...
         ...this.state,

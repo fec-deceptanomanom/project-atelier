@@ -4,7 +4,7 @@ import CSSDark from './relatedItemsDark.module.css';
 import axios from 'axios';
 
 import RelatedCarousel from './subcomponents/RelatedCarousel.jsx'
-import OutfitCarousel from './subcomponents/OutfitCarousel.jsx'
+import OutfitList from './subcomponents/OutfitList.jsx'
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -132,7 +132,7 @@ class RelatedItems extends React.Component {
             left={this.state.leftButton}
             right={this.state.rightButton}
             goDir={this.whichDir} />
-          <OutfitCarousel outfits={this.state.outfitItems}
+          <OutfitList outfits={this.state.outfitItems}
                           pageItem={this.props.pageItem} />
         </div>
       </div>
