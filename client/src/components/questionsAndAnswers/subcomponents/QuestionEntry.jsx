@@ -6,7 +6,7 @@ const QuestionEntry = (props) => {
   const CSSStyle = props.CSSStyle;
   //console.log(props.questionData);
   return (
-    <div className={CSSStyle.questionEntry}>
+    <div id="question-entry" className={CSSStyle.questionEntry}>
       <h3 id={'question-' + props.questionData['question_id']}>Q: {props.questionData['question_body']}</h3>
       <div id="question-info">
           <p id={'rate-helpful-prompt-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>Helpful?</p>

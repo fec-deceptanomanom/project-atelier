@@ -241,29 +241,17 @@ class QuestionsAndAnswers extends React.Component {
     const component = 'Questions and Answers';
     //console.log('questions', this.state.questions);
     return (
-      <div id="QandA-main-component" className={CSSStyle.QandABox} >
+      <div id="QandA-main-component" className={CSSStyle.QandABox} onClick={(e) => {
+        this.props.clickTracker(e.target.attributes.id.value, component)
+        }}>
         <h1 id="QandA-main-title" className={CSSStyle.testBanner}> Questions & Answers</h1>
-        <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
+        <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} />
+        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} />
+        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} />
+        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
-          <button id="ShowMoreQuestions" onClick={(e) => {
-            this.props.clickTracker(e.target.attributes.id.value, component);
-            this.showAnotherQuestion(e);
-          }}>Show More Questions</button>
-          <button id="QuestionFormBtn" onClick={(e) => {
-            this.props.clickTracker(e.target.attributes.id.value, component);
-            this.modalOpen(e);
-          }}>Add A Question <i className="fas fa-plus"></i></button>
+          <button id="ShowMoreQuestions" onClick={this.showAnotherQuestion}>Show More Questions</button>
+          <button id="QuestionFormBtn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
         </div>
       </div>
     );

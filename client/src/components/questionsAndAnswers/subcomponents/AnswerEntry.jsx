@@ -24,7 +24,7 @@ const AnswerEntry = (props) => {
   const formattedDate = formatDate(props.answerData.date);
   const currentText = props.answerData.body;
     return (
-      <div className={CSSStyle.answerEntry}>
+      <div id="answer-entry" className={CSSStyle.answerEntry}>
         <h3 id="answer-A">A: </h3>
         <p id="answer-text" className={CSSStyle.p}>{currentText}</p>
         <div id="answer-info">
