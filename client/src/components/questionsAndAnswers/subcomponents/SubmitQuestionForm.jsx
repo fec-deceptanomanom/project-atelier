@@ -6,10 +6,7 @@ const SubmitQuestionForm = (props) => {
   return (
     <div id="QuestionFormEmptySpace" className={CSSStyle.modal} onClick={props.onClick}>
       <div id="QuestionFormModal" className={CSSStyle.modalContent}>
-        <span id="closeQuestionForm" className={CSSStyle.close} onClick={(e) => {
-          props.clickTracker(e.target.parentElement.attributes.id.value, 'Questions and Answers');
-          props.closeQuestionForm(e);
-        }}><i className="far fa-times-circle"></i></span>
+        <span id="closeQuestionForm" className={CSSStyle.close} onClick={props.closeQuestionForm}><i id="close-answer-form" className="far fa-times-circle"></i></span>
         <h2 id="question-submission-heading">This is where questions are submitted</h2>
         <p id="question-submission-instructions" className={CSSStyle.smallText}>Fields marked with * are required</p>
         <form id="question-form" onSubmit={props.formSubmit}>
