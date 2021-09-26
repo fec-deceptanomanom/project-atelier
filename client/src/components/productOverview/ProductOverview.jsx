@@ -62,7 +62,7 @@ class ProductOverview extends React.Component {
         </div>
         <div id={'product-overview-bottom'} className={CSSCommon['product-overview-bottom']}>
           <ProductDescription info={this.props.data}/>
-          <div className={CSSCommon.vl}></div>
+          <div id={'vertical-bar'} className={CSSCommon.vl}></div>
           <ProductFeatures info={this.props.data}/>
         </div>
       </div>

@@ -1,22 +1,14 @@
 import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
-import { withClickTracker } from '../../../../lib/interactions.jsx';
-
-const parentComponent = "Product Overview";
-
 const ProductFeatures = ( props ) => {
   const id = 'product-overview-feature';
   if (props.info.product.features) {
     return (
-      <div className={CSSCommon['product-overview-features']}>
+      <div id={'product-overview-features-block'} className={CSSCommon['product-overview-features']}>
         <ul>
           {props.info.product.features.map((feature, idx) => (
-            <li
-              key={idx}
-              id={`${id}-${idx + 1}`}
-              onClick={() => props.clickTracker(`${id}-${idx + 1}`, parentComponent)}
-            >
+            <li key={idx} id={`${id}-${idx + 1}`} >
               {feature.feature + ': ' + feature.value}
             </li>
           ))}
@@ -28,4 +20,4 @@ const ProductFeatures = ( props ) => {
   }
 }
 
-export default withClickTracker(ProductFeatures);
+export default ProductFeatures;
