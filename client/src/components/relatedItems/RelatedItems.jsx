@@ -123,10 +123,13 @@ class RelatedItems extends React.Component {
   componentDidUpdate() { }
 
   render() {
+    const compon = "Related Items";
     return (
       <div className={CSSLight.related}
            id="RelatedItems"
-           onClick={this.props.clickTracker}>
+           onClick={(e)=> {
+             this.props.clickTracker((e.target.classList), compon)
+            }}>
         <h1 className={CSSLight.testBanner}>Related Items</h1>
         <div>
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
