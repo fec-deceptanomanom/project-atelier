@@ -41,8 +41,8 @@ class ProductSelections extends React.Component {
 
   render() {
     return (
-      <div className={CSSCommon['product-selections']}>
-        <div id='dropdown-row'>
+      <div id={'product-selections'} className={CSSCommon['product-selections']}>
+        <div id={'product-selections-dropdowns'}>
           <SizeSelection
             currentStyle={this.props.currentStyle}
             onSelect={this.selectedSize}
@@ -55,9 +55,9 @@ class ProductSelections extends React.Component {
             currentSize={this.state.currentSize}
           />
         </div>
-        <div id='btn-row'>
+        <div id={'product-selections-buttons'}>
           <AddToBagButton outOfStock={this.state.outOfStock}/>
-          <button>[STAR]</button>
+          <button id={'star-button'}>[STAR]</button>
         </div>
       </div>
     );

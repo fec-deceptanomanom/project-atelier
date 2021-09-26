@@ -3,8 +3,6 @@ import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
-import { withClickTracker } from '../../../../lib/interactions.jsx';
-
 const QuantitySelection = (props) => {
   if (props.sizeSelected && props.currentSize !== null) {
     // Get the sku of the item related to the size selected
@@ -35,4 +33,4 @@ const QuantitySelection = (props) => {
   }
 };
 
-export default withClickTracker(QuantitySelection);
+export default QuantitySelection;
