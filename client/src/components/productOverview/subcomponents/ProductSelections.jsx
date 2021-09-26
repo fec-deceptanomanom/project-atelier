@@ -57,7 +57,7 @@ class ProductSelections extends React.Component {
         </div>
         <div id='btn-row'>
           <AddToBagButton outOfStock={this.state.outOfStock}/>
-          <button>[STAR]</button>
+          <button id={'star-button'}>[STAR]</button>
         </div>
       </div>
     );

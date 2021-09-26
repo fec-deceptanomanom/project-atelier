@@ -6,21 +6,16 @@ import CSSDark from '../styles/productOverviewDark.module.css';
 import { withClickTracker } from '../../../../lib/interactions.jsx';
 
 const StyleThumbnail = ( props ) => {
-  const {clickTracker, onStyleClick, style} = props;
-  const element = "style-thumbnail";
-  const component = "Product Overview";
+  const id = `style-thumbnail-${props.idx}`;
   return (
     <button
-      className={CSSCommon[element]}
-      onClick={() => {
-        clickTracker(element, component);
-        onStyleClick(style);
-      }}
+      id={id}
+      className={CSSCommon['style-thumbnail']}
+      onClick={() => {props.onStyleClick(props.style)}}
     >
-      {style.name}
+      {props.style.name}
     </button>
   );
 }
 
-// export default StyleThumbnail;
-export default withClickTracker(StyleThumbnail);
+export default StyleThumbnail;
