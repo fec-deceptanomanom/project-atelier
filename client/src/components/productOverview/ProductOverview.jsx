@@ -10,6 +10,8 @@ import ProductInfo from './subcomponents/ProductInfo.jsx';
 import ProductDescription from './subcomponents/ProductDescription.jsx';
 import ProductFeatures from './subcomponents/ProductFeatures.jsx';
 
+const componentName = "Product Overview";
+
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
@@ -49,30 +51,19 @@ class ProductOverview extends React.Component {
   //onClick={() => this.props.clickTracker("HIYA", "Product Overview")}
   render() {
     return (
-      <div id={CSSCommon['ProductOverview']} className={CSSCommon['product-overview']}>
-        <div className={CSSCommon['product-overview-top']}>
-          <ProductImage
-            info={this.props.data}
-            currentStyle={this.state.currentStyle}
-            clickTracker={() => this.props.clickTracker("product-image", "Product Overview")}
-          />
-          <ProductInfo
-            info={this.props.data}
-            currentStyle={this.state.currentStyle}
-            onStyleClick={this.setNewStyle}
-            clickTracker={() => this.props.clickTracker("product-info", "Product Overview")}
-          />
+      <div
+        id={'product-overview-parent-space'}
+        className={CSSCommon['product-overview']}
+        onClick={(e) => {this.props.clickTracker(e.target.attributes.id.value, componentName)}}
+      >
+        <div id={'product-overview-top'} className={CSSCommon['product-overview-top']} >
+          <ProductImage info={this.props.data} currentStyle={this.state.currentStyle}/>
+          <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle}/>
         </div>
-        <div className={CSSCommon['product-overview-bottom']}>
-          <ProductDescription
-            info={this.props.data}
-            clickTracker={() => this.props.clickTracker("product-description", "Product Overview")}
-          />
+        <div id={'product-overview-bottom'} className={CSSCommon['product-overview-bottom']}>
+          <ProductDescription info={this.props.data}/>
           <div className={CSSCommon.vl}></div>
-          <ProductFeatures
-            info={this.props.data}
-            clickTracker={() => this.props.clickTracker("product-features", "Product Overview")}
-          />
+          <ProductFeatures info={this.props.data}/>
         </div>
       </div>
     );
