@@ -8,12 +8,8 @@ function postInteraction(element, component) {
 export const withClickTracker = (WrappedComponent) => {
   class WithClickTracker extends React.Component {
     render() {
-      return <WrappedComponent {...this.props} clickTracker={postInteraction} onClick={() => {console.log('This shouldn\'t do anything!')}}/>
+      return <WrappedComponent {...this.props} clickTracker={postInteraction}/>
     }
   }
   return WithClickTracker;
-}
-
-export const withClickTracker2 = () => {
-
 }

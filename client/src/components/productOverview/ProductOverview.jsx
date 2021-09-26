@@ -3,6 +3,8 @@ import CSSCommon from './styles/productOverview.module.css';
 import CSSLight from './styles/productOverviewLight.module.css';
 import CSSDark from './styles/productOverviewDark.module.css';
 
+import { withClickTracker } from '../../../lib/interactions.jsx';
+
 import ProductImage from './subcomponents/ProductImage.jsx';
 import ProductInfo from './subcomponents/ProductInfo.jsx';
 import ProductDescription from './subcomponents/ProductDescription.jsx';
@@ -44,22 +46,37 @@ class ProductOverview extends React.Component {
       this.setDefaultStyle();
     }
   }
-
+  //onClick={() => this.props.clickTracker("HIYA", "Product Overview")}
   render() {
     return (
       <div id={CSSCommon['ProductOverview']} className={CSSCommon['product-overview']}>
         <div className={CSSCommon['product-overview-top']}>
-          <ProductImage info={this.props.data} currentStyle={this.state.currentStyle}/>
-          <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle}/>
+          <ProductImage
+            info={this.props.data}
+            currentStyle={this.state.currentStyle}
+            clickTracker={() => this.props.clickTracker("product-image", "Product Overview")}
+          />
+          <ProductInfo
+            info={this.props.data}
+            currentStyle={this.state.currentStyle}
+            onStyleClick={this.setNewStyle}
+            clickTracker={() => this.props.clickTracker("product-info", "Product Overview")}
+          />
         </div>
         <div className={CSSCommon['product-overview-bottom']}>
-          <ProductDescription info={this.props.data}/>
+          <ProductDescription
+            info={this.props.data}
+            clickTracker={() => this.props.clickTracker("product-description", "Product Overview")}
+          />
           <div className={CSSCommon.vl}></div>
-          <ProductFeatures info={this.props.data}/>
+          <ProductFeatures
+            info={this.props.data}
+            clickTracker={() => this.props.clickTracker("product-features", "Product Overview")}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default ProductOverview;
+export default withClickTracker(ProductOverview);

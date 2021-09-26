@@ -6,6 +6,9 @@ import ProductOverview from './components/productOverview/ProductOverview';
 import RelatedItems from './components/relatedItems/RelatedItems';
 import RatingsAndReviews from './components/ratingsAndReviews/RatingsAndReviews';
 import QuestionsAndAnswers from './components/questionsAndAnswers/QuestionsAndAnswers';
+
+import { withClickTracker } from '../lib/interactions.jsx';
+
 const $ = require('jquery');
 
 class App extends React.Component {
@@ -97,8 +100,10 @@ class App extends React.Component {
   }
 }
 
+let TrackingApp = withClickTracker(App)
+
 ReactDOM.render(
-  <App />, document.getElementById('app'),
+  <TrackingApp />, document.getElementById('app'),
 );
 
 
