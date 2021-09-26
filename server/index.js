@@ -223,17 +223,6 @@ app.post('/answers', upload.array('files'), (req, res) => {
   })
 })
 
-app.post('/interactions', (req, res) => {
-  const body = req.body;
-  axios.post(API_URL + '/interactions', body)
-    .then( response => {
-      // console.log('Axios RES is', response)
-      res.sendStatus(response.status);
-    })
-    .catch( err => {
-      console.error('ERROR IS\n', err);
-    })
-
 // PUT requests for answers
 app.put('/rate/answers/*', (req, res) => {
   const destination = req.url.slice(5);
@@ -274,7 +263,20 @@ app.put('/rate/questions/*', (req, res) => {
         res.send(error);
       }
     });
-})
+});
+
+  app.post('/interactions', (req, res) => {
+    const body = req.body;
+    axios.post(API_URL + '/interactions', body)
+      .then( response => {
+        // console.log('Axios RES is', response)
+        res.sendStatus(response.status);
+      })
+      .catch( err => {
+        console.error('ERROR IS\n', err);
+      })
+  })
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
