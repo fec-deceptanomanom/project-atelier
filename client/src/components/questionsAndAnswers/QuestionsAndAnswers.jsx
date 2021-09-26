@@ -92,7 +92,7 @@ class QuestionsAndAnswers extends React.Component {
     currentQuestions.push(newQuestion);
     this.setState({displayedQuestions: currentQuestions});
     if (currentQuestions.length === this.state.allQuestions.length) {
-      let button = document.getElementById('ShowMoreQuestions');
+      let button = document.getElementById('show-more-questions');
       button.style.display = 'none';
     }
   }
@@ -100,13 +100,13 @@ class QuestionsAndAnswers extends React.Component {
   modalOpen(e) {
     const target = e.target.attributes.id.value;
     let modal;
-    if (target === 'AnswerFormBtn') {
-      modal = document.getElementById('AnswerFormEmptySpace');
+    if (target === 'answer-for-btn') {
+      modal = document.getElementById('submit-new-answer-form');
       const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
       //console.log('CLICKED', targetName);
       this.setState({formTarget: targetName})
-    } else if (target === 'QuestionFormBtn') {
-      modal = document.getElementById('QuestionFormEmptySpace');
+    } else if (target === 'question-form-btn') {
+      modal = document.getElementById('submit-new-question-form');
       const targetName = this.state.productID;
       this.setState({formTarget: targetName})
     }
@@ -117,10 +117,10 @@ class QuestionsAndAnswers extends React.Component {
     const target = e.target.parentElement.attributes.id.value;
     //console.log('CLICKED', target);
     let modal;
-    if (target === 'closeAnswerForm') {
-      modal = document.getElementById('AnswerFormEmptySpace');
-    } else if (target === 'closeQuestionForm') {
-      modal = document.getElementById('QuestionFormEmptySpace');
+    if (target === 'close-answer-form') {
+      modal = document.getElementById('submit-new-answer-form');
+    } else if (target === 'close-question-form') {
+      modal = document.getElementById('submit-new-question-form');
     }
     modal.style.display = "none";
     this.setState({formTarget: null})
@@ -241,29 +241,17 @@ class QuestionsAndAnswers extends React.Component {
     const component = 'Questions and Answers';
     //console.log('questions', this.state.questions);
     return (
-      <div id="QandA-main-component" className={CSSStyle.QandABox} >
+      <div id="QandA-main-component" className={CSSStyle.QandABox} onClick={(e) => {
+        this.props.clickTracker(e.target.attributes.id.value, component)
+        }}>
         <h1 id="QandA-main-title" className={CSSStyle.testBanner}> Questions & Answers</h1>
-        <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} onClick={(e) => {
-          this.props.clickTracker(e.target.attributes.id.value, component)
-          }} />
-        <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
-          <button id="ShowMoreQuestions" onClick={(e) => {
-            this.props.clickTracker(e.target.attributes.id.value, component);
-            this.showAnotherQuestion(e);
-          }}>Show More Questions</button>
-          <button id="QuestionFormBtn" onClick={(e) => {
-            this.props.clickTracker(e.target.attributes.id.value, component);
-            this.modalOpen(e);
-          }}>Add A Question <i className="fas fa-plus"></i></button>
+        <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} />
+        <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} />
+        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} />
+        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} />
+        <div id="more-questions" className={CSSStyle.moreQuestions}>
+          <button id="show-more-questions" onClick={this.showAnotherQuestion}>Show More Questions</button>
+          <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
         </div>
       </div>
     );

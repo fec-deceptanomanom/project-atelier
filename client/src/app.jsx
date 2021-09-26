@@ -8,6 +8,8 @@ import RatingsAndReviews from './components/ratingsAndReviews/RatingsAndReviews'
 import QuestionsAndAnswers from './components/questionsAndAnswers/QuestionsAndAnswers';
 const $ = require('jquery');
 
+import { postInteraction } from '../lib/interactions.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -67,12 +69,16 @@ class App extends React.Component {
     if (this.state.validProduct && this.state.productInfo.id) {
       return (
         <div id="App">
-          <label className={CSSStyle.switch}>
-            <label htmlFor="nightmode">Nightmode:</label>
-            <input id="nightmode" name="nightmode" onChange={this.darkmodeToggle} type="checkbox"></input>
-            <span className={CSSStyle.slider}></span>
+          <div id="top-page" onClick={(e) => {
+              postInteraction(e.target.attributes.id.value, 'Main App');
+            }}>
+          <label id="nightmode-toggle-container" className={CSSStyle.switch}>
+            <label id="nightmode-label" htmlFor="nightmode">Nightmode:</label>
+            <input id="nightmode-toggle" name="nightmode" onChange={this.darkmodeToggle} type="checkbox"></input>
+            <span id="nightmode-toggle-slider" className={CSSStyle.slider}></span>
           </label>
-          <h1 className={CSSStyle.testBanner}>{bannerText}</h1>
+          <h1 id="top-banner" className={CSSStyle.testBanner}>{bannerText}</h1>
+          </div>
           <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
           <RelatedItems pageItem={{
                           product: this.state.productInfo,
