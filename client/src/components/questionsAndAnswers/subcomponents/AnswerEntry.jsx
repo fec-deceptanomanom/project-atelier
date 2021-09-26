@@ -23,10 +23,12 @@ const AnswerEntry = (props) => {
   //console.log('current answer data', props.answerData);
   const formattedDate = formatDate(props.answerData.date);
   const currentText = props.answerData.body;
+
+  if (props.answerData.photos.length === 0) {
     return (
       <div id="answer-entry" className={CSSStyle.answerEntry}>
         <h3 id="answer-A">A: </h3>
-        <p id="answer-text" className={CSSStyle.p}>{currentText}</p>
+        <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
         <div id="answer-info">
           <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
           <p id="rate-answer" className={CSSStyle.smallText}>Yes</p>
@@ -35,6 +37,25 @@ const AnswerEntry = (props) => {
         </div>
       </div>
     );
+  } else {
+    return (
+      <div id="answer-entry" className={CSSStyle.answerEntry}>
+        <h3 id="answer-A">A: </h3>
+        <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
+        <div id="answer-photos">
+          {props.answerData.photos.map((photo, index) => {
+            return (<img id="answer-photo" className={CSSStyle['answer-photo']} key={index} src={photo}></img>)
+          })}
+        </div>
+        <div id="answer-info">
+          <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
+          <p id="rate-answer" className={CSSStyle.smallText}>Yes</p>
+          <p id="answer-rating" className={CSSStyle.smallText}>({props.answerData.helpfulness}) |</p>
+          <p id="report-answer" className={CSSStyle.smallText}>Report</p>
+        </div>
+      </div>
+    );
+  }
 
 };
 

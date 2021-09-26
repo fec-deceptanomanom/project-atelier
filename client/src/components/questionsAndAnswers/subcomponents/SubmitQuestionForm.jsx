@@ -4,9 +4,9 @@ const SubmitQuestionForm = (props) => {
   const CSSStyle = props.CSSStyle;
   const component = 'Questions and Answers - Submit New Question';
   return (
-    <div id="QuestionFormEmptySpace" className={CSSStyle.modal} onClick={props.onClick}>
-      <div id="QuestionFormModal" className={CSSStyle.modalContent}>
-        <span id="closeQuestionForm" className={CSSStyle.close} onClick={props.closeQuestionForm}><i id="close-answer-form" className="far fa-times-circle"></i></span>
+    <div id="submit-new-question-form" className={CSSStyle.modal} onClick={props.onClick}>
+      <div id="question-form-modal" className={CSSStyle.modalContent}>
+        <span id="close-question-form-span" className={CSSStyle.close} onClick={props.closeQuestionForm}><i id="close-question-form" className="far fa-times-circle"></i></span>
         <h2 id="question-submission-heading">This is where questions are submitted</h2>
         <p id="question-submission-instructions" className={CSSStyle.smallText}>Fields marked with * are required</p>
         <form id="question-form" onSubmit={props.formSubmit}>

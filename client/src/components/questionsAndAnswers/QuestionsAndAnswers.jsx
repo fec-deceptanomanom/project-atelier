@@ -92,7 +92,7 @@ class QuestionsAndAnswers extends React.Component {
     currentQuestions.push(newQuestion);
     this.setState({displayedQuestions: currentQuestions});
     if (currentQuestions.length === this.state.allQuestions.length) {
-      let button = document.getElementById('ShowMoreQuestions');
+      let button = document.getElementById('show-more-questions');
       button.style.display = 'none';
     }
   }
@@ -100,13 +100,13 @@ class QuestionsAndAnswers extends React.Component {
   modalOpen(e) {
     const target = e.target.attributes.id.value;
     let modal;
-    if (target === 'AnswerFormBtn') {
-      modal = document.getElementById('AnswerFormEmptySpace');
+    if (target === 'answer-for-btn') {
+      modal = document.getElementById('submit-new-answer-form');
       const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
       //console.log('CLICKED', targetName);
       this.setState({formTarget: targetName})
-    } else if (target === 'QuestionFormBtn') {
-      modal = document.getElementById('QuestionFormEmptySpace');
+    } else if (target === 'question-form-btn') {
+      modal = document.getElementById('submit-new-question-form');
       const targetName = this.state.productID;
       this.setState({formTarget: targetName})
     }
@@ -117,10 +117,10 @@ class QuestionsAndAnswers extends React.Component {
     const target = e.target.parentElement.attributes.id.value;
     //console.log('CLICKED', target);
     let modal;
-    if (target === 'closeAnswerForm') {
-      modal = document.getElementById('AnswerFormEmptySpace');
-    } else if (target === 'closeQuestionForm') {
-      modal = document.getElementById('QuestionFormEmptySpace');
+    if (target === 'close-answer-form') {
+      modal = document.getElementById('submit-new-answer-form');
+    } else if (target === 'close-question-form') {
+      modal = document.getElementById('submit-new-question-form');
     }
     modal.style.display = "none";
     this.setState({formTarget: null})
@@ -249,9 +249,9 @@ class QuestionsAndAnswers extends React.Component {
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} />
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} />
-        <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
-          <button id="ShowMoreQuestions" onClick={this.showAnotherQuestion}>Show More Questions</button>
-          <button id="QuestionFormBtn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
+        <div id="more-questions" className={CSSStyle.moreQuestions}>
+          <button id="show-more-questions" onClick={this.showAnotherQuestion}>Show More Questions</button>
+          <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
         </div>
       </div>
     );

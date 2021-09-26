@@ -12,7 +12,7 @@ const QuestionEntry = (props) => {
           <p id={'rate-helpful-prompt-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>Helpful?</p>
           <p id={'rate-helpful-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>Yes</p>
           <p id={'helpfulness-rating-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>({props.questionData['question_helpfulness']}) |</p>
-          <button id="AnswerFormBtn" onClick={props.openAnswerForm}>Add Answer</button>
+          <button id="answer-form-btn" onClick={props.openAnswerForm}>Add Answer</button>
         </div>
       <AnswersList CSSStyle={CSSStyle} answerList={props.questionData.answers} />
     </div>
