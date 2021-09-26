@@ -8,7 +8,7 @@ export function postInteraction(element, widget) {
     url: 'http://localhost:3000/interactions',
     data: {element, widget, time},
     success: ( (data, status) => {
-      console.log('POST INTERACTIONS SUCCESS\n', data);
+      //console.log('POST INTERACTIONS SUCCESS\n', data);
     }),
   })
 }

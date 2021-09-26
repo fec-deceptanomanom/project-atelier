@@ -9,7 +9,7 @@ const postRequest = function(rating, questionID) {
     url: `http://localhost:3000/rate/questions/${questionID}/${rating}`,
     type: 'PUT',
     success: (response) => {
-      console.log('PUT helpful/report response', response);
+      //console.log('PUT helpful/report response', response);
     },
     error: (error) => {
       console.log('PUT helpful/report error', error)
@@ -24,7 +24,6 @@ const QuestionEntry = (props) => {
     let target = e.target.attributes.id.value;
     const questionID = target.slice(target.length - 6);
     target = target.slice(0, target.length - 6);;
-    console.log(target, questionID);
 
     if (target === 'rate-question') {
       postRequest('helpful', questionID);
@@ -41,8 +40,8 @@ const QuestionEntry = (props) => {
           <p id={'rate-helpful-prompt-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>Helpful?</p>
           <p id={'rate-question' + props.questionData['question_id']} className={CSSStyle.smallText} onClick={rateQuestion}>Yes</p>
           <p id={'helpfulness-rating-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>({props.questionData['question_helpfulness']}) |</p>
-          <p id="report-question" className={CSSStyle.smallText} onClick={rateQuestion}>Report</p>
-          <button id="answer-form-btn" onClick={props.openAnswerForm}>Add Answer</button>
+          <p id={'report-question' + props.questionData['question_id']} className={CSSStyle.smallText} onClick={rateQuestion}>Report</p>
+          <button id={'answer-form-btn-on-question-' + props.questionData['question_id']} onClick={props.openAnswerForm}>Add Answer</button>
         </div>
       <AnswersList CSSStyle={CSSStyle} answerList={props.questionData.answers} />
     </div>

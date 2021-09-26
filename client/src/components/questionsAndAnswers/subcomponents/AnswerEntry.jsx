@@ -26,7 +26,7 @@ const postRequest = function(rating, answerID) {
     url: `http://localhost:3000/rate/answers/${answerID}/${rating}`,
     type: 'PUT',
     success: (response) => {
-      console.log('PUT helpful/report response', response);
+      //console.log('PUT helpful/report response', response);
     },
     error: (error) => {
       console.log('PUT helpful/report error', error)
