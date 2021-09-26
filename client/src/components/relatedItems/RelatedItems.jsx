@@ -3,8 +3,9 @@ import CSSLight from './relatedItemsLight.module.css';
 import CSSDark from './relatedItemsDark.module.css';
 import axios from 'axios';
 
-import RelatedCarousel from './subcomponents/RelatedCarousel.jsx'
-import OutfitList from './subcomponents/OutfitList.jsx'
+import { withClickTracker } from '../../../lib/interactions.jsx';
+import RelatedCarousel from './subcomponents/RelatedCarousel.jsx';
+import OutfitList from './subcomponents/OutfitList.jsx';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -97,8 +98,8 @@ class RelatedItems extends React.Component {
     let newList = this.state.carouselItems.map((item, i) => {
       count++;
       return this.state.relatedItems[count];
-    });
-    if (count > length - this.state.carouselItems.length) {
+    }); //4        1
+    if (count > length - this.state.carouselItems.length - 1) {
       this.setState({
         carouselItems: newList,
         counter: count,
@@ -122,10 +123,15 @@ class RelatedItems extends React.Component {
   componentDidUpdate() { }
 
   render() {
+    const compon = "Related Items";
     return (
-      <div className={CSSLight.related} id="RelatedItems">
-        <h1 className={CSSLight.testBanner}>Related Items</h1>
-        <div>
+      <div id="related-items"
+           className={CSSLight.related}
+           onClick={(e)=> {
+             this.props.clickTracker((e.target.attributes.id.value), compon)
+            }}>
+        <h1 id="related-items-h1" className={CSSLight.testBanner}>Related Items</h1>
+        <div id="related-items-container">
           {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
           <RelatedCarousel items={this.state.carouselItems}
             pageItem={this.props.pageItem}
@@ -142,4 +148,4 @@ class RelatedItems extends React.Component {
 
 // expected prop.types: array
 
-export default RelatedItems;
+export default withClickTracker(RelatedItems);
