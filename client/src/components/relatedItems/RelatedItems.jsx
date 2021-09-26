@@ -98,8 +98,8 @@ class RelatedItems extends React.Component {
     let newList = this.state.carouselItems.map((item, i) => {
       count++;
       return this.state.relatedItems[count];
-    });
-    if (count > length - this.state.carouselItems.length) {
+    }); //4        1
+    if (count > length - this.state.carouselItems.length - 1) {
       this.setState({
         carouselItems: newList,
         counter: count,

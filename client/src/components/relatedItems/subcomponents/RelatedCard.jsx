@@ -25,16 +25,9 @@ class RelatedCard extends React.Component {
     return photo.thumbnail_url;
   }
 
-  componentDidMount() {
+  render() {
     const defaultItem = this.findDefaultResult(this.props.info.style.results);
     const thumbnail = this.findThumbnail(defaultItem);
-
-    this.setState({
-      photo: thumbnail
-    })
-  }
-
-  render() {
     const btnID = this.props.info.product.id;
     const starButton = (
       <div className={CSSLight.starContainer}>
@@ -56,7 +49,8 @@ class RelatedCard extends React.Component {
         <p className={CSSLight.category}>Department:    </p>
         <p className={CSSLight.categoryValue}>{product.category}</p>
           {starButton}
-        <img className={CSSLight.thumbnail} src={this.state.photo} alt='Image not Found'></img>
+        <img className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
+
         <ul>
           <li>Price: {product.default_price}</li>
           <li>Stars: {this.props.stars(ratings)}</li>
