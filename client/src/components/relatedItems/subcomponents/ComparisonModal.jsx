@@ -4,7 +4,6 @@ import style from './ComparisonModal.module.css';
 const ComparisonModal = (props) => {
   const clickedStars = props.clickedItem.reviews.ratings;
   const currentStars = props.currentItem.reviews.ratings;
-  // console.log('stars', stars)
   const clickedRating = props.stars(clickedStars);
   const currentRating = props.stars(currentStars);
 
