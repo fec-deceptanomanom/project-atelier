@@ -7,9 +7,10 @@ const LeftButton = (props) => {
   } else {
     return (
       <div id="left-btn">
-        <i className="fa fa-arrow-left fa-3x"
-          aria-hidden="true"
-          onClick={props.handleClick}>
+        <i id='left-icon'
+           className="fa fa-arrow-left fa-3x"
+           aria-hidden="true"
+           onClick={props.handleClick}>
         </i>
     </div>
     )

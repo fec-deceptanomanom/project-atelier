@@ -9,16 +9,16 @@ const Outfitlist = (props) => {
   let outfitItems = props.outfitItems || ['', '', ''];
   outfitItems = outfitItems.map( (item, i) => {
     return (
-      <div className={CSSLight.card} key={i}>
+      <div id='outfit-card-container' className={CSSLight.card} key={i}>
         <OutfitCard />
       </div>
     )
   });
   // outfitItems ? : ;
   return (
-    <div id='outfit-list'className={CSSLight.outfitCarousel}>
-      <h2>Outfit Carousel</h2>
-      <div className={CSSLight.scroller}>
+    <div id='outfit-list' className={CSSLight.outfitCarousel}>
+      <h2 id='outfit-list-h2'>Outfit Carousel</h2>
+      <div id='outfit-scroller' className={CSSLight.scroller}>
           <AddToOutfit />
           {outfitItems}
       </div>

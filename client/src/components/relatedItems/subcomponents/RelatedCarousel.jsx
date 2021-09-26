@@ -79,14 +79,14 @@ class RelatedCarousel extends React.Component {
                                               currentItem={this.props.pageItem}
                                               stars={this.getRoundedRating}
                                               clickedItem={this.state.clickedItem}/>}
-        <h3>Carousel</h3>
-        <div className={CSSLight.scroller}>
-          <div className={CSSLight.arrow}>
+        <h3 id='related-carousel-h3'>Carousel</h3>
+        <div id='related-carousel-scroller' className={CSSLight.scroller}>
+          <div id='related-carousel-leftarrow' className={CSSLight.arrow}>
             <LeftButton left={this.props.left}
                         handleClick={this.props.goDir} />
           </div>
             {cards}
-          <div className={CSSLight.arrow}>
+          <div id='related-carousel-rightarrow' className={CSSLight.arrow}>
             <RightButton right={this.props.right}
                          handleClick={this.props.goDir} />
           </div>
