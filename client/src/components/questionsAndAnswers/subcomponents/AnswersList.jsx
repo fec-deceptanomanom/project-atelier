@@ -40,14 +40,14 @@ class AnswersList extends React.Component {
     });
   }
 
-  sortAnswers = function(answers) {
+  sortAnswers(answers) {
     answers.sort(function(a, b) {
       return b.helpfulness - a.helpfulness;
     });
     return answers;
   };
 
-  showAnotherAnswer = function(e) {
+  showAnotherAnswer(e) {
     let currentAnswers = this.state.displayedAnswers;
     const targetIndex = currentAnswers.length;
     const newAnswer = this.state.sortedAnswers[targetIndex];
@@ -59,7 +59,6 @@ class AnswersList extends React.Component {
     }
   };
 
-  //console.log('current question', answerValues);
 
   render() {
     const CSSStyle = this.props.CSSStyle;

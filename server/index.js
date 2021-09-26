@@ -223,6 +223,48 @@ app.post('/answers', upload.array('files'), (req, res) => {
   })
 })
 
+// PUT requests for answers
+app.put('/rate/answers/*', (req, res) => {
+  const destination = req.url.slice(5);
+  console.log('RECIEVED ANSWER PUT REQUEST', destination);
+
+  //PUT request to API -> destination /qa/
+  axios.put(API_URL + '/qa'+ destination)
+    .then((response) => {
+      //console.log(response)
+      res.json({message: 'Success'})
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.message && error.message === "Request failed with status code 404") {
+        res.status(404).send("Not found.");
+      } else {
+        res.send(error);
+      }
+    });
+})
+
+// PUT requests for questions
+app.put('/rate/questions/*', (req, res) => {
+  const destination = req.url.slice(5);
+  console.log('RECIEVED QUESTIONS PUT REQUEST', destination);
+
+  //PUT request to API -> destination /qa/
+  axios.put(API_URL + '/qa'+ destination)
+    .then((response) => {
+      //console.log(response)
+      res.json({message: 'Success'})
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.message && error.message === "Request failed with status code 404") {
+        res.status(404).send("Not found.");
+      } else {
+        res.send(error);
+      }
+    });
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 })

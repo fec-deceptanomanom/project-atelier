@@ -100,7 +100,7 @@ class QuestionsAndAnswers extends React.Component {
   modalOpen(e) {
     const target = e.target.attributes.id.value;
     let modal;
-    if (target === 'answer-for-btn') {
+    if (target === 'answer-form-btn') {
       modal = document.getElementById('submit-new-answer-form');
       const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
       //console.log('CLICKED', targetName);
@@ -117,9 +117,9 @@ class QuestionsAndAnswers extends React.Component {
     const target = e.target.parentElement.attributes.id.value;
     //console.log('CLICKED', target);
     let modal;
-    if (target === 'close-answer-form') {
+    if (target === 'close-answer-form-span') {
       modal = document.getElementById('submit-new-answer-form');
-    } else if (target === 'close-question-form') {
+    } else if (target === 'close-question-form-span') {
       modal = document.getElementById('submit-new-question-form');
     }
     modal.style.display = "none";
@@ -251,7 +251,7 @@ class QuestionsAndAnswers extends React.Component {
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} />
         <div id="more-questions" className={CSSStyle.moreQuestions}>
           <button id="show-more-questions" onClick={this.showAnotherQuestion}>Show More Questions</button>
-          <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i className="fas fa-plus"></i></button>
+          <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i id="question-form-btn-icon" className="fas fa-plus"></i></button>
         </div>
       </div>
     );
