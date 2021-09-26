@@ -7,7 +7,8 @@ const RightButton = (props) => {
   } else {
     return (
       <div id='right-btn'>
-        <i className="fa fa-arrow-right fa-3x"
+        <i id='right-icon'
+          className="fa fa-arrow-right fa-3x"
           aria-hidden="true"
           onClick={props.handleClick}>
         </i>

@@ -45,93 +45,57 @@ class RelatedCarousel extends React.Component {
     return toCompare;
   }
 
+  findDefaultResult(results) {
+    //Find the default object
+    let defal = results.find(result => result['default?']) || 'Not Found';
+    return defal;
+  }
+
+  findThumbnail(item) {
+    //select the first thumbnail found or give'em some crutches
+    if (item === 'Not Found') { return this.state.crutches; }
+    let photo = item.photos.find( photo => photo.thumbnail_url);
+    if (!photo) { return this.state.crutches; }
+    return photo.thumbnail_url;
+  }
+
   render () {
 
     const cards = this.props.items.map( (item, i) => {
       return (
         <div className={CSSLight.card} key={i}>
           <RelatedCard info={item}
+
                        stars={this.getRoundedRating}
                        toggleModal={this.toggleModal}/>
         </div>
       )
     })
 
-    if (!this.props.left) {
-      return (
-        <div id='related-carousel' className={CSSLight.relatedCarousel}>
-          {/* conditional render */}
-          {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
-                                                currentItem={this.props.pageItem}
-                                                stars={this.getRoundedRating}
-                                                clickedItem={this.state.clickedItem}/>}
-          <h3>Carousel</h3>
-          <div className={CSSLight.scroller}>
-              {cards}
-            <div className={CSSLight.arrow}>
-              <RightButton right={this.props.right}
-                           handleClick={this.props.goDir} />
-            </div>
+    return (
+      <div id='related-carousel' className={CSSLight.relatedCarousel}>
+        {/* conditional render */}
+        {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
+                                              currentItem={this.props.pageItem}
+                                              stars={this.getRoundedRating}
+                                              clickedItem={this.state.clickedItem}/>}
+        <h3 id='related-carousel-h3'>Carousel</h3>
+        <div id='related-carousel-scroller' className={CSSLight.scroller}>
+          <div id='related-carousel-leftarrow' className={CSSLight.arrow}>
+            <LeftButton left={this.props.left}
+                        handleClick={this.props.goDir} />
+          </div>
+            {cards}
+          <div id='related-carousel-rightarrow' className={CSSLight.arrow}>
+            <RightButton right={this.props.right}
+                         handleClick={this.props.goDir} />
           </div>
         </div>
-      )
-    }
-    if (!this.props.right) {
-      return (
-        <div id='related-carousel' className={CSSLight.relatedCarousel}>
-                    {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
-                                                currentItem={this.props.pageItem}
-                                                stars={this.getRoundedRating}
-                                                clickedItem={this.state.clickedItem}/>}
-          <h3>Carousel</h3>
-          <div className={CSSLight.scroller}>
-            <div className={CSSLight.arrow}>
-              <LeftButton left={this.props.left}
-                          handleClick={this.props.goDir} />
-            </div>
-              {cards}
-          </div>
-        </div>
-      )
-    }
-    if (!this.props.left && !this.props.right) {
-      return (
-        <div id='related-carousel' className={CSSLight.relatedCarousel}>
-                    {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
-                                                currentItem={this.props.pageItem}
-                                                stars={this.getRoundedRating}
-                                                clickedItem={this.state.clickedItem}/>}
-          <h3>Carousel</h3>
-          <div className={CSSLight.scroller}>
-              {cards}
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div id='related-carousel' className={CSSLight.relatedCarousel}>
-                    {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
-                                                currentItem={this.props.pageItem}
-                                                stars={this.getRoundedRating}
-                                                clickedItem={this.state.clickedItem}/>}
-          <h3>Carousel</h3>
-          <div className={CSSLight.scroller}>
-            <div className={CSSLight.arrow}>
-              <LeftButton left={this.props.left}
-                          handleClick={this.props.goDir} />
-            </div>
-              {cards}
-            <div className={CSSLight.arrow}>
-              <RightButton right={this.props.right}
-                           handleClick={this.props.goDir } />
-            </div>
-
-          </div>
-        </div>
-      )
-    }
-  };
+      </div>
+    )
+  }
 };
+
 
 
 

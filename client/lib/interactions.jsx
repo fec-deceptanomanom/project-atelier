@@ -1,6 +1,6 @@
 import React from 'react';
 
-function postInteraction(element, component) {
+export function postInteraction(element, component) {
   // This will eventually send a post request to the interactions API with this data
   console.log(`${element} clicked in ${component} component at ${Date.now()}!`);
 }

@@ -74,19 +74,19 @@ class SubmitAnswerForm extends React.Component {
     const CSSStyle = this.props.CSSStyle;
 
     return (
-      <div id="AnswerForm" className={CSSStyle.modal}>
-        <div className={CSSStyle.modalContent}>
-        <span id="closeAnswerForm" className={CSSStyle.close} onClick={this.props.closeAnswerForm}><i className="far fa-times-circle"></i></span>
-        <h2>This is where answers are submitted</h2>
-        <p className={CSSStyle.smallText}>Fields marked with * are required</p>
+      <div id="submit-new-answer-form" className={CSSStyle.modal} onClick={this.props.onClick}>
+        <div id="answer-form-modal" className={CSSStyle.modalContent}>
+        <span id="close-answer-form-span" className={CSSStyle.close} onClick={this.props.closeAnswerForm}><i id="close-answer-form" className="far fa-times-circle"></i></span>
+        <h2 id="answer-submission-heading">This is where answers are submitted</h2>
+        <p id="answer-submission-instructions" className={CSSStyle.smallText}>Fields marked with * are required</p>
         <form id="answer-form" onSubmit={this.props.formSubmit}>
-          <label htmlFor="answer-email">*Email Address:</label><br></br>
+          <label id="answer-email-label" htmlFor="answer-email">*Email Address:</label><br></br>
           <input id="answer-email" type="email" required="required"></input><br></br>
-          <label htmlFor="answer-nickname">*Nickname (does not have to be your real name):></label><br></br>
+          <label id="answer-nickname-label" htmlFor="answer-nickname">*Nickname (does not have to be your real name):></label><br></br>
           <input id="answer-nickname" type="textarea" required="required"></input><br></br>
-          <label htmlFor="answer-text">*Your Answer:</label><br></br>
+          <label id="answer-text-label" htmlFor="answer-text">*Your Answer:</label><br></br>
           <textarea id="answer-text" required="required" rows="10"></textarea><br></br>
-          <label htmlFor="photo-upload">Upload a Photo:</label><br></br>
+          <label id="photo-upload-label" htmlFor="photo-upload">Upload a Photo:</label><br></br>
           <input id="photo-upload" type="file" multiple style={{display: "none"}} onChange={this.inputFile}></input>
           <button id="photo-add-new" type="button" onClick={this.addFile}><i className="fas fa-plus"></i> Add a File</button>
           <br></br>
@@ -97,7 +97,7 @@ class SubmitAnswerForm extends React.Component {
             }
           </div>
           <br></br>
-          <input type="submit"></input>
+          <input id="answer-form-submit" type="submit"></input>
         </form>
         </div>
       </div>
