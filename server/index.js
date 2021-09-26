@@ -10,7 +10,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-
+app.use(express.urlencoded({extended: true}));
 // Set the static served page for landing page
 app.use('/', express.static(__dirname + '/../landingClient/dist'));
 
@@ -221,6 +221,18 @@ app.post('/answers', upload.array('files'), (req, res) => {
       res.send(error);
     }
   })
+})
+
+app.post('/interactions', (req, res) => {
+  const body = req.body;
+  axios.post(API_URL + '/interactions', body)
+    .then( response => {
+      // console.log('Axios RES is', response)
+      res.sendStatus(response.status);
+    })
+    .catch( err => {
+      console.error('ERROR IS\n', err);
+    })
 })
 
 app.listen(port, () => {

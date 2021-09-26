@@ -63,7 +63,7 @@ class RelatedCarousel extends React.Component {
 
     const cards = this.props.items.map( (item, i) => {
       return (
-        <div className={CSSLight.card} key={i}>
+        <div id='related-card-container' className={CSSLight.card} key={i}>
           <RelatedCard info={item}
 
                        stars={this.getRoundedRating}
