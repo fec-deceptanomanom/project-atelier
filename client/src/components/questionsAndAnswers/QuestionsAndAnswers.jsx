@@ -98,23 +98,30 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   modalOpen(e) {
-    const target = e.target.attributes.id.value;
+    console.log('modal open target', e.target);
+    let target = e.target.attributes.id.value;
+    console.log(target);
     let modal;
-    if (target === 'answer-form-btn') {
+    if (target === 'question-form-btn') {
+      modal = document.getElementById('submit-new-question-form');
+      const targetName = this.state.productID;
+      this.setState({formTarget: targetName})
+    } else {
       modal = document.getElementById('submit-new-answer-form');
       const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
       //console.log('CLICKED', targetName);
-      this.setState({formTarget: targetName})
-    } else if (target === 'question-form-btn') {
-      modal = document.getElementById('submit-new-question-form');
-      const targetName = this.state.productID;
       this.setState({formTarget: targetName})
     }
     modal.style.display = "block";
   }
 
   modalClose(e) {
-    const target = e.target.parentElement.attributes.id.value;
+    let target;
+    if (typeof e === 'string') {
+      target = e;
+    } else {
+      target = e.target.parentElement.attributes.id.value;
+    }
     //console.log('CLICKED', target);
     let modal;
     if (target === 'close-answer-form-span') {
@@ -130,7 +137,7 @@ class QuestionsAndAnswers extends React.Component {
     this.setState({photoFiles: filesList});
   }
 
-  // incomplete POST function
+  // Complete POST function
   submitForm(e) {
     e.preventDefault();
     //console.log('form target', this.state.formTarget);
@@ -143,6 +150,7 @@ class QuestionsAndAnswers extends React.Component {
       formData.append('productID', this.state.formTarget);
       console.log('question form data', formData);
       this.postForm('question', formData);
+      console.log(e.target.attributes.id.value);
     // else if answer form
     } else {
       formData.append('body', document.getElementById('answer-text').value);
@@ -176,7 +184,11 @@ class QuestionsAndAnswers extends React.Component {
       contentType: false,
       success: (data) => {
         console.log('post question/answer form', data);
-        this.getQuestions();
+        if (formType === 'question') {
+          this.modalClose('close-question-form-span');
+        } else if (formType === 'answer') {
+          this.modalClose('close-answer-form-span');
+        }
       },
       error: (error) => {
         this.setState({

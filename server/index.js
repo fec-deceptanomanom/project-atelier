@@ -159,17 +159,17 @@ app.post('/questions', upload.array('files'), (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    product_id: req.body.productID,
+    product_id: parseInt(req.body.productID),
   };
   console.log('question data', questionData);
   // POST request to API -> destination /qa/questions
   axios.post(API_URL + '/qa/questions', questionData)
     .then((response) => {
-      console.log(response)
+      //console.log(response)
       res.json({message: 'Success'})
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
       if (error.message && error.message === "Request failed with status code 404") {
         res.status(404).send("Not found.");
       } else {
@@ -252,7 +252,7 @@ app.put('/rate/questions/*', (req, res) => {
   //PUT request to API -> destination /qa/
   axios.put(API_URL + '/qa'+ destination)
     .then((response) => {
-      //console.log(response)
+      console.log(response)
       res.json({message: 'Success'})
     })
     .catch((error) => {
