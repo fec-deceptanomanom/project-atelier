@@ -1,4 +1,5 @@
 import React from 'react';
+const $ = require('jquery');
 
 const formatDate = function(dateString) {
   let date = {
@@ -18,11 +19,41 @@ const formatDate = function(dateString) {
   return formatted;
 };
 
+
+
+const postRequest = function(rating, answerID) {
+  $.ajax({
+    url: `http://localhost:3000/rate/answers/${answerID}/${rating}`,
+    type: 'PUT',
+    success: (response) => {
+      console.log('PUT helpful/report response', response);
+    },
+    error: (error) => {
+      console.log('PUT helpful/report error', error)
+    },
+  })
+};
+
 const AnswerEntry = (props) => {
   const CSSStyle = props.CSSStyle;
   //console.log('current answer data', props.answerData);
   const formattedDate = formatDate(props.answerData.date);
   const currentText = props.answerData.body;
+
+  const rateAnswer = function(e) {
+    const target = e.target.attributes.id.value;
+    const answerID = props.answerData.id;
+    console.log(target);
+
+    if (target === 'rate-answer') {
+      console.log('HELPFUL', answerID);
+      postRequest('helpful', answerID);
+
+    } else if (target === 'report-answer') {
+      //console.log('REPORT');
+      postRequest('report', answerID);
+    }
+  }
 
   if (props.answerData.photos.length === 0) {
     return (
@@ -31,9 +62,9 @@ const AnswerEntry = (props) => {
         <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
         <div id="answer-info">
           <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
-          <p id="rate-answer" className={CSSStyle.smallText}>Yes</p>
+          <p id="rate-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Yes</p>
           <p id="answer-rating" className={CSSStyle.smallText}>({props.answerData.helpfulness}) |</p>
-          <p id="report-answer" className={CSSStyle.smallText}>Report</p>
+          <p id="report-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Report</p>
         </div>
       </div>
     );
@@ -49,9 +80,9 @@ const AnswerEntry = (props) => {
         </div>
         <div id="answer-info">
           <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
-          <p id="rate-answer" className={CSSStyle.smallText}>Yes</p>
+          <p id="rate-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Yes</p>
           <p id="answer-rating" className={CSSStyle.smallText}>({props.answerData.helpfulness}) |</p>
-          <p id="report-answer" className={CSSStyle.smallText}>Report</p>
+          <p id="report-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Report</p>
         </div>
       </div>
     );
