@@ -250,12 +250,11 @@ class QuestionsAndAnswers extends React.Component {
           this.props.clickTracker(e.target.attributes.id.value, component)
           }} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} onClick={(e) => {
-          console.log('LOOK FOR PARENT', e.target.parent.attributes.id.value);
           this.props.clickTracker(e.target.attributes.id.value, component)
-          }} clickTracker={this.props.clickTracker} />
+          }} />
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} onClick={(e) => {
           this.props.clickTracker(e.target.attributes.id.value, component)
-          }} clickTracker={this.props.clickTracker} />
+          }} />
         <div id="MoreQuestions" className={CSSStyle.moreQuestions}>
           <button id="ShowMoreQuestions" onClick={(e) => {
             this.props.clickTracker(e.target.attributes.id.value, component);

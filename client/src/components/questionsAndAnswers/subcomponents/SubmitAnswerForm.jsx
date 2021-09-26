@@ -76,10 +76,7 @@ class SubmitAnswerForm extends React.Component {
     return (
       <div id="AnswerFormEmptySpace" className={CSSStyle.modal} onClick={this.props.onClick}>
         <div id="AnswerFormModal" className={CSSStyle.modalContent}>
-        <span id="closeAnswerForm" className={CSSStyle.close} onClick={(e) => {
-          this.props.closeAnswerForm(e);
-          this.props.clickTracker(e.target.parentElement.attributes.id.value, 'Questions and Answers');
-        }}><i className="far fa-times-circle"></i></span>
+        <span id="closeAnswerForm" className={CSSStyle.close} onClick={this.props.closeAnswerForm}><i id="close-answer-form" className="far fa-times-circle"></i></span>
         <h2 id="answer-submission-heading">This is where answers are submitted</h2>
         <p id="answer-submission-instructions" className={CSSStyle.smallText}>Fields marked with * are required</p>
         <form id="answer-form" onSubmit={this.props.formSubmit}>
