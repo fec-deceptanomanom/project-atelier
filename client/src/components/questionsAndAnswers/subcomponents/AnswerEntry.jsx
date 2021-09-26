@@ -25,8 +25,8 @@ const AnswerEntry = (props) => {
   const currentText = props.answerData.body;
     return (
       <div className={CSSStyle.answerEntry}>
-        <h3>A: </h3>
-        <p className={CSSStyle.p}>{currentText}</p>
+        <h3 id="answer-A">A: </h3>
+        <p id="answer-text" className={CSSStyle.p}>{currentText}</p>
         <div id="answer-info">
           <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
           <p id="rate-answer" className={CSSStyle.smallText}>Yes</p>
