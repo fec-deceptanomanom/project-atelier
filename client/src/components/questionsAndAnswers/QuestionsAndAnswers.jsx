@@ -149,11 +149,11 @@ class QuestionsAndAnswers extends React.Component {
     //console.log('form target', this.state.formTarget);
     let formData = new FormData();
     // if question form
-    if (this.state.formTarget === this.state.productID) {
+    if (this.state.questionFormTarget === this.state.productID) {
       formData.append('body', document.getElementById('question-text').value);
       formData.append('name', document.getElementById('question-nickname').value);
       formData.append('email', document.getElementById('question-email').value);
-      formData.append('productID', this.state.formTarget);
+      formData.append('productID', this.state.questionFormTarget);
       console.log('question form data', formData);
       this.postForm('question', formData);
       console.log(e.target.attributes.id.value);
@@ -162,7 +162,7 @@ class QuestionsAndAnswers extends React.Component {
       formData.append('body', document.getElementById('answer-text').value);
       formData.append('name', document.getElementById('answer-nickname').value);
       formData.append('email', document.getElementById('answer-email').value);
-      formData.append('question', this.state.formTarget);
+      formData.append('question', this.state.answerFormTarget);
       //console.log('STATE', this.state.photoFiles);
       let photos = this.state.photoFiles;
       for (let i = 0; i < photos.length; i++) {

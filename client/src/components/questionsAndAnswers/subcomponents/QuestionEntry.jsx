@@ -17,35 +17,57 @@ const postRequest = function(rating, questionID) {
   })
 };
 
-const QuestionEntry = (props) => {
-  const CSSStyle = props.CSSStyle;
-  //console.log(props.questionData);
-  const rateQuestion = function(e) {
+class QuestionEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reported: false,
+      rated: false,
+    };
+    this.rateQuestion = this.rateQuestion.bind(this);
+  }
+
+  rateQuestion(e) {
     let target = e.target.attributes.id.value;
     const questionID = target.slice(target.length - 6);
-    target = target.slice(0, target.length - 6);;
+    const process = target.slice(0, target.length - 6);;
+    const targetElement = e.target;
 
-    if (target === 'rate-question') {
+    if (process === 'rate-question') {
       postRequest('helpful', questionID);
-
-    } else if (target === 'report-question') {
+      this.setState({ rated: true })
+    } else if (process === 'report-question') {
       postRequest('report', questionID);
+      this.setState({ reported: true });
     }
   }
 
-  return (
+  render() {
+    const CSSStyle = this.props.CSSStyle;
+    const questionID = this.props.questionData['question_id'];
+    let rateThisQuestion = (<p id={'rate-question' + questionID} className={CSSStyle.smallText} onClick={this.rateQuestion}>Yes</p>);
+    let reportThisQuestion = (<p id={'report-question' + questionID} className={CSSStyle.smallText} onClick={this.rateQuestion}>Report</p>);
+    if (this.state.rated === true) {
+      rateThisQuestion = (<p id={'rate-question' + this.props.questionData['question_id']} className={CSSStyle.smallText}><i id="rated-question-helpful-smiley" className="far fa-smile"></i></p>);
+    }
+    if (this.state.reported === true) {
+      reportThisQuestion = (<p id={'report-question' + this.props.questionData['question_id']} className={CSSStyle.smallText}>Reported</p>);
+    }
+
+    return (
     <div id="question-entry" className={CSSStyle.questionEntry}>
-      <h3 id={'question-' + props.questionData['question_id']}>Q: {props.questionData['question_body']}</h3>
+      <h3 id={'question-' + questionID}>Q: {this.props.questionData['question_body']}</h3>
       <div id="question-info">
-          <p id={'rate-helpful-prompt-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>Helpful?</p>
-          <p id={'rate-question' + props.questionData['question_id']} className={CSSStyle.smallText} onClick={rateQuestion}>Yes</p>
-          <p id={'helpfulness-rating-on-question-' + props.questionData['question_id']} className={CSSStyle.smallText}>({props.questionData['question_helpfulness']}) |</p>
-          <p id={'report-question' + props.questionData['question_id']} className={CSSStyle.smallText} onClick={rateQuestion}>Report</p>
-          <button id={'answer-form-btn-on-question-' + props.questionData['question_id']} onClick={props.openAnswerForm}>Add Answer</button>
+          <p id={'rate-helpful-prompt-on-question-' + this.props.questionData['question_id']} className={CSSStyle.smallText}>Helpful?</p>
+          {rateThisQuestion}
+          <p id={'helpfulness-rating-on-question-' + this.props.questionData['question_id']} className={CSSStyle.smallText}>({this.props.questionData['question_helpfulness']}) |</p>
+          {reportThisQuestion}
+          <button id={'answer-form-btn-on-question-' + questionID} onClick={this.props.openAnswerForm}>Add Answer</button>
         </div>
-      <AnswersList CSSStyle={CSSStyle} answerList={props.questionData.answers} />
+      <AnswersList CSSStyle={CSSStyle} answerList={this.props.questionData.answers} />
     </div>
-  );
+    )
+  }
 };
 
 export default QuestionEntry;
