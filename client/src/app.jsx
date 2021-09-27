@@ -89,7 +89,7 @@ class App extends React.Component {
                           reviews: this.state.reviewInfo
                         }}
                         ids={this.state.relatedIDs}/>
-          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} />
+          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} productName={this.state.productInfo.name} />
           <RatingsAndReviews reviewList={this.state.reviews} reviewsInfo={this.state.reviewInfo} />
         </div>
       );

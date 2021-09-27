@@ -15,12 +15,14 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
     this.state = {
       darkmode: false,
-      formTarget: null,
+      questionFormTarget: null,
+      answerFormTarget: null,
       productID: null,
       allQuestions: [],
       displayedQuestions: [],
       displayError: null,
       photoFiles: [],
+      productName: null,
     };
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
@@ -39,6 +41,7 @@ class QuestionsAndAnswers extends React.Component {
     // other states to set
     this.setState({
       darkmode: this.props.darkmode,
+      productName: this.props.productName,
     })
   }
 
@@ -98,19 +101,19 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   modalOpen(e) {
-    console.log('modal open target', e.target);
+   // console.log('modal open target', e.target);
     let target = e.target.attributes.id.value;
-    console.log(target);
+    //console.log(target);
     let modal;
     if (target === 'question-form-btn') {
       modal = document.getElementById('submit-new-question-form');
       const targetName = this.state.productID;
-      this.setState({formTarget: targetName})
+      this.setState({questionFormTarget: targetName})
     } else {
       modal = document.getElementById('submit-new-answer-form');
       const targetName = e.target.parentElement.parentElement.children[0].attributes.id.value.slice(9);
-      //console.log('CLICKED', targetName);
-      this.setState({formTarget: targetName})
+      //console.log('CLICKED targetName', targetName);
+      this.setState({answerFormTarget: targetName})
     }
     modal.style.display = "block";
   }
@@ -130,7 +133,10 @@ class QuestionsAndAnswers extends React.Component {
       modal = document.getElementById('submit-new-question-form');
     }
     modal.style.display = "none";
-    this.setState({formTarget: null})
+    this.setState({
+      questionFormTarget: null,
+      answerFormTarget: null
+    })
   }
 
   getPhotos(filesList) {
@@ -259,8 +265,8 @@ class QuestionsAndAnswers extends React.Component {
         <h1 id="QandA-main-title" className={CSSStyle.testBanner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} />
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} />
-        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} />
-        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} />
+        <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} productName={this.state.productName} />
+        <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} productName={this.state.productName} questionID={this.state.answerFormTarget} />
         <div id="more-questions" className={CSSStyle.moreQuestions}>
           <button id="show-more-questions" onClick={this.showAnotherQuestion}>Show More Questions</button>
           <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i id="question-form-btn-icon" className="fas fa-plus"></i></button>
