@@ -70,6 +70,4 @@ class ProductOverview extends React.Component {
   }
 }
 
-// export default ProductOverview;
-ProductOverview = withClickTracker(ProductOverview);
-export default ProductOverview;
+export default withClickTracker(ProductOverview);

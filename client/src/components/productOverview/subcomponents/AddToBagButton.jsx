@@ -3,10 +3,6 @@ import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
-import { withClickTracker } from '../../../../lib/interactions.jsx';
-
-const parentComponent = "Product Overview";
-
 const $ = require('jquery');
 
 const onAddClick = () => {
@@ -18,20 +14,19 @@ const onAddClick = () => {
   }
 }
 
-const AddToBag = (props) => {
+const AddToBagButton = (props) => {
   const id = 'add-to-bag-button';
   if (!props.outOfStock) {
     return (
       <button id={id} onClick={() => {
         onAddClick();
-        props.clickTracker(id, parentComponent);
       }}>Add To Bag</button>
     );
   } else {
     return (
-      <button id={id} disabled>Add To Bag</button>
+      <button id={id} disabled={true}>Add To Bag</button>
     )
   }
 }
 
-export default withClickTracker(AddToBag);
+export default AddToBagButton;

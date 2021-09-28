@@ -16,21 +16,6 @@ const getRoundedRating = function(ratings) {
   return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
 }
 
-let ProductStarRating = (props) => {
-  const id = 'productinfo-star-rating';
-  return <h5 id={id}>{`Stars: ${getRoundedRating(props.ratings)}`}</h5>;
-}
-
-let ProductCategory = (props) => {
-  const id = 'productinfo-category';
-  return <h3 id={id}>{props.category}</h3>
-}
-
-let ProductName = (props) => {
-  const id = 'productinfo-name';
-  return <h2 id={id}>{props.name}</h2>
-}
-
 let ProductPrice = (props) => {
   const id = 'productinfo-price';
   const sale = props.currentStyle.sale_price !== null;
@@ -39,14 +24,9 @@ let ProductPrice = (props) => {
 
   return (
     <h3 id={id} className={sale ? CSSCommon['onsale'] : ""}>
-      {sale ? <strike>{'$' + regularPrice}</strike> : '$' + regularPrice} {sale ? '$' + salePrice : ''}
+      {sale ? <strike>{'$' + regularPrice}</strike> : '$' + regularPrice}{sale ? ' $' + salePrice : ''}
     </h3>
   )
-}
-
-let ProductStyleName = (props) => {
-  const id = 'productinfo-stylename';
-  return <h3 id={id}>STYLE > {props.styleName}</h3>
 }
 
 const ProductInfo = ( props ) => {
@@ -54,11 +34,11 @@ const ProductInfo = ( props ) => {
     return (
       <div id={'product-overview-info'} className={CSSCommon['product-overview-info']}>
         <div id={'product-overview-info-top'} className={CSSCommon['product-overview-info-top']}>
-          <ProductStarRating ratings={props.info.reviews.ratings}/>
-          <ProductCategory category={props.info.product.category}/>
-          <ProductName name={props.info.product.name}/>
+          <h5 id={'productinfo-star-rating'}>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}</h5>
+          <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
+          <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
           <ProductPrice currentStyle={props.currentStyle}/>
-          <ProductStyleName styleName={props.currentStyle.name}/>
+          <h3 id={'productinfo-stylename'}>STYLE > {props.currentStyle.name}</h3>
           <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
         </div>
         <ProductSelections currentStyle={props.currentStyle}/>
@@ -71,3 +51,4 @@ const ProductInfo = ( props ) => {
 }
 
 export default ProductInfo;
+export { ProductPrice };
