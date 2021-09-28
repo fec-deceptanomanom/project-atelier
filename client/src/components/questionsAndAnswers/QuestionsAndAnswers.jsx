@@ -54,7 +54,7 @@ class QuestionsAndAnswers extends React.Component {
   getQuestions() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/questions/${urlId}`, (data, status) => {
-      console.log('get request question data', data);
+      //console.log('get request question data', data);
       const questionsList = this.sortQuestions(data.results);
       let questions= [];
       if (questionsList.length >= 2) {

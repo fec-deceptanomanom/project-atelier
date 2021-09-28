@@ -9,35 +9,40 @@ class AnswersList extends React.Component {
     super(props);
     this.state = {
       sortedAnswers: [],
+      twoOrLessAnswers: [],
       displayedAnswers: [],
     };
-    this.showAnotherAnswer = this.showAnotherAnswer.bind(this);
+    this.showTwoAnswers = this.showTwoAnswers.bind(this);
+    this.sortAnswers = this.sortAnswers.bind(this);
+    this.showMoreAnswers = this.showMoreAnswers.bind(this);
+    this.showFewerAnswers = this.showFewerAnswers.bind(this);
   };
 
   componentDidMount() {
     //console.log('PROPS', this.props);
     const answerValues = Object.values(this.props.answerList);
-    let  answerList, sortedList;
+    const sortedList = this.sortAnswers(answerValues);
 
-    if (answerValues.length > 2) {
-      sortedList = this.sortAnswers(answerValues);
+    this.showTwoAnswers(sortedList);
+    this.setState({ sortedAnswers: sortedList });
+  }
+
+  showTwoAnswers(sortedAnswers) {
+    const sortedList = sortedAnswers;
+    let answerList;
+
+    if (sortedList.length > 2) {
       answerList = [sortedList[0], sortedList[1]];
       let button = document.getElementById('show-more-answers' + this.props.questionID);
       button.style.display = 'inline-block';
-    } else if (answerValues.length === 2 ) {
-      sortedList = this.sortAnswers(answerValues);
+    } else if (sortedList.length === 2 ) {
       answerList = [sortedList[0], sortedList[1]];
-    } else if (answerValues.length === 1) {
-      sortedList = this.sortAnswers(answerValues);
+    } else if (sortedList.length === 1) {
       answerList = [sortedList[0]];
     } else {
       answerList = null;
     }
-
-    this.setState({
-      sortedAnswers: sortedList,
-      displayedAnswers: answerList,
-    });
+    this.setState({ displayedAnswers: answerList, twoOrLessAnswers: answerList });
   }
 
   sortAnswers(answers) {
@@ -57,27 +62,27 @@ class AnswersList extends React.Component {
     return answers;
   };
 
-  showAnotherAnswer(e) {
-    let currentAnswers = this.state.displayedAnswers;
-    const targetIndex = currentAnswers.length;
-    const newAnswer = this.state.sortedAnswers[targetIndex];
-    currentAnswers.push(newAnswer);
-    this.setState({displayedAnswers: currentAnswers});
-    if (currentAnswers.length === this.state.sortedAnswers.length) {
-      let button = document.getElementById('show-more-answers' + this.props.questionID);
-      button.style.display = 'none';
-    }
+  showMoreAnswers(e) {
+    this.setState({ displayedAnswers: this.state.sortedAnswers });
   };
+
+  showFewerAnswers(e) {
+    this.setState({ displayedAnswers: this.state.twoOrLessAnswers });
+  }
 
 
   render() {
     const CSSStyle = this.props.CSSStyle;
-    const answerList = this.state.displayedAnswers;
+    let answerList = this.state.displayedAnswers;
+    let showMoreButton = (<button id={"show-more-answers" + this.props.questionID} className={CSSStyle.showMoreAnswers} onClick={this.showMoreAnswers} >Show More Answers</button>);
+    if (this.state.displayedAnswers === this.state.sortedAnswers) {
+      showMoreButton = (<button id={"show-fewer-answers" + this.props.questionID} className={CSSStyle.showMoreAnswers} onClick={this.showFewerAnswers} >Collapse Answers</button>);
+    }
 
     if (answerList === null) {
       return (
         <div id="answers-list" className={CSSStyle.answersList}>
-          <h5>Sorry, no one has answered this question yet.</h5>
+          <h3>Sorry, no one has answered this question yet.</h3>
         </div>
       );
     } else {
@@ -88,7 +93,7 @@ class AnswersList extends React.Component {
             //console.log('answer', answer)
             return (<AnswerEntry key={index} answerData={answer} CSSStyle={CSSStyle} />)
           })}
-          <button id={"show-more-answers" + this.props.questionID} className={CSSStyle.showMoreAnswers} onClick={this.showAnotherAnswer} >Show More Answers</button>
+          {showMoreButton}
         </div>
       );
     }
