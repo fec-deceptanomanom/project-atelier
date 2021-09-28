@@ -46,7 +46,6 @@ class ProductSelections extends React.Component {
           <SizeSelection
             currentStyle={this.props.currentStyle}
             onSelect={this.selectedSize}
-            sizeSelected={this.state.sizeSelected}
             outOfStock={this.state.outOfStock}
           />
           <QuantitySelection
