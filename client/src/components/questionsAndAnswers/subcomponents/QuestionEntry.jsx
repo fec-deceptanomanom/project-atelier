@@ -4,18 +4,6 @@ const $ = require('jquery');
 
 
 
-const postRequest = function(rating, questionID) {
-  $.ajax({
-    url: `http://localhost:3000/rate/questions/${questionID}/${rating}`,
-    type: 'PUT',
-    success: (response) => {
-      //console.log('PUT helpful/report response', response);
-    },
-    error: (error) => {
-      console.log('PUT helpful/report error', error)
-    },
-  })
-};
 
 class QuestionEntry extends React.Component {
   constructor(props) {
@@ -34,13 +22,26 @@ class QuestionEntry extends React.Component {
     const targetElement = e.target;
 
     if (process === 'rate-question') {
-      postRequest('helpful', questionID);
+      this.postRequest('helpful', questionID);
       this.setState({ rated: true })
     } else if (process === 'report-question') {
-      postRequest('report', questionID);
+      this.postRequest('report', questionID);
       this.setState({ reported: true });
     }
   }
+
+  postRequest(rating, questionID) {
+    $.ajax({
+      url: `http://localhost:3000/rate/questions/${questionID}/${rating}`,
+      type: 'PUT',
+      success: (response) => {
+        //console.log('PUT helpful/report response', response);
+      },
+      error: (error) => {
+        console.log('PUT helpful/report error', error)
+      },
+    })
+  };
 
   render() {
     const CSSStyle = this.props.CSSStyle;

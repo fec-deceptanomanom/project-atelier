@@ -8,9 +8,11 @@ import AnswersList from '../subcomponents/AnswersList';
 import QuestionEntry from '../subcomponents/QuestionEntry';
 import QuestionsList from '../subcomponents/QuestionsList';
 import SearchBar from '../subcomponents/SearchBar';
+import PhotoZoom from '../subcomponents/PhotoZoom';
 
 import testData from './testData';
 import CSSStyle from '../styles/QandALight.module.css';
+
 
 // initial test just for display purposes
 describe("Test suite set up", function() {
@@ -21,35 +23,40 @@ describe("Test suite set up", function() {
 
 Enzyme.configure({ adapter: new Adapter() });
 
-
 // Initial component tests : do the components render correctly?
 
 describe('Answers Entry', () => {
-  it('renders without crashing', () => {
+  it('renders without crashing with no photos', () => {
     const wrapper = Enzyme.shallow(<AnswerEntry CSSStyle={CSSStyle} answerData={testData.results[0]["answers"][68]}/>);
-    const element = <h3>A: </h3>
-    expect(wrapper.contains(element)).toEqual(true);
+    expect(wrapper.find('#answer-entry').length).toEqual(1);
   });
 });
 
 describe('Answers List', () => {
   it('renders without crashing with 2 child components', () => {
     const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[1]["answers"]} />);
-    expect(wrapper.find('#AnswersList').length).toEqual(1);
+    expect(wrapper.find('#answers-list').length).toEqual(1);
   });
   it('renders without crashing with 1 child component', () => {
     const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[0]["answers"]} />);
-    expect(wrapper.find('#AnswersList').length).toEqual(1);
+    expect(wrapper.find('#answers-list').length).toEqual(1);
   });
   it('renders without crashing with 0 child components', () => {
     const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={[]} />);
-    expect(wrapper.find('#AnswersList').length).toEqual(1);
+    expect(wrapper.find('#answers-list').length).toEqual(1);
   });
-  it('renders without crashing with 2 child component even with more than 2 answers', () => {
-    const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[2]["answers"]} />);
-    expect(wrapper.find('#AnswersList').length).toEqual(1);
-  });
+  // it('renders without crashing with 2 child component even with more than 2 answers', () => {
+  //   const wrapper = Enzyme.shallow(<AnswersList CSSStyle={CSSStyle} answerList={testData.results[2]["answers"]} />);
+  //   expect(wrapper.find('#answers-list').length).toEqual(1);
+  // });
 });
+
+describe('Photo Zoom', () => {
+  it('renders without crashing', () => {
+    const wrapper = Enzyme.shallow(<PhotoZoom photo={testData.results[0]["answers"][68]['photos'][0]} CSSStyle={CSSStyle} onClick={() => {return false}}/>);
+    expect(wrapper.find('#zoomed-in-answer-photo').length).toEqual(1);
+  })
+})
 
 describe('Question Entry', () => {
   it('renders without crashing', () => {
@@ -63,29 +70,29 @@ describe('Questions List', () => {
   it('renders without crashing with 2 child components', () => {
     const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle} openAnswerForm={() => {return false}} questionData={{"product_id": "5",
     "results": [testData.results[0], testData.results[1]]}} />);
-    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+    expect(wrapper.find('#questions-list').length).toEqual(1);
   });
   it('renders without crashing with 1 child component', () => {
     const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle}  openAnswerForm={() => {return false}} questionData={{"product_id": "5",
     "results": [testData.results[0]]}} />);
-    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+    expect(wrapper.find('#questions-list').length).toEqual(1);
   });
   it('renders without crashing with 0 child components', () => {
     const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle} openAnswerForm={() => {return false}} questionData={{"product_id": "5",
     "results": []}} />);
-    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+    expect(wrapper.find('#questions-list').length).toEqual(1);
   });
-  it('renders without crashing with 2 child component even with more than 2 answers', () => {
+  it('renders without crashing with 2 child component even with more than 2 questions', () => {
     const wrapper = Enzyme.shallow(<QuestionsList CSSStyle={CSSStyle} openAnswerForm={() => {return false}} questionData={{"product_id": "5",
     "results": [testData.results[0], testData.results[1], testData.results[2]]}} />);
-    expect(wrapper.find('#QuestionsList').length).toEqual(1);
+    expect(wrapper.find('#questions-list').length).toEqual(1);
   });
 });
 
-describe('SearchBar', () => {
+describe('Search Bar', () => {
   it('renders without crashing', () => {
     const wrapper = Enzyme.shallow(<SearchBar CSSStyle={CSSStyle} />);
-    expect(wrapper.find('#SearchBar').length).toEqual(1);
-    expect(wrapper.find('#SearchForm').length).toEqual(1);
+    expect(wrapper.find('#search-bar').length).toEqual(1);
+    expect(wrapper.find('#search-form').length).toEqual(1);
   });
 });
