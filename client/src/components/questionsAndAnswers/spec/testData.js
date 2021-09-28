@@ -14,7 +14,7 @@ const testData = {
             "date": "2018-08-18T00:00:00.000Z",
             "answerer_name": "Seller",
             "helpfulness": 4,
-            "photos": []
+            "photos": ['d21pxc7zq467b0.cloudfront.net/5555aa19726afe9baaa1ac1d0dae6bfa']
             // ...
           }
         }

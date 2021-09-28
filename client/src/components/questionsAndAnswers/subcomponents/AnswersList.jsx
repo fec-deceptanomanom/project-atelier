@@ -44,6 +44,16 @@ class AnswersList extends React.Component {
     answers.sort(function(a, b) {
       return b.helpfulness - a.helpfulness;
     });
+    // move "Seller" answers to top
+    let sellerAnswer = [];
+    for (let i = 0; i < answers.length; i++) {
+      if (answers[i]['answerer_name'] === 'Seller') {
+        sellerAnswer.push(answers[i]);
+        let newAnswers = answers.slice(0, i).concat(answers.slice(i + 1));
+        answers = newAnswers;
+      }
+    }
+    answers = sellerAnswer.concat(answers);
     return answers;
   };
 
@@ -73,6 +83,7 @@ class AnswersList extends React.Component {
     } else {
       return (
         <div id="answers-list" className={CSSStyle.answersList}>
+          <h3 id="answer-A">A:</h3>
           {answerList.map((answer, index) => {
             //console.log('answer', answer)
             return (<AnswerEntry key={index} answerData={answer} CSSStyle={CSSStyle} />)

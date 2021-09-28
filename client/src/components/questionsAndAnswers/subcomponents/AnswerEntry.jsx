@@ -1,93 +1,134 @@
 import React from 'react';
 const $ = require('jquery');
+import PhotoZoom from './PhotoZoom';
 
-const formatDate = function(dateString) {
-  let date = {
-    year: dateString.slice(0, 4),
-    month: dateString.slice(5, 7),
-    day: dateString.slice(8, 10)
+
+class AnswerEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rated: false,
+      reported: false,
+      isSeller: false,
+    };
+    this.rateAnswer = this.rateAnswer.bind(this);
+    this.photoZoom = this.photoZoom.bind(this);
   }
-  const monthList = {
-    '01': 'January', '02': 'February', '03': 'March',
-    '04': 'April', '05': 'May', '06': 'June',
-    '07': 'July', '08': 'August', '09': 'September',
-    '10': 'October', '11': 'November', '12': 'December'
+
+  componentDidMount() {
+    if (this.props.answerData['answerer_name'] === 'Seller') {
+      this.setState({ isSeller: true });
+    }
+  }
+
+  photoZoom(e) {
+    let modal = document.getElementById('zoomed-in-answer-photo');
+    modal.style.display = "block";
+  }
+
+  closeZoom(e) {
+    let modal = document.getElementById('zoomed-in-answer-photo');
+    modal.style.display = "none";
+  }
+
+  postRequest(rating, answerID) {
+    $.ajax({
+      url: `http://localhost:3000/rate/answers/${answerID}/${rating}`,
+      type: 'PUT',
+      success: (response) => {
+        //console.log('PUT helpful/report response', response);
+      },
+      error: (error) => {
+        console.log('PUT helpful/report error', error)
+      },
+    })
   };
-  date.month = monthList[date.month];
-  //console.log(date);
-  const formatted = date.month + ' ' + date.day + ', ' + date.year;
-  return formatted;
-};
 
+  formatDate(dateString) {
+    let date = {
+      year: dateString.slice(0, 4),
+      month: dateString.slice(5, 7),
+      day: dateString.slice(8, 10)
+    }
+    const monthList = {
+      '01': 'January', '02': 'February', '03': 'March',
+      '04': 'April', '05': 'May', '06': 'June',
+      '07': 'July', '08': 'August', '09': 'September',
+      '10': 'October', '11': 'November', '12': 'December'
+    };
+    date.month = monthList[date.month];
+    //console.log(date);
+    const formatted = date.month + ' ' + date.day + ', ' + date.year;
+    return formatted;
+  };
 
-
-const postRequest = function(rating, answerID) {
-  $.ajax({
-    url: `http://localhost:3000/rate/answers/${answerID}/${rating}`,
-    type: 'PUT',
-    success: (response) => {
-      //console.log('PUT helpful/report response', response);
-    },
-    error: (error) => {
-      console.log('PUT helpful/report error', error)
-    },
-  })
-};
-
-const AnswerEntry = (props) => {
-  const CSSStyle = props.CSSStyle;
-  //console.log('current answer data', props.answerData);
-  const formattedDate = formatDate(props.answerData.date);
-  const currentText = props.answerData.body;
-
-  const rateAnswer = function(e) {
+  rateAnswer(e) {
     const target = e.target.attributes.id.value;
-    const answerID = props.answerData.id;
+    const answerID = this.props.answerData.id;
     console.log(target);
 
     if (target === 'rate-answer') {
       console.log('HELPFUL', answerID);
-      postRequest('helpful', answerID);
+      this.postRequest('helpful', answerID);
+      this.setState({ rated: true });
 
     } else if (target === 'report-answer') {
       //console.log('REPORT');
-      postRequest('report', answerID);
+      this.postRequest('report', answerID);
+      this.setState({ reported: true });
     }
   }
 
-  if (props.answerData.photos.length === 0) {
-    return (
-      <div id="answer-entry" className={CSSStyle.answerEntry}>
-        <h3 id="answer-A">A: </h3>
-        <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
-        <div id="answer-info">
-          <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
-          <p id="rate-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Yes</p>
-          <p id="answer-rating" className={CSSStyle.smallText}>({props.answerData.helpfulness}) |</p>
-          <p id="report-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Report</p>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div id="answer-entry" className={CSSStyle.answerEntry}>
-        <h3 id="answer-A">A: </h3>
-        <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
-        <div id="answer-photos">
-          {props.answerData.photos.map((photo, index) => {
-            return (<img id="answer-photo" className={CSSStyle['answer-photo']} key={index} src={photo}></img>)
-          })}
-        </div>
-        <div id="answer-info">
-          <p id="user-info" className={CSSStyle.smallText}>By: {props.answerData['answerer_name']}, {formattedDate} | Helpful?</p>
-          <p id="rate-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Yes</p>
-          <p id="answer-rating" className={CSSStyle.smallText}>({props.answerData.helpfulness}) |</p>
-          <p id="report-answer" className={CSSStyle.smallText} onClick={rateAnswer}>Report</p>
-        </div>
-      </div>
-    );
-  }
+  render() {
+    const CSSStyle = this.props.CSSStyle;
+    //console.log('current answer data', props.answerData);
+    const formattedDate = this.formatDate(this.props.answerData.date);
+    const currentText = this.props.answerData.body;
+    // bold username if Seller
+    let userName = this.props.answerData['answerer_name'];
+    if (this.state.isSeller === true) {
+      userName = (<b>{this.props.answerData['answerer_name']}</b>)
+    }
+    // display photos if there are any
+    let photosDiv = (
+      <div id="answer-photos">
+        {this.props.answerData.photos.map((photo, index) => {
+          return (
+            <div id="photo-div" key={index}>
+              <img id="answer-photo" className={CSSStyle['answer-photo']} src={photo} onClick={this.photoZoom}></img>
+              <PhotoZoom photo={photo} CSSStyle={CSSStyle} closeZoom={this.closeZoom}/>
+            </div>
+          )
+      })}
+    </div>
+    )
+    if (this.props.answerData.photos.length === 0) {
+      photosDiv;
+    }
+    // disable rating and reporting if already done
+    let rateThisAnswer = (<p id="rate-answer" className={CSSStyle.smallText} onClick={this.rateAnswer}>Yes</p>);
+    let reportThisAnswer = (<p id="report-answer" className={CSSStyle.smallText} onClick={this.rateAnswer}>Report</p>);
+    if (this.state.rated === true) {
+      rateThisAnswer = (<p id="rate-answer" className={CSSStyle.smallText}><i id="rated-answer-helpful-smiley" className="far fa-smile"></i></p>);
+    }
+    if (this.state.reported === true) {
+      reportThisAnswer = (<p id="report-answer" className={CSSStyle.smallText}>Reported</p>);
+    }
 
+
+    return (
+      <div id="answer-entry" className={CSSStyle.answerEntry}>
+        <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
+        {photosDiv}
+        <div id="answer-info">
+          <p id="user-info" className={CSSStyle.smallText}>By: {userName}, {formattedDate} | Helpful?</p>
+          {rateThisAnswer}
+          <p id="answer-rating" className={CSSStyle.smallText}>({this.props.answerData.helpfulness}) |</p>
+          {reportThisAnswer}
+        </div>
+      </div>
+    )
+  }
 };
 
 export default AnswerEntry;
