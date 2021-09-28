@@ -30,7 +30,7 @@ class QuestionsAndAnswers extends React.Component {
     this.questionSearch = this.questionSearch.bind(this);
     this.searchUpdate = this.searchUpdate.bind(this);
     this.searchEnter = this.searchEnter.bind(this);
-    this.showAnotherQuestion = this.showAnotherQuestion.bind(this);
+    this.showMoreQuestions = this.showMoreQuestions.bind(this);
     this.getPhotos = this.getPhotos.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
   }
@@ -54,8 +54,8 @@ class QuestionsAndAnswers extends React.Component {
   getQuestions() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     $.get(`http://localhost:3000/questions/${urlId}`, (data, status) => {
-      console.log('get request question data', data);
-      const questionsList = this.sortQuestions(data.results);
+      //console.log('get request question data', data);
+      const questionsList = this.sortQuestions(data);
       let questions= [];
       if (questionsList.length >= 2) {
         questions = [questionsList[0], questionsList[1]];
@@ -86,15 +86,22 @@ class QuestionsAndAnswers extends React.Component {
     return questions;
   };
 
-  showAnotherQuestion(e) {
+  showMoreQuestions(e) {
     let currentQuestions = this.state.displayedQuestions;
-    //console.log('CURRENT', currentQuestions);
-    const targetIndex = currentQuestions.length;
-    const newQuestion = this.state.allQuestions[targetIndex];
-   // console.log('NEW', newQuestion);
-    currentQuestions.push(newQuestion);
+    const allQuestions = this.state.allQuestions;
+    console.log('starting list of displayed', currentQuestions, 'complete list', allQuestions);
+    let targetIndex = currentQuestions.length;
+    let newQuestions = [allQuestions[targetIndex]];
+    console.log('newQuestions with 1', newQuestions)
+    if (targetIndex < allQuestions.length - 1) {
+      targetIndex++;
+      newQuestions.push(allQuestions[targetIndex]);
+      console.log('newQuestions with 2', newQuestions);
+    }
+    currentQuestions = currentQuestions.concat(newQuestions);
+    console.log('expanded list of questions', currentQuestions);
     this.setState({displayedQuestions: currentQuestions});
-    if (currentQuestions.length === this.state.allQuestions.length) {
+    if (currentQuestions.length === allQuestions.length) {
       let button = document.getElementById('show-more-questions');
       button.style.display = 'none';
     }
@@ -257,7 +264,11 @@ class QuestionsAndAnswers extends React.Component {
       CSSStyle = CSSDark;
     }
     const component = 'Questions and Answers';
-    //console.log('questions', this.state.questions);
+    let showMoreButton;
+    if (this.state.allQuestions !== this.state.displayedQuestions) {
+      showMoreButton = (<button id="show-more-questions" onClick={this.showMoreQuestions}>More Answered Questions</button>);
+    }
+    console.log('questions', this.state.allQuestions, this.state.displayedQuestions);
     return (
       <div id="QandA-main-component" className={CSSStyle.QandABox} onClick={(e) => {
         this.props.clickTracker(e.target.attributes.id.value, component)
@@ -268,7 +279,7 @@ class QuestionsAndAnswers extends React.Component {
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} productName={this.state.productName} />
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} productName={this.state.productName} questionID={this.state.answerFormTarget} />
         <div id="more-questions" className={CSSStyle.moreQuestions}>
-          <button id="show-more-questions" onClick={this.showAnotherQuestion}>Show More Questions</button>
+          {showMoreButton}
           <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i id="question-form-btn-icon" className="fas fa-plus"></i></button>
         </div>
       </div>

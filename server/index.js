@@ -102,54 +102,37 @@ app.get('/productInfo/:id', (req, res) => {
 });
 
 // seperating out questions GET request
-app.get('/questions/:id', (req, res) => {
-
-  // Get the initial question list. currently only returns up to the first 5 questions, which is wrong
-  const questionsList = [];
-  let oldCounter = 0;
-  let newCounter= 0;
-
-  const getNextPage = function() {
-    newCounter++;
-    const newPromise = new Promise((resolve, reject) => {
-      axios.get(API_URL + '/qa/questions?product_id=' + req.params.id + '&page=' + newCounter)
+app.get('/questions/:id', async (req, res) => {
+  let URL = API_URL + '/qa/questions?product_id=' + req.params.id + '&page=';
+  // recursive function to get all pages of questions
+  const paginatedGet = (url, page, previousResponse) => {
+    return (
+      axios.get(url + page)
         .then(results => {
-          console.log('fetched a page of questions');
-          oldCounter++
-          resolve(results.data);
+          return results.data.results
+        })
+        .then(newResponse => {
+          const response = previousResponse.concat(newResponse);
+          if (newResponse.length !==0) {
+            page++;
+            return paginatedGet(url, page, response)
+          }
+          return response;
         })
         .catch(error => {
-          console.log('no more questions');
-          reject(error);
+          console.log('error');
+          if (error.message && error.message === "Request failed with status code 404") {
+            res.status(404).send("Not found.");
+          } else {
+            res.send(error);
+          }
         })
-    });
-    questionsList.push(newPromise);
-  };
-
-  while (oldCounter === newCounter) {
-    getNextPage();
+    )
   }
-
-  Promise.all(questionsList)
-  .then((results) => {
-    //console.log('PROMISE ALL RESULTS', results);
-    let questionsList = {
-      product_id: results[0]['product_id'],
-      results: []
-    };
-    results.map(entry => {
-     // console.log('entry', entry.results);
-      questionsList.results = questionsList.results.concat(entry.results);
-    })
-    res.send(questionsList);
-  })
-  .catch((error) => {
-    if (error.message && error.message === "Request failed with status code 404") {
-      res.status(404).send("Not found.");
-    } else {
-      res.send(error);
-    }
-  })
+  // call the recursive funciton and send the results
+  let questions = await paginatedGet(URL, 1, []);
+  //console.log(questions);
+  res.send(questions);
 });
 
 app.post('/questions', upload.array('files'), (req, res) => {
@@ -159,17 +142,17 @@ app.post('/questions', upload.array('files'), (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    product_id: parseInt(req.body.productID),
+    product_id: req.body.productID,
   };
   console.log('question data', questionData);
   // POST request to API -> destination /qa/questions
   axios.post(API_URL + '/qa/questions', questionData)
     .then((response) => {
-      //console.log(response)
+      console.log(response)
       res.json({message: 'Success'})
     })
     .catch((error) => {
-      //console.log(error);
+      console.log(error);
       if (error.message && error.message === "Request failed with status code 404") {
         res.status(404).send("Not found.");
       } else {
@@ -207,7 +190,7 @@ app.post('/answers', upload.array('files'), (req, res) => {
     // POST request to API -> destination /qa/questions/:question_id/answers
     axios.post(API_URL + '/qa/questions/' + data[0] + '/answers', data[1])
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       res.json({message: 'Success'})
     })
     .catch((error) => {
@@ -252,7 +235,7 @@ app.put('/rate/questions/*', (req, res) => {
   //PUT request to API -> destination /qa/
   axios.put(API_URL + '/qa'+ destination)
     .then((response) => {
-      console.log(response)
+      //console.log(response)
       res.json({message: 'Success'})
     })
     .catch((error) => {
