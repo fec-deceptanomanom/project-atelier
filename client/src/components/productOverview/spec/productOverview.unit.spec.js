@@ -4,10 +4,14 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import ProductOverview from '../ProductOverview.jsx';
+import AddToBagButton from '../subcomponents/AddToBagButton.jsx';
 import ProductDescription from '../subcomponents/ProductDescription.jsx';
 import ProductFeatures from '../subcomponents/ProductFeatures.jsx';
 import ProductImage from '../subcomponents/ProductImage.jsx';
 import ProductInfo from '../subcomponents/ProductInfo.jsx';
+import ProductSelections from '../subcomponents/ProductSelections.jsx';
+import QuantitySelection from '../subcomponents/QuantitySelection.jsx';
+import SizeSelection from '../subcomponents/SizeSelection.jsx';
 import StyleThumbnailGrid from '../subcomponents/StyleThumbnailGrid.jsx';
 import StyleThumbnail from '../subcomponents/StyleThumbnail.jsx';
 
@@ -22,7 +26,8 @@ describe('Product Overview', () => {
     reviews: sampleData.reviewInfo
   };
   it('renders without crashing and contains its elements when given valid data', () => {
-    const wrapper = Enzyme.shallow(<ProductOverview data={data} />);
+    // Getting the 'unwrapped' component from the Higher Order Component
+    const wrapper = Enzyme.shallow(<ProductOverview data={data} />).find('ProductOverview').shallow();
     expect(wrapper.find(ProductImage).length).toEqual(1);
     expect(wrapper.find(ProductInfo).length).toEqual(1);
     expect(wrapper.find(ProductDescription).length).toEqual(1);

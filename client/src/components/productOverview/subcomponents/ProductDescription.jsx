@@ -2,7 +2,7 @@ import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
 let DescriptionSlogan = (props) => {
-  return <h2 id={'product-overview-description-slogan'}>{props.slogan}</h2>
+  return
 };
 
 let DescriptionText = (props) => {
@@ -12,7 +12,7 @@ let DescriptionText = (props) => {
 const ProductDescription = ( props ) => {
   return (
     <div id={'product-overview-description'} className={CSSCommon['product-overview-description']}>
-      <DescriptionSlogan slogan={props.info.product.slogan}/>
+      <h2 id={'product-overview-description-slogan'}>{props.info.product.slogan}</h2>
       <DescriptionText text={props.info.product.description}/>
     </div>
   );
