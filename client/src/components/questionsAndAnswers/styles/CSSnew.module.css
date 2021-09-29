@@ -1,0 +1,277 @@
+/* START MAIN COPMPONENT */
+
+.q-and-a-box {
+  /* full component div */
+  border: 5px dotted black;
+  background-color:lavenderblush;
+  width: 80%;
+  margin: auto;
+  max-height: 100%;
+}
+
+.banner {
+  /* h1 main title element */
+  color: purple;
+  background-color: lavender;
+  margin: auto;
+  width: fit-content
+}
+
+.more-questions {
+  /* div for show more and add new buttons */
+  border: 4px dotted black;
+  margin: 4px;
+}
+
+.more-questions button {
+  /* specifically select the two button elements */
+  color: black;
+}
+
+/* END MAIN COMPONENT
+*****************************
+START SEARCH BAR COMPONENT */
+
+.search-bar {
+  /* full search bar component */
+  margin: 5px;
+  padding: 5px;
+  height: 50px;
+  border: 4px dotted black;
+}
+
+.search-bar form {
+  /* full form */
+  display: flex;
+  flex-direction: row;
+}
+
+.search-bar input {
+  /* input field */
+  order: 0;
+  flex: 2 1 auto;
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+}
+
+.search-bar button {
+  /* button */
+  float: right;
+  padding: 17px;
+  height: 50px;
+  width: 50px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background: #ccc;
+}
+
+/* END SEARCH BAR COMPONENT
+***************************
+START SHARED MODAL */
+
+.modal {
+  /* shared modal div */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  /* shared modal content div */
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-input {
+  /* small text inputs for modal content */
+}
+
+.modal-textarea {
+  /* large text inputs for modal content */
+}
+
+.modal p {
+  /* the p elements in the modal */
+}
+
+.modal label {
+  /* labels in the modal */
+}
+
+.close {
+  /* shared modal close span */
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal h2{
+  /* modal title */
+}
+
+.modal h3{
+  /* modal subtitle */
+}
+
+.modal button {
+  /* modal buttons */
+}
+
+/* END SHARED MODAL
+********************************
+START SUBMIT ANSWER COMPONENT */
+
+.answer-form {
+  /* entire submit answer div */
+}
+
+/* END SUBMIT ANSWER COMPONENT
+**********************************
+START PHOTO THUMBNAIL COMPONENT */
+
+.photo-thumbnails {
+  /* photo thumbnails div */
+}
+
+.photo-thumbnail {
+  /* photo thumbnails */
+  height: 100px;
+}
+
+.photo-remove {
+  /* icon for removing thumbnails */
+  color: red;
+}
+
+/* END PHOTO THUMBNAIL COMPONENT
+***********************************
+START SUBMIT QUESTION COMPONENT */
+
+.question-form {
+  /* entire submit question div */
+}
+
+/* END SUBMIT QUESTION COMPONENT
+*********************************
+START QUESTIONS LIST COMPONENT */
+
+.questions-list {
+  /* entire questions list div */
+  border: 4px dotted black;
+  margin: 4px;
+  max-height: 80%;
+  overflow: scroll;
+}
+
+/* END QUESTIONS LIST COMPONENT
+*********************************
+START QUESTION ENTRY COMPONENT */
+
+.question-entry {
+  /* entire question entry div */
+}
+
+.question-entry h3 {
+  /* question text */
+  border: 3px dotted black;
+  margin: 3px;
+}
+
+.question-entry button {
+  /* answer form button */
+  color: black;
+}
+
+/* END QUESTION ENTRY COMPONENT
+********************************
+START SHARED RATE REPORT BAR */
+
+.rate-report {
+  /* rate and report div */
+}
+
+.small-text {
+  /* small text elements in rate-report */
+}
+
+.rate {
+  /* rate helpful elements in rate-report */
+}
+
+.report {
+  /* report elements in rate-report */
+}
+
+/* END SHARED RATE-REPORT BAR
+********************************
+START ANSWERS LIST COMPONENT */
+
+.answers-list {
+  /* entire answers list div */
+  border: 2px dotted black;
+  margin: 2px;
+  max-height: 40%;
+  overflow: scroll;
+}
+
+.answers-list h3 {
+  /* A */
+}
+
+.show-more-answers {
+  /* show more / fewer button*/
+  display: none;
+}
+
+/*  END ANSWERS LIST COMPONENT
+********************************
+START ANSWER ENTRY COMPONENT */
+
+.answer-entry {
+  /* entrie answer entry div */
+  border: 1px dotted black;
+  margin: 2px;
+}
+
+.answer-text {
+  /* actual answer text */
+  background-color: lavender;
+  color: purple;
+}
+
+/* END ANSWER ENTRY COMPONENT
+*****************************
+START PHOTO ZOOM COMPONENT */
+
+.photo-zoom {
+  /* photo zoom modal div */
+}
+
+.zoom-photo {
+  /* actual image */
+}
+
+/* END PHOTO ZOOM COMPONENT */

@@ -106,24 +106,24 @@ class AnswerEntry extends React.Component {
       photosDiv;
     }
     // disable rating and reporting if already done
-    let rateThisAnswer = (<p id="rate-answer" className={CSSStyle.smallText} onClick={this.rateAnswer}>Yes</p>);
-    let reportThisAnswer = (<p id="report-answer" className={CSSStyle.smallText} onClick={this.rateAnswer}>Report</p>);
+    let rateThisAnswer = (<p id="rate-answer" className={[CSSStyle['small-text'], CSSStyle.rate].join(' ')} onClick={this.rateAnswer}>Yes</p>);
+    let reportThisAnswer = (<p id="report-answer" className={[CSSStyle['small-text'], CSSStyle.report].join(' ')} onClick={this.rateAnswer}>Report</p>);
     if (this.state.rated === true) {
-      rateThisAnswer = (<p id="rate-answer" className={CSSStyle.smallText}><i id="rated-answer-helpful-smiley" className="far fa-smile"></i></p>);
+      rateThisAnswer = (<p id="rate-answer" className={[CSSStyle['small-text'], CSSStyle.rate].join(' ')}><i id="rated-answer-helpful-smiley" className="far fa-smile"></i></p>);
     }
     if (this.state.reported === true) {
-      reportThisAnswer = (<p id="report-answer" className={CSSStyle.smallText}>Reported</p>);
+      reportThisAnswer = (<p id="report-answer" className={[CSSStyle['small-text'], CSSStyle.report].join(' ')}>Reported</p>);
     }
 
 
     return (
-      <div id="answer-entry" className={CSSStyle.answerEntry}>
-        <p id="answer-body" className={CSSStyle.p}>{currentText}</p>
+      <div id="answer-entry" className={CSSStyle['answer-entry']}>
+        <p id="answer-body" className={CSSStyle['answer-text']}>{currentText}</p>
         {photosDiv}
-        <div id="answer-info">
-          <p id="user-info" className={CSSStyle.smallText}>By: {userName}, {formattedDate} | Helpful?</p>
+        <div id="answer-info" className={CSSStyle['rate-report']}>
+          <p id="user-info" className={CSSStyle['small-text']}>By: {userName}, {formattedDate} | Helpful?</p>
           {rateThisAnswer}
-          <p id="answer-rating" className={CSSStyle.smallText}>({this.props.answerData.helpfulness}) |</p>
+          <p id="answer-rating" className={CSSStyle['small-text']}>({this.props.answerData.helpfulness}) |</p>
           {reportThisAnswer}
         </div>
       </div>

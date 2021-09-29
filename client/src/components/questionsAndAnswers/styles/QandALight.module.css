@@ -61,6 +61,8 @@
   margin: 4px;
 }
 
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 .showMoreQuestions{
   display: none;
 }
@@ -104,6 +106,7 @@
 
 /* ANSWERS ENTRIES END */
 /* MORE QUESTIONS START */
+
 
 .moreQuestions {
   border: 4px dotted black;

@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSLight from './styles/QandALight.module.css';
+import CSSLight from './styles/CSSnew.module.css';
 import CSSDark from './styles/QandADark.module.css';
 import QuestionsList from './subcomponents/QuestionsList';
 import SearchBar from './subcomponents/SearchBar';
@@ -89,17 +89,17 @@ class QuestionsAndAnswers extends React.Component {
   showMoreQuestions(e) {
     let currentQuestions = this.state.displayedQuestions;
     const allQuestions = this.state.allQuestions;
-    console.log('starting list of displayed', currentQuestions, 'complete list', allQuestions);
+   // console.log('starting list of displayed', currentQuestions, 'complete list', allQuestions);
     let targetIndex = currentQuestions.length;
     let newQuestions = [allQuestions[targetIndex]];
-    console.log('newQuestions with 1', newQuestions)
+   // console.log('newQuestions with 1', newQuestions)
     if (targetIndex < allQuestions.length - 1) {
       targetIndex++;
       newQuestions.push(allQuestions[targetIndex]);
-      console.log('newQuestions with 2', newQuestions);
+     // console.log('newQuestions with 2', newQuestions);
     }
     currentQuestions = currentQuestions.concat(newQuestions);
-    console.log('expanded list of questions', currentQuestions);
+   // console.log('expanded list of questions', currentQuestions);
     this.setState({displayedQuestions: currentQuestions});
     if (currentQuestions.length === allQuestions.length) {
       let button = document.getElementById('show-more-questions');
@@ -268,17 +268,17 @@ class QuestionsAndAnswers extends React.Component {
     if (this.state.allQuestions !== this.state.displayedQuestions) {
       showMoreButton = (<button id="show-more-questions" onClick={this.showMoreQuestions}>More Answered Questions</button>);
     }
-    console.log('questions', this.state.allQuestions, this.state.displayedQuestions);
+   // console.log('questions', this.state.allQuestions, this.state.displayedQuestions);
     return (
-      <div id="QandA-main-component" className={CSSStyle.QandABox} onClick={(e) => {
+      <div id="QandA-main-component" className={CSSStyle["q-and-a-box"]} onClick={(e) => {
         this.props.clickTracker(e.target.attributes.id.value, component)
         }}>
-        <h1 id="QandA-main-title" className={CSSStyle.testBanner}> Questions & Answers</h1>
+        <h1 id="QandA-main-title" className={CSSStyle.banner}> Questions & Answers</h1>
         <SearchBar CSSStyle={CSSStyle} search={this.searchEnter} update={this.searchUpdate} />
         <QuestionsList CSSStyle={CSSStyle} openAnswerForm={this.modalOpen} questionData={this.state.displayedQuestions} />
         <SubmitQuestionForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeQuestionForm={this.modalClose} productName={this.state.productName} />
         <SubmitAnswerForm CSSStyle={CSSStyle} formSubmit={this.submitForm} closeAnswerForm={this.modalClose} getPhotos={this.getPhotos} productName={this.state.productName} questionID={this.state.answerFormTarget} />
-        <div id="more-questions" className={CSSStyle.moreQuestions}>
+        <div id="more-questions" className={CSSStyle['more-questions']}>
           {showMoreButton}
           <button id="question-form-btn" onClick={this.modalOpen}>Add A Question <i id="question-form-btn-icon" className="fas fa-plus"></i></button>
         </div>
