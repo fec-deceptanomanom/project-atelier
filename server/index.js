@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const secrets = require('../.secret.json');
+const { URL_BASE } = require('../.secretURL.json');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const { uploadFile } = require('./s3');
@@ -262,5 +263,5 @@ app.put('/rate/questions/*', (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Example app listening at ${secrets.URL_BASE}!`);
+  console.log(`Example app listening at ${URL_BASE}!`);
 })

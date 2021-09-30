@@ -6,7 +6,7 @@ import SearchBar from './subcomponents/SearchBar';
 import SubmitQuestionForm from './subcomponents/SubmitQuestionForm';
 import SubmitAnswerForm from './subcomponents/SubmitAnswerForm';
 const $ = require('jquery');
-const { URL_BASE } = require('../../../../.secret.json');
+const { URL_BASE } = require('../../../../.secretURL.json');
 
 import { withClickTracker } from '../../../lib/interactions.jsx';
 

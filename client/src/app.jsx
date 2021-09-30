@@ -9,7 +9,7 @@ import QuestionsAndAnswers from './components/questionsAndAnswers/QuestionsAndAn
 
 import { withClickTracker } from '../lib/interactions.jsx';
 
-const { URL_BASE } = require('../../.secret.json');
+const { URL_BASE } = require('../../.secretURL.json');
 const $ = require('jquery');
 
 import { postInteraction } from '../lib/interactions.jsx';

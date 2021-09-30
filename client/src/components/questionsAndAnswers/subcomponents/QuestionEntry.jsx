@@ -1,7 +1,7 @@
 import React from 'react';
 import AnswersList from './AnswersList';
 const $ = require('jquery');
-const { URL_BASE } = require('../../../../../.secret.json');
+const { URL_BASE } = require('../../../../../.secretURL.json');
 
 
 
