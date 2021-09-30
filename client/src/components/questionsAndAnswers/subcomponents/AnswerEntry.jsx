@@ -22,12 +22,12 @@ class AnswerEntry extends React.Component {
   }
 
   photoZoom(e) {
-    let modal = document.getElementById('zoomed-in-answer-photo');
+    let modal = document.getElementById('zoomed-in-photo-div');
     modal.style.display = "block";
   }
 
   closeZoom(e) {
-    let modal = document.getElementById('zoomed-in-answer-photo');
+    let modal = document.getElementById('zoomed-in-photo-div');
     modal.style.display = "none";
   }
 

@@ -159,11 +159,13 @@ START PHOTO THUMBNAIL COMPONENT */
 .photo-thumbnail {
   /* photo thumbnails */
   height: 100px;
+  max-width: 200px;
 }
 
 .photo-remove {
   /* icon for removing thumbnails */
   color: red;
+  z-index: 2;
 }
 
 /* END PHOTO THUMBNAIL COMPONENT
@@ -211,6 +213,7 @@ START SHARED RATE REPORT BAR */
 
 .rate-report {
   /* rate and report div */
+  display: inline;
 }
 
 .small-text {
@@ -262,16 +265,28 @@ START ANSWER ENTRY COMPONENT */
   color: purple;
 }
 
+.answer-photo {
+  /* the little photos for answers */
+  height: 100px;
+  max-width: 200px;
+}
+
 /* END ANSWER ENTRY COMPONENT
 *****************************
 START PHOTO ZOOM COMPONENT */
 
 .photo-zoom {
-  /* photo zoom modal div */
+  /* photo zoom picture area modal div */
+  margin: auto;
 }
 
 .zoom-photo {
   /* actual image */
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  height: fit-content;
 }
 
 /* END PHOTO ZOOM COMPONENT */
