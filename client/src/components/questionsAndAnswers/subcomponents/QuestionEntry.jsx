@@ -1,6 +1,7 @@
 import React from 'react';
 import AnswersList from './AnswersList';
 const $ = require('jquery');
+const { URL_BASE } = require('../../../../../.secret.json');
 
 
 
@@ -32,7 +33,7 @@ class QuestionEntry extends React.Component {
 
   postRequest(rating, questionID) {
     $.ajax({
-      url: `http://localhost:3000/rate/questions/${questionID}/${rating}`,
+      url: `${URL_BASE}/rate/questions/${questionID}/${rating}`,
       type: 'PUT',
       success: (response) => {
         //console.log('PUT helpful/report response', response);

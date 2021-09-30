@@ -7,6 +7,8 @@ import { withClickTracker } from '../../../lib/interactions.jsx';
 import RelatedCarousel from './subcomponents/RelatedCarousel.jsx';
 import OutfitList from './subcomponents/OutfitList.jsx';
 
+const { URL_BASE } = require('../../../../.secret.json');
+
 class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ class RelatedItems extends React.Component {
     Promise.all(
       ids.map(id => {
         return new Promise((resolve, reject) => {
-          axios.get(`http://localhost:3000/productInfo/${id}`)
+          axios.get(`${URL_BASE}/productInfo/${id}`)
             .then(response => {
               // console.log(response.data);
               resolve(response.data);
