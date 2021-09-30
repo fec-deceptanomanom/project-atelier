@@ -9,6 +9,7 @@ import QuestionsAndAnswers from './components/questionsAndAnswers/QuestionsAndAn
 
 import { withClickTracker } from '../lib/interactions.jsx';
 
+const secrets = require('../../.secret.json');
 const $ = require('jquery');
 
 import { postInteraction } from '../lib/interactions.jsx';
@@ -40,7 +41,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
-    $.get(`http://localhost:3000/productInfo/${urlId}`, (data, status) => {
+    $.get(`${secrets.URL_BASE}/productInfo/${urlId}`, (data, status) => {
       // console.log('get request data', data);
       this.setState({
         // Keep current state info...
