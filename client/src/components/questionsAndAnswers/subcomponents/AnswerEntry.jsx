@@ -2,6 +2,8 @@ import React from 'react';
 const $ = require('jquery');
 import PhotoZoom from './PhotoZoom';
 
+const { URL_BASE } = require('../../../../../.secret.json');
+
 
 class AnswerEntry extends React.Component {
   constructor(props) {
@@ -33,7 +35,7 @@ class AnswerEntry extends React.Component {
 
   postRequest(rating, answerID) {
     $.ajax({
-      url: `http://localhost:3000/rate/answers/${answerID}/${rating}`,
+      url: `${URL_BASE}/rate/answers/${answerID}/${rating}`,
       type: 'PUT',
       success: (response) => {
         //console.log('PUT helpful/report response', response);

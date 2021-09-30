@@ -6,6 +6,7 @@ import SearchBar from './subcomponents/SearchBar';
 import SubmitQuestionForm from './subcomponents/SubmitQuestionForm';
 import SubmitAnswerForm from './subcomponents/SubmitAnswerForm';
 const $ = require('jquery');
+const { URL_BASE } = require('../../../../.secret.json');
 
 import { withClickTracker } from '../../../lib/interactions.jsx';
 
@@ -53,7 +54,7 @@ class QuestionsAndAnswers extends React.Component {
 
   getQuestions() {
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
-    $.get(`http://localhost:3000/questions/${urlId}`, (data, status) => {
+    $.get(`${URL_BASE}/questions/${urlId}`, (data, status) => {
       //console.log('get request question data', data);
       const questionsList = this.sortQuestions(data);
       let questions= [];
@@ -190,7 +191,7 @@ class QuestionsAndAnswers extends React.Component {
       destination = 'answers';
     }
     $.ajax({
-      url: `http://localhost:3000/${destination}`,
+      url: `${URL_BASE}/${destination}`,
       type: 'POST',
       data: formData,
       processData: false,
