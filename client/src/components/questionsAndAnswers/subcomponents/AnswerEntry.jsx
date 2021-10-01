@@ -2,7 +2,7 @@ import React from 'react';
 const $ = require('jquery');
 import PhotoZoom from './PhotoZoom';
 
-const { URL_BASE } = require('../../../../../.secret.json');
+const { URL_BASE } = require('../../../../../.secretURL.json');
 
 
 class AnswerEntry extends React.Component {
