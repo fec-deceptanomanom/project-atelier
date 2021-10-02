@@ -194,17 +194,24 @@ START QUESTION ENTRY COMPONENT */
 
 .question-entry {
   /* entire question entry div */
+  width: 100%;
 }
 
 .question-entry h3 {
   /* question text */
   border: 3px dotted black;
   margin: 3px;
+  display: inline-block;
+
 }
 
 .question-entry button {
   /* answer form button */
   color: black;
+}
+
+.question-entry .rate-report {
+  display: inline-block;
 }
 
 /* END QUESTION ENTRY COMPONENT
@@ -213,19 +220,22 @@ START SHARED RATE REPORT BAR */
 
 .rate-report {
   /* rate and report div */
-  display: inline;
+  margin: 5px;
 }
 
 .small-text {
   /* small text elements in rate-report */
+  display: inline-block;
 }
 
 .rate {
   /* rate helpful elements in rate-report */
+  display: inline-block;
 }
 
 .report {
   /* report elements in rate-report */
+  display: inline-block;
 }
 
 /* END SHARED RATE-REPORT BAR
@@ -269,6 +279,10 @@ START ANSWER ENTRY COMPONENT */
   /* the little photos for answers */
   height: 100px;
   max-width: 200px;
+}
+
+.answer-entry .rate-report {
+  float: left;
 }
 
 /* END ANSWER ENTRY COMPONENT
