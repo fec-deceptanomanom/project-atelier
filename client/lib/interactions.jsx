@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { URL_BASE } from '../../.secret.json'
+import { URL_BASE } from '../../.secretURL.json'
 
 export function postInteraction(element, widget) {
   // console.log(`${element} clicked in ${widget} component at ${Date.now()}!`);

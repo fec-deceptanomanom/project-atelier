@@ -7,7 +7,7 @@ import { withClickTracker } from '../../../lib/interactions.jsx';
 import RelatedCarousel from './subcomponents/RelatedCarousel.jsx';
 import OutfitList from './subcomponents/OutfitList.jsx';
 
-const { URL_BASE } = require('../../../../.secret.json');
+const { URL_BASE } = require('../../../../.secretURL.json');
 
 class RelatedItems extends React.Component {
   constructor(props) {
