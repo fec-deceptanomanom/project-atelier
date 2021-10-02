@@ -89,10 +89,12 @@ class AnswersList extends React.Component {
       return (
         <div id="answers-list" className={CSSStyle['answers-list']}>
           <h3 id="answer-A">A:</h3>
+          <div id="answers-sublist" className={CSSStyle['answers-sublist']}>
           {answerList.map((answer, index) => {
             //console.log('answer', answer)
             return (<AnswerEntry key={index} answerData={answer} CSSStyle={CSSStyle} />)
           })}
+          </div>
           {showMoreButton}
         </div>
       );

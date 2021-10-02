@@ -93,10 +93,10 @@ class AnswerEntry extends React.Component {
     }
     // display photos if there are any
     let photosDiv = (
-      <div id="answer-photos">
+      <div id="answer-photos" className={CSSStyle['answer-photos-div']}>
         {this.props.answerData.photos.map((photo, index) => {
           return (
-            <div id="photo-div" key={index}>
+            <div id="photo-div" key={index} className={CSSStyle['photo-div']}>
               <img id="answer-photo" className={CSSStyle['answer-photo']} src={photo} onClick={this.photoZoom}></img>
               <PhotoZoom photo={photo} CSSStyle={CSSStyle} closeZoom={this.closeZoom}/>
             </div>
