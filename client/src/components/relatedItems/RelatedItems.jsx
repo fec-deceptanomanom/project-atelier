@@ -23,6 +23,7 @@ class RelatedItems extends React.Component {
     this.goRight = this.goRight.bind(this);
     this.goLeft = this.goLeft.bind(this);
     this.whichDir = this.whichDir.bind(this);
+    this.updateOutfitItems = this.updateOutfitItems.bind(this);
   }
 
   componentDidMount() {
@@ -121,6 +122,28 @@ class RelatedItems extends React.Component {
     let dir = e.target.className[12];
     dir === 'l' ? this.goLeft() : this.goRight();
   }
+  updateOutfitItems (e) {
+    console.log('e.target.id is', e.target.id)
+    // is this item already in outfitItems
+    //find Index of props.pageItem;
+    if (this.state.outfitItems.indexOf(this.props.pageItem) !== -1) {
+      alert('This item has already been added to the Outfit list')
+      return;
+    }
+    let update = this.state.outfitItems.slice();
+    let index = update.indexOf(1);
+    console.log('Index is ', index)
+    //organize pageItem
+    //
+    if (index !== -1) {
+      update[index] = this.props.pageItem;
+      this.setState({
+        outfitItems: update
+      })
+    } else { //the list is currently full
+      alert('The list full please delete an item from the Outfit List')
+    }
+  }
 
   componentDidUpdate() { }
 
@@ -141,7 +164,8 @@ class RelatedItems extends React.Component {
             right={this.state.rightButton}
             goDir={this.whichDir} />
           <OutfitList outfits={this.state.outfitItems}
-                          pageItem={this.props.pageItem} />
+                      pageItem={this.props.pageItem}
+                      addOutfit={this.updateOutfitItems} />
         </div>
       </div>
     );
