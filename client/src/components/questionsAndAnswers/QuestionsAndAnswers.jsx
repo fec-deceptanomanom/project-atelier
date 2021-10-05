@@ -43,6 +43,7 @@ class QuestionsAndAnswers extends React.Component {
     this.setState({
       darkmode: this.props.darkmode,
       productName: this.props.productName,
+      productID: this.props.productID,
     })
   }
 
@@ -65,7 +66,6 @@ class QuestionsAndAnswers extends React.Component {
       }
       this.setState({
         allQuestions: questionsList,
-        productID: data['product_id'],
         displayError: null,
         displayedQuestions: questions,
       });
@@ -116,6 +116,7 @@ class QuestionsAndAnswers extends React.Component {
     if (target === 'question-form-btn') {
       modal = document.getElementById('submit-new-question-form');
       const targetName = this.state.productID;
+      console.log('product id', this.state.productID)
       this.setState({questionFormTarget: targetName})
     } else {
       modal = document.getElementById('submit-new-answer-form');
@@ -158,13 +159,13 @@ class QuestionsAndAnswers extends React.Component {
     let formData = new FormData();
     // if question form
     if (this.state.questionFormTarget === this.state.productID) {
+      //console.log('form target', this.state.questionFormTarget);
       formData.append('body', document.getElementById('question-text').value);
       formData.append('name', document.getElementById('question-nickname').value);
       formData.append('email', document.getElementById('question-email').value);
       formData.append('productID', this.state.questionFormTarget);
-      console.log('question form data', formData);
+      //console.log('question form data', formData);
       this.postForm('question', formData);
-      console.log(e.target.attributes.id.value);
     // else if answer form
     } else {
       formData.append('body', document.getElementById('answer-text').value);
