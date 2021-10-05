@@ -4,6 +4,7 @@
   "description": "deceptanomanoms wulz!",
   "main": "index.js",
   "scripts": {
+    "single-build": "npx webpack",
     "build": "webpack --watch",
     "server-dev": "npx nodemon server/index.js",
     "test": "jest",

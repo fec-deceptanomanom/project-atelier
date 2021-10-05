@@ -39,7 +39,7 @@ const ProductInfo = ( props ) => {
           <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
           <ProductPrice currentStyle={props.currentStyle}/>
           <h3 id={'productinfo-stylename'}>STYLE > {props.currentStyle.name}</h3>
-          <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
+          <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick} currentStyle={props.currentStyle}/>
         </div>
         <ProductSelections currentStyle={props.currentStyle}/>
       </div>
