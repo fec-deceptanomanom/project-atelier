@@ -24,6 +24,7 @@ class RelatedItems extends React.Component {
     this.goLeft = this.goLeft.bind(this);
     this.whichDir = this.whichDir.bind(this);
     this.updateOutfitItems = this.updateOutfitItems.bind(this);
+    this.deleteOutfitCard = this.deleteOutfitCard.bind(this);
   }
 
   componentDidMount() {
@@ -122,9 +123,8 @@ class RelatedItems extends React.Component {
     let dir = e.target.className[12];
     dir === 'l' ? this.goLeft() : this.goRight();
   }
+
   updateOutfitItems (e) {
-    console.log('e.target.id is', e.target.id)
-    // is this item already in outfitItems
     //find Index of props.pageItem;
     if (this.state.outfitItems.indexOf(this.props.pageItem) !== -1) {
       alert('This item has already been added to the Outfit list')
@@ -132,9 +132,7 @@ class RelatedItems extends React.Component {
     }
     let update = this.state.outfitItems.slice();
     let index = update.indexOf(1);
-    console.log('Index is ', index)
     //organize pageItem
-    //
     if (index !== -1) {
       update[index] = this.props.pageItem;
       this.setState({
@@ -145,6 +143,27 @@ class RelatedItems extends React.Component {
     }
   }
 
+  deleteOutfitCard(e) {
+    //find the outfitItems[i] that has the same product.id
+    //remove from array and rotate the other values. [ {}, {}, {} ] > [{}, {}, 1]
+    let copy = this.state.outfitItems.slice();
+    //find which elem has the same produc.id
+    console.log('copy is ', copy);
+    let update = copy.map( (item, i) => {
+      console.log('i is', i)
+      if (typeof item === 'object') {
+        console.log('in if statement')
+        return 1;
+      } else {
+        return item;
+      }
+
+    })
+    this.setState({
+      outfitItems: update
+    })
+    console.log('update', update)
+  }
   componentDidUpdate() { }
 
   render() {
@@ -165,7 +184,8 @@ class RelatedItems extends React.Component {
             goDir={this.whichDir} />
           <OutfitList outfits={this.state.outfitItems}
                       pageItem={this.props.pageItem}
-                      addOutfit={this.updateOutfitItems} />
+                      addOutfit={this.updateOutfitItems}
+                      deleteCard={this.deleteOutfitCard}/>
         </div>
       </div>
     );

@@ -49,11 +49,14 @@ class OufitCard extends React.Component {
     } else { //there is info
       const product = this.props.info.product;
       const ratings = this.props.info.reviews.ratings;
-      // const defaultItem = this.findDefaultResult(this.props.info.style.results);
-      // const thumbnail = this.findThumbnail(defaultItem);
+      const defaultItem = this.findDefaultResult(this.props.info.styles.results);
+      const thumbnail = this.findThumbnail(defaultItem);
       const XButton = (
         <div id='remove-outfit-container'>
-          <button id='remove-outfit' onClick={'remove this card from carousel'}>X</button>
+          <i id={product.id}
+          className="fa fa-times-circle"
+          aria-hidden="true"
+          onClick={this.props.deleteCard}></i>
         </div>
       );
       return (
@@ -62,7 +65,8 @@ class OufitCard extends React.Component {
           <p id='outfit-card-name' className={CSSLight.name}>{product.name}</p>
           <p id='outfit-card-category-key' className={CSSLight.category}>Department:    </p>
           <p id='outfit-card-category-value' className={CSSLight.categoryValue}>{product.category}</p>
-          <img id='outfit-card-thumbnail' className={CSSLight.thumbnail} alt='Image not Found'></img>
+          {XButton}
+          <img id='outfit-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
           <ul id='outfit-card-list'>
             <li id='outfit-card-price'>Price: {product.default_price}</li>
             <li id='outfit-card-stars'>Stars: {this.getStars(ratings)}</li>

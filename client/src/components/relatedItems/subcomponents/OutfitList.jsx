@@ -17,7 +17,9 @@ class Outfitlist extends React.Component {
     outfits = outfits.map( (item, i) => {
       return (
         <div id='outfit-card-container' className={CSSLight.card} key={i}>
-          <OutfitCard key={i} info={item}/>
+          <OutfitCard key={i}
+          info={item}
+          deleteCard={this.props.deleteCard}/>
         </div>
       )
     });
