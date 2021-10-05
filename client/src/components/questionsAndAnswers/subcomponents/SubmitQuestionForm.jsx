@@ -20,7 +20,7 @@ const SubmitQuestionForm = (props) => {
           <label id="question-text-label" htmlFor="question-text">* Your Question:</label><br></br>
           <textarea id="question-text" className={CSSStyle['modal-textarea']} required="required" rows="10" maxLength="1000"></textarea><br></br>
           <br></br>
-          <input id="questions-form-submit" aria-label="Submit" type="submit"></input>
+          <input id="questions-form-submit" className={CSSStyle['submit-button']} aria-label="Submit" type="submit"></input>
         </form>
       </div>
     </div>

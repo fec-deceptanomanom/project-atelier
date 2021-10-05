@@ -104,7 +104,7 @@ class SubmitAnswerForm extends React.Component {
             }
           </div>
           <br></br>
-          <input id="answer-form-submit" type="submit" aria-label="Submit"></input>
+          <input id="answer-form-submit" className={CSSStyle['submit-button']} type="submit" aria-label="Submit"></input>
         </form>
         </div>
       </div>

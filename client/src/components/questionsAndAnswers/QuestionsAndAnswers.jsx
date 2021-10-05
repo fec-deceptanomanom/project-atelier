@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSLight from './styles/CSSnew.module.css';
+import CSSLight from './styles/QandALight.module.css';
 import CSSDark from './styles/QandADark.module.css';
 import QuestionsList from './subcomponents/QuestionsList';
 import SearchBar from './subcomponents/SearchBar';

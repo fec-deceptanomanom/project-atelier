@@ -72,7 +72,7 @@ class App extends React.Component {
     }
     if (this.state.validProduct && this.state.productInfo.id) {
       return (
-        <div id="App">
+        <div id="App" className={CSSStyle.App}>
           <div id="top-page" onClick={(e) => {
               postInteraction(e.target.attributes.id.value, 'Main App');
             }}>

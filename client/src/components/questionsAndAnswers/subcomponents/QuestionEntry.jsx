@@ -64,7 +64,7 @@ class QuestionEntry extends React.Component {
           {rateThisQuestion}
           <p id={'helpfulness-rating-on-question-' + this.props.questionData['question_id']} className={CSSStyle['small-text']}>({this.props.questionData['question_helpfulness']}) |</p>
           {reportThisQuestion}
-          <button id={'answer-form-btn-on-question-' + questionID} onClick={this.props.openAnswerForm}>Add Answer</button>
+          <button id={'answer-form-btn-on-question-' + questionID} className={CSSStyle['add-new']} onClick={this.props.openAnswerForm}>Add Answer</button>
         </div>
       <AnswersList CSSStyle={CSSStyle} answerList={this.props.questionData.answers} />
     </div>
