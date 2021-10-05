@@ -12,9 +12,11 @@ class AnswerEntry extends React.Component {
       rated: false,
       reported: false,
       isSeller: false,
+      photo: null,
     };
     this.rateAnswer = this.rateAnswer.bind(this);
-    this.photoZoom = this.photoZoom.bind(this);
+    this.openZoom = this.openZoom.bind(this);
+    this.closeZoom = this.closeZoom.bind(this);
   }
 
   componentDidMount() {
@@ -23,14 +25,17 @@ class AnswerEntry extends React.Component {
     }
   }
 
-  photoZoom(e) {
-    let modal = document.getElementById('zoomed-in-photo-div');
+  openZoom(e) {
+    let modal = document.getElementById('zoomed-in-photo-div' + this.props.answerData.id);
     modal.style.display = "block";
+    let photo = e.target.attributes.src.value;
+    this.setState({ photo });
   }
 
   closeZoom(e) {
-    let modal = document.getElementById('zoomed-in-photo-div');
+    let modal = document.getElementById('zoomed-in-photo-div' + this.props.answerData.id);
     modal.style.display = "none";
+    this.setState({ photo: null });
   }
 
   postRequest(rating, answerID) {
@@ -97,11 +102,11 @@ class AnswerEntry extends React.Component {
         {this.props.answerData.photos.map((photo, index) => {
           return (
             <div id="photo-div" key={index} className={CSSStyle['photo-div']}>
-              <img id="answer-photo" className={CSSStyle['answer-photo']} src={photo} onClick={this.photoZoom}></img>
-              <PhotoZoom photo={photo} CSSStyle={CSSStyle} closeZoom={this.closeZoom}/>
+              <img id="answer-photo" className={CSSStyle['answer-photo']} src={photo} onClick={this.openZoom}></img>
             </div>
           )
-      })}
+        })}
+        <PhotoZoom photo={this.state.photo} CSSStyle={CSSStyle} answerID={this.props.answerData.id} closeZoom={this.closeZoom}/>
     </div>
     )
     if (this.props.answerData.photos.length === 0) {
