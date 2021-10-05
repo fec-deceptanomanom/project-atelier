@@ -7,6 +7,7 @@ import { withClickTracker } from '../../../../lib/interactions.jsx';
 
 const StyleThumbnail = ( props ) => {
   const id = `style-thumbnail-${props.idx}`;
+  console.log(props.isCurrent);
   return (
     <div className={CSSCommon['style-thumbnail-wrapper']}>
       <button
@@ -16,7 +17,7 @@ const StyleThumbnail = ( props ) => {
       >
         {props.style.name}
       </button>
-      <i id={CSSCommon['current-style-checkmark']} class="fas fa-check-circle"></i>
+      <i style={{visibility: props.isCurrent ? 'visible' : 'hidden'}} id={CSSCommon['current-style-checkmark']} className="fas fa-check-circle"></i>
     </div>
   );
 }

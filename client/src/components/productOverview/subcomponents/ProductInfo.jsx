@@ -34,12 +34,12 @@ const ProductInfo = ( props ) => {
     return (
       <div id={'product-overview-info'} className={CSSCommon['product-overview-info']}>
         <div id={'product-overview-info-top'} className={CSSCommon['product-overview-info-top']}>
-          <h5 id={'productinfo-star-rating'}>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}<i class="fas fa-star"></i></h5>
+          <h5 id={'productinfo-star-rating'}>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}<i className="fas fa-star"></i></h5>
           <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
           <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
           <ProductPrice currentStyle={props.currentStyle}/>
           <h3 id={'productinfo-stylename'}>STYLE > {props.currentStyle.name}</h3>
-          <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick}/>
+          <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick} currentStyle={props.currentStyle}/>
         </div>
         <ProductSelections currentStyle={props.currentStyle}/>
       </div>
