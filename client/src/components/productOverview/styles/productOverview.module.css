@@ -115,3 +115,13 @@
 .onsale strike {
   color: black;
 }
+
+.style-thumbnail-wrapper {
+  position: relative;
+}
+
+#current-style-checkmark {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
