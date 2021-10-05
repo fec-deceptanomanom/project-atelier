@@ -144,15 +144,10 @@ class RelatedItems extends React.Component {
   }
 
   deleteOutfitCard(e) {
-    //find the outfitItems[i] that has the same product.id
-    //remove from array and rotate the other values. [ {}, {}, {} ] > [{}, {}, 1]
     let copy = this.state.outfitItems.slice();
-    //find which elem has the same produc.id
-    console.log('copy is ', copy);
+    //find which elem has the same product.id
     let update = copy.map( (item, i) => {
-      console.log('i is', i)
       if (typeof item === 'object') {
-        console.log('in if statement')
         return 1;
       } else {
         return item;
@@ -162,7 +157,6 @@ class RelatedItems extends React.Component {
     this.setState({
       outfitItems: update
     })
-    console.log('update', update)
   }
   componentDidUpdate() { }
 
@@ -176,7 +170,6 @@ class RelatedItems extends React.Component {
             }}>
         <h1 id="related-items-h1" className={CSSLight.testBanner}>Related Items</h1>
         <div id="related-items-container">
-          {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
           <RelatedCarousel items={this.state.carouselItems}
             pageItem={this.props.pageItem}
             left={this.state.leftButton}
