@@ -82,7 +82,7 @@ class AnswersList extends React.Component {
     if (answerList === null) {
       return (
         <div id="answers-list" className={CSSStyle['answers-list']}>
-          <h3>Sorry, no one has answered this question yet.</h3>
+          <h3 id="no-answers" className={CSSStyle['no-answers']}>Sorry, no one has answered this question yet.</h3>
         </div>
       );
     } else {
