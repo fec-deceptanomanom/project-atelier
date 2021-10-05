@@ -41,7 +41,6 @@ class RelatedCarousel extends React.Component {
 
   findProdByID(id) {
     let toCompare = this.props.items.find(item => item.product.id === Number(id));
-    console.log('findByID', toCompare);
     return toCompare;
   }
 

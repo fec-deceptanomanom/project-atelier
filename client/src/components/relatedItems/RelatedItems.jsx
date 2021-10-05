@@ -23,6 +23,8 @@ class RelatedItems extends React.Component {
     this.goRight = this.goRight.bind(this);
     this.goLeft = this.goLeft.bind(this);
     this.whichDir = this.whichDir.bind(this);
+    this.updateOutfitItems = this.updateOutfitItems.bind(this);
+    this.deleteOutfitCard = this.deleteOutfitCard.bind(this);
   }
 
   componentDidMount() {
@@ -122,6 +124,40 @@ class RelatedItems extends React.Component {
     dir === 'l' ? this.goLeft() : this.goRight();
   }
 
+  updateOutfitItems (e) {
+    //find Index of props.pageItem;
+    if (this.state.outfitItems.indexOf(this.props.pageItem) !== -1) {
+      alert('This item has already been added to the Outfit list')
+      return;
+    }
+    let update = this.state.outfitItems.slice();
+    let index = update.indexOf(1);
+    //organize pageItem
+    if (index !== -1) {
+      update[index] = this.props.pageItem;
+      this.setState({
+        outfitItems: update
+      })
+    } else { //the list is currently full
+      alert('The list full please delete an item from the Outfit List')
+    }
+  }
+
+  deleteOutfitCard(e) {
+    let copy = this.state.outfitItems.slice();
+    //find which elem has the same product.id
+    let update = copy.map( (item, i) => {
+      if (typeof item === 'object') {
+        return 1;
+      } else {
+        return item;
+      }
+
+    })
+    this.setState({
+      outfitItems: update
+    })
+  }
   componentDidUpdate() { }
 
   render() {
@@ -134,14 +170,15 @@ class RelatedItems extends React.Component {
             }}>
         <h1 id="related-items-h1" className={CSSLight.testBanner}>Related Items</h1>
         <div id="related-items-container">
-          {/* {console.log('RELATED ITEMS PROPS', this.props.ids)} */}
           <RelatedCarousel items={this.state.carouselItems}
             pageItem={this.props.pageItem}
             left={this.state.leftButton}
             right={this.state.rightButton}
             goDir={this.whichDir} />
           <OutfitList outfits={this.state.outfitItems}
-                          pageItem={this.props.pageItem} />
+                      pageItem={this.props.pageItem}
+                      addOutfit={this.updateOutfitItems}
+                      deleteCard={this.deleteOutfitCard}/>
         </div>
       </div>
     );
