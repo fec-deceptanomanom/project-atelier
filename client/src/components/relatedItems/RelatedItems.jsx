@@ -147,13 +147,17 @@ class RelatedItems extends React.Component {
     let copy = this.state.outfitItems.slice();
     //find which elem has the same product.id
     let update = copy.map( (item, i) => {
-      if (typeof item === 'object') {
+      let count = 0;
+      if (!!count) {
+        return item;
+      } else if (typeof item === 'object' && item.product.id === e.target.id) {
+        count++;
         return 1;
       } else {
         return item;
       }
-
     })
+    //detect if
     this.setState({
       outfitItems: update
     })
