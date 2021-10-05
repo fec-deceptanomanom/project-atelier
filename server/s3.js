@@ -27,6 +27,21 @@ function uploadFile(file) {
     ContentType: file.mimetype,
   }
 
+  const directory = 'uploads';
+  fs.readdir(directory, (err, files) => {
+    if (err) {
+      console.log(err);
+    } else {
+      for (const file of files) {
+        fs.unlink(directory + '/' + file, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      }
+    }
+  })
+
   return s3.upload(uploadParams).promise()
 }
 

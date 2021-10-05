@@ -78,24 +78,24 @@ class SubmitAnswerForm extends React.Component {
     }
 
     return (
-      <div id="submit-new-answer-form" className={CSSStyle.modal} onClick={this.props.onClick}>
-        <div id="answer-form-modal" className={CSSStyle.modalContent}>
-        <span id="close-answer-form-span" className={CSSStyle.close} onClick={this.props.closeAnswerForm}><i id="close-answer-form" className="far fa-times-circle"></i></span>
+      <div id="submit-new-answer-form" className={[CSSStyle.modal, CSSStyle['answer-form']].join(' ')} onClick={this.props.onClick}>
+        <div id="answer-form-modal" className={CSSStyle['modal-content']}>
+        <span id="close-answer-form-span" className={CSSStyle.close} aria-label="Close" onClick={this.props.closeAnswerForm}><i id="close-answer-form" className="far fa-times-circle"></i></span>
         <h2 id="answer-submission-title">Submit Your Answer</h2>
         <h3 id="answer-submission-subtitle">{this.props.productName} : {currentQuestion}</h3>
-        <p id="answer-submission-instructions" className={CSSStyle.smallText}>Fields marked with * are required</p>
+        <p id="answer-submission-instructions">Fields marked with * are required</p>
         <form id="answer-form" onSubmit={this.props.formSubmit}>
           <label id="answer-email-label" htmlFor="answer-email">* Your Email:</label><br></br>
-          <input id="answer-email" type="email" required="required" maxLength="60" placeholder="Example: jack@email.com"></input><br></br>
+          <input id="answer-email" className={CSSStyle['modal-input']} type="email" required="required" maxLength="60" placeholder="Example: jack@email.com"></input><br></br>
           <p id="answer-email-instructions">For authentication reasons; you will not be emailed.</p><br></br>
           <label id="answer-nickname-label" htmlFor="answer-nickname">* Your Nickname:</label><br></br>
-          <input id="answer-nickname" type="textarea" required="required" maxLength="60" placeholder="Example: jackson11!"></input><br></br>
+          <input id="answer-nickname" className={CSSStyle['modal-input']} type="textarea" required="required" maxLength="60" placeholder="Example: jackson11!"></input><br></br>
           <p id="answer-nickname-instructions">For privacy reasons, do not use your full name or email address.</p><br></br>
           <label id="answer-text-label" htmlFor="answer-text">* Your Answer:</label><br></br>
-          <textarea id="answer-text" required="required" rows="10" maxLength="1000"></textarea><br></br>
+          <textarea id="answer-text" className={CSSStyle['modal-textarea']} required="required" rows="10" maxLength="1000"></textarea><br></br>
           <label id="photo-upload-label" htmlFor="photo-upload">Upload Your Photos:</label><br></br>
           <input id="photo-upload" type="file" multiple style={{display: "none"}} onChange={this.inputFile}></input>
-          <button id="photo-add-new" type="button" onClick={this.addFile}><i className="fas fa-plus"></i> Add a Photo</button>
+          <button id="photo-add-new" type="button" onClick={this.addFile}><i id="photo-add-new-icon" className="fas fa-plus"></i> Add a Photo</button>
           <br></br>
           <div id="photo-preview">
             {(this.state.currentThumbnails || []).map((thumbnail, index) => {
@@ -104,7 +104,7 @@ class SubmitAnswerForm extends React.Component {
             }
           </div>
           <br></br>
-          <input id="answer-form-submit" type="submit"></input>
+          <input id="answer-form-submit" className={CSSStyle['submit-button']} type="submit" aria-label="Submit"></input>
         </form>
         </div>
       </div>

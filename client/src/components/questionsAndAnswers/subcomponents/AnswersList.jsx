@@ -74,25 +74,27 @@ class AnswersList extends React.Component {
   render() {
     const CSSStyle = this.props.CSSStyle;
     let answerList = this.state.displayedAnswers;
-    let showMoreButton = (<button id={"show-more-answers" + this.props.questionID} className={CSSStyle.showMoreAnswers} onClick={this.showMoreAnswers} >Show More Answers</button>);
+    let showMoreButton = (<button id={"show-more-answers" + this.props.questionID} className={CSSStyle['show-more-answers']} onClick={this.showMoreAnswers} >Show More Answers</button>);
     if (this.state.displayedAnswers === this.state.sortedAnswers) {
-      showMoreButton = (<button id={"show-fewer-answers" + this.props.questionID} className={CSSStyle.showMoreAnswers} onClick={this.showFewerAnswers} >Collapse Answers</button>);
+      showMoreButton = (<button id={"show-fewer-answers" + this.props.questionID} className={CSSStyle['show-more-answers']} onClick={this.showFewerAnswers} >Collapse Answers</button>);
     }
 
     if (answerList === null) {
       return (
-        <div id="answers-list" className={CSSStyle.answersList}>
-          <h3>Sorry, no one has answered this question yet.</h3>
+        <div id="answers-list" className={CSSStyle['answers-list']}>
+          <h3 id="no-answers" className={CSSStyle['no-answers']}>Sorry, no one has answered this question yet.</h3>
         </div>
       );
     } else {
       return (
-        <div id="answers-list" className={CSSStyle.answersList}>
+        <div id="answers-list" className={CSSStyle['answers-list']}>
           <h3 id="answer-A">A:</h3>
+          <div id="answers-sublist" className={CSSStyle['answers-sublist']}>
           {answerList.map((answer, index) => {
             //console.log('answer', answer)
             return (<AnswerEntry key={index} answerData={answer} CSSStyle={CSSStyle} />)
           })}
+          </div>
           {showMoreButton}
         </div>
       );

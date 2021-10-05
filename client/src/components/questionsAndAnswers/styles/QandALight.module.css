@@ -1,119 +1,91 @@
-.testBanner {
-  color: purple;
-  background-color: lavender;
-}
+/* START MAIN COPMPONENT */
 
-/* MAIN Q&A WIDGET BOX START */
-
-.QandABox {
-  border: 5px dotted black;
+.q-and-a-box {
+  /* full component div */
+  width: 70%;
+  margin: auto;
+  max-height: 100%;
   padding: 10px;
-  background-color:lavenderblush;
 }
 
-.QuestionFormBTN {
-  color: black;
+.banner {
+  /* h1 main title element */
+  color: #5E5E5E;
+  margin-left: 10px;
+  width: fit-content;
+  font-size: large;
+  padding-top: 10px;
 }
 
-/* MAIN Q&A WIDGET BOX END */
-/* SEARCH BAR START */
+.more-questions {
+  /* div for show more and add new buttons */
+  margin: 10px;
+  background-color: #f8ebde;
+}
 
-.searchBar {
+.more-questions button {
+  /* specifically select the two button elements */
+  color: #5E5E5E;
+  border-color: #5E5E5E;
+  background-color: #f8ebde;
+  margin: 10px;
+  font-size: medium;
+}
+
+.more-questions button:hover {
+  background-color: #2d868b;
+  color: #ffffff;
+}
+
+/* END MAIN COMPONENT
+*****************************
+START SEARCH BAR COMPONENT */
+
+.search-bar {
+  /* full search bar component */
   margin: 5px;
   padding: 5px;
   height: 50px;
-  border: 4px dotted black;
 }
 
-.searchForm {
+.search-bar form {
+  /* full form */
   display: flex;
   flex-direction: row;
 }
 
-.searchBox {
+.search-bar input {
+  /* input field */
   order: 0;
   flex: 2 1 auto;
   padding: 15px;
   font-size: 17px;
   border: none;
   float: left;
+  background-color: #f4e1cd;
 }
 
-.searchButton {
+.search-bar button {
+  /* button */
   float: right;
   padding: 17px;
   height: 50px;
   width: 50px;
-  background: #ddd;
+  background-color: #2d868b;
   border: none;
   cursor: pointer;
 }
 
-.searchBar button:hover {
-  background: #ccc;
+.search-bar button:hover {
+  background: #84D3D7;
 }
 
-/* SEARCH BAR END */
-/* QUESTION LIST START */
-
-.questionsList {
-  border: 4px dotted black;
-  margin: 4px;
-}
-
-.showMoreQuestions{
-  display: none;
-}
-
-/* QUESTION LIST END */
-/* QUESTION ENTRY START */
-
-.questionEntry {
-  border: 3px dotted black;
-  margin: 3px;
-}
-
-.AnswerFormBTN {
-  color: black;
-}
-
-/* QUESTION ENTRY END */
-/* ANSWERS LIST START */
-
-.answersList {
-  border: 2px dotted black;
-  margin: 2px;
-}
-
-.showMoreAnswers{
-  display: none;
-}
-
-/* ANSWERS LIST END */
-/* ANSWERS ENTRIES START */
-
-.answerEntry {
-  border: 1px dotted black;
-  margin: 2px;
-}
-
-.p {
-  background-color: lavender;
-  color: purple;
-}
-
-/* ANSWERS ENTRIES END */
-/* MORE QUESTIONS START */
-
-.moreQuestions {
-  border: 4px dotted black;
-  margin: 4px;
-}
-
-/* MORE QUESTIONS END */
-/* MODAL SUBMISSION FORM START */
+/* END SEARCH BAR COMPONENT
+***************************
+START SHARED MODAL */
 
 .modal {
+  /* shared modal div */
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -126,15 +98,34 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modalContent {
-  background-color: #fefefe;
+.modal-content {
+  /* shared modal content div */
+  background-color: #fbf5ee;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.modal-input {
+  /* small text inputs for modal content */
+}
+
+.modal-textarea {
+  /* large text inputs for modal content */
+  width: 60%;
+}
+
+.modal p {
+  /* the p elements in the modal */
+}
+
+.modal label {
+  /* labels in the modal */
+}
+
 .close {
+  /* shared modal close span */
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -147,11 +138,260 @@
   cursor: pointer;
 }
 
-.photoThumbnail {
-  height: 100px;
+.modal h2{
+  /* modal title */
+  color: #5E5E5E;
 }
 
-.photoRemove {
-  color: red;
+.modal h3{
+  /* modal subtitle */
+  color: #5E5E5E;
+  font-weight: bold;
 }
-/* MODAL SUBMISSION FORM END */
+
+.modal button, .submit-button {
+  /* modal buttons */
+  color: #5E5E5E;
+  border-color: #5E5E5E;
+  background-color: #fbf5ee;
+  margin: 10px;
+  padding: 10px;
+  font-size: medium;
+}
+
+.modal button:hover, .submit-button:hover {
+  background-color: #84D3D7;
+}
+
+/* END SHARED MODAL
+********************************
+START SUBMIT ANSWER COMPONENT */
+
+.answer-form {
+  /* entire submit answer div */
+}
+
+/* END SUBMIT ANSWER COMPONENT
+**********************************
+START PHOTO THUMBNAIL COMPONENT */
+
+.photo-thumbnails {
+  /* photo thumbnails div */
+}
+
+.photo-thumbnail {
+  /* photo thumbnails */
+  height: 100px;
+  max-width: 200px;
+}
+
+.photo-remove {
+  /* icon for removing thumbnails */
+  color: red;
+  z-index: 2;
+}
+
+/* END PHOTO THUMBNAIL COMPONENT
+***********************************
+START SUBMIT QUESTION COMPONENT */
+
+.question-form {
+  /* entire submit question div */
+}
+
+/* END SUBMIT QUESTION COMPONENT
+*********************************
+START QUESTIONS LIST COMPONENT */
+
+.questions-list {
+  /* entire questions list div */
+  margin: 10px;
+  padding: 10px;
+  max-height: 80%;
+  overflow-y: auto;
+  background-color: #f8ebde;
+}
+
+/* END QUESTIONS LIST COMPONENT
+*********************************
+START QUESTION ENTRY COMPONENT */
+
+.question-entry {
+  /* entire question entry div */
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2em 1fr auto;
+  grid-template-rows: auto 1fr 2em;
+  height: fit-content;
+  max-height: 40%;
+}
+
+.question-entry h3 {
+  /* question text */
+  margin: 5px;
+  grid-area: 1 / 1 / 2 / 3;
+  color: #5E5E5E;
+
+}
+
+.question-entry .add-new {
+  /* answer form button */
+  color: #5E5E5E;
+  border-style: hidden;
+  background-color: #f8ebde;
+  font-size: smaller;
+  margin-left: 3px;
+}
+
+.question-entry button:hover {
+  background-color: #84D3D7;
+}
+
+.question-entry .rate-report {
+  grid-area: 1 / 3 / 2 / 4;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* END QUESTION ENTRY COMPONENT
+********************************
+START SHARED RATE REPORT BAR */
+
+.rate-report {
+  /* rate and report div */
+  margin: 5px;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+.small-text {
+  /* small text elements in rate-report */
+  display: inline;
+  padding-left: 2px;
+  font-size: small;
+  color: #5E5E5E;
+}
+
+.rate, .report {
+  /* rate helpful or report unhelpful elements in rate-report */
+  display: inline;
+  color: #5E5E5E;
+}
+
+
+.report:hover, .rate:hover {
+  /* hover */
+  color: #000000;
+}
+
+/* END SHARED RATE-REPORT BAR
+********************************
+START ANSWERS LIST COMPONENT */
+
+.answers-list {
+  /* entire answers list div */
+  box-sizing: border-box;
+  margin: 2px;
+  grid-area: 2 / 1 / 3 / 3;
+  display: grid;
+  grid-template-columns: 2em auto;
+  grid-template-rows: 2em 1fr 2em;
+  overflow: hidden;
+  background-color: #fbf5ee;
+}
+
+.answers-list h3 {
+  /* A */
+  grid-area: 1 / 1 / 2 / 2;
+  color: #5E5E5E;
+}
+
+.show-more-answers {
+  /* show more / fewer button*/
+  display: none;
+  grid-area: 3 / 2 / 4 / 3;
+  width: fit-content;
+  border-style: hidden;
+  background-color: #fbf5ee;
+  color: #5E5E5E;
+}
+
+
+.answers-sublist {
+  box-sizing: border-box;
+  grid-area: 1 / 2 / 3 / 3;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.answers-list .no-answers {
+  /* h3 element for when no answers */
+  grid-area: 1 / 2 / 2 / 3;
+  color: #5E5E5E;
+}
+
+/*  END ANSWERS LIST COMPONENT
+********************************
+START ANSWER ENTRY COMPONENT */
+
+.answer-entry {
+  /* entrie answer entry div */
+  margin: 2px;
+  padding-bottom: 5px;
+  display: grid;
+  grid-template-areas: auto 2em auto;
+  grid-template-columns: 1fr;
+}
+
+.answer-text {
+  /* actual answer text */
+  color: #5E5E5E;
+  font-weight: lighter;
+  grid-area: 1 / 1 / 1 / 1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.answer-photo {
+  /* the little photos for answers, singular */
+  height: 100px;
+  max-width: 200px;
+  display: inline;
+}
+
+.answer-photos-div {
+  /* collection of all answer photos */
+ grid-area: 3 / 1 / 4 / 2;
+ display: inline;
+}
+
+.photo-div {
+  display: inline;
+}
+
+.answer-entry .rate-report {
+  /* includes user info */
+  grid-area: 2 / 1 / 3 / 2;
+  padding-bottom: 10px;;
+}
+
+/* END ANSWER ENTRY COMPONENT
+*****************************
+START PHOTO ZOOM COMPONENT */
+
+.photo-zoom {
+  /* photo zoom picture area modal div */
+  margin: auto;
+}
+
+.zoom-photo {
+  /* actual image */
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  height: fit-content;
+}
+
+/* END PHOTO ZOOM COMPONENT */
