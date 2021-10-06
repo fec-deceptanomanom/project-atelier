@@ -1,9 +1,6 @@
 import React from 'react';
 import style from './ComparisonModal.module.css';
-import _ from 'underscore';
-// need to go off of product/features
-//fabric cut lenses uv protection, frames
-//if feature is null replace with a checkmark
+
 const ComparisonModal = (props) => {
 
   const currentFeatures = props.currentItem.product.features;
