@@ -3,11 +3,8 @@ import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
-import { withClickTracker } from '../../../../lib/interactions.jsx';
-
 const StyleThumbnail = ( props ) => {
   const id = `style-thumbnail-${props.idx}`;
-  console.log(props.isCurrent);
   return (
     <div className={CSSCommon['style-thumbnail-wrapper']}>
       <button
@@ -17,9 +14,11 @@ const StyleThumbnail = ( props ) => {
       >
         {props.style.name}
       </button>
-      <i style={{visibility: props.isCurrent ? 'visible' : 'hidden'}} id={CSSCommon['current-style-checkmark']} className="fas fa-check-circle"></i>
+      <i style={{visibility: props.isCurrent ? 'visible' : 'hidden'}} id={CSSCommon['current-style-checkmark']} className="far fa-check-circle"></i>
     </div>
   );
 }
 
 export default StyleThumbnail;
+
+// <i class="far fa-check-circle"></i>
