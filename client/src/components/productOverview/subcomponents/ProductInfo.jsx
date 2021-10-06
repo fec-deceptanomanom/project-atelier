@@ -1,20 +1,9 @@
 import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
 
+import StarRatings from './StarRatings.jsx';
 import StyleThumbnailGrid from './StyleThumbnailGrid.jsx';
 import ProductSelections from './ProductSelections.jsx';
-
-const parentComponent = "Product Overview";
-
-const getRoundedRating = function(ratings) {
-  let ratingSum = 0;
-  let ratingQuantity = 0;
-  for (const [key, value] of Object.entries(ratings)) {
-    ratingSum += (Number(key) * Number(value));
-    ratingQuantity += Number(value);
-  }
-  return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
-}
 
 let ProductPrice = (props) => {
   const id = 'productinfo-price';
@@ -34,7 +23,7 @@ const ProductInfo = ( props ) => {
     return (
       <div id={'product-overview-info'} className={CSSCommon['product-overview-info']}>
         <div id={'product-overview-info-top'} className={CSSCommon['product-overview-info-top']}>
-          <h5 id={'productinfo-star-rating'}>{`Stars: ${getRoundedRating(props.info.reviews.ratings)}`}</h5>
+          <StarRatings ratings={props.info.reviews.ratings}/>
           <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
           <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
           <ProductPrice currentStyle={props.currentStyle}/>

@@ -6,7 +6,6 @@ import CSSDark from '../styles/productOverviewDark.module.css';
 import StyleThumbnail from './StyleThumbnail.jsx';
 
 const StyleThumbnailGrid = ( props ) => {
-  console.log(props.currentStyle);
   return (
     <div id={'style-thumbnail-grid'} className={CSSCommon['style-thumbnail-grid']}>
       {props.styles.results ? props.styles.results.map((style, idx) => {
