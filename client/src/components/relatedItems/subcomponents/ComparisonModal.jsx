@@ -24,16 +24,9 @@ const ComparisonModal = (props) => {
     }
   });
 
-  // const numOfRows = uniqueFeats.length;
-  console.log('clickedFeatures', clickedFeatures);
-  console.log('currentFeatures', currentFeatures);
-  //build an object that holds all table data
-
-  console.log('uniqueFeats', (uniqueFeats));
   const tableData = uniqueFeats.map( (feat, i) => {
     let clickedFeat = clickedFeatures.filter( obj => obj.feature === uniqueFeats[i] )
     let currentFeat = currentFeatures.filter( obj => obj.feature === uniqueFeats[i] )
-    console.log('line 36 clickedFeat is ', clickedFeat);
 
     return ({
         a: clickedFeat[0] ? clickedFeat[0].value : '',
@@ -41,14 +34,12 @@ const ComparisonModal = (props) => {
         b: currentFeat[0] ? currentFeat[0].value : ''
       })
   })
-  console.log('tableDATA is', tableData)
-  // iterate over features and build rows
+  // console.log('tableDATA is', tableData)
   const rows = tableData.map( (obj, ind) => {
     let trId = 'comparison-modal-table-row-' + ind;
     let td1Id = 'comparison-modal-table-td1' + ind;
     let th1Id = 'comparison-modal-table-th-' + ind;
     let td2Id = 'comparison-modal-table-td2-' + ind;
-
 
     return (<tr id={trId} key={ind}>
               <td id={td1Id}>{obj.a}</td>
