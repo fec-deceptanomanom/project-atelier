@@ -4,13 +4,14 @@
   /* full component div */
   width: 70%;
   margin: auto;
+  margin-bottom: 20px;
   max-height: 100%;
   padding: 10px;
 }
 
 .banner {
   /* h1 main title element */
-  color: #5E5E5E;
+  color: #ffffff;
   margin-left: 10px;
   width: fit-content;
   font-size: large;
@@ -20,16 +21,17 @@
 .more-questions {
   /* div for show more and add new buttons */
   margin: 10px;
-  background-color: #f8ebde;
 }
 
 .more-questions button {
   /* specifically select the two button elements */
-  color: #5E5E5E;
-  border-color: #5E5E5E;
-  background-color: #f8ebde;
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: #dfa568;
   margin: 10px;
   font-size: medium;
+  padding: 10px;
+  font-weight: bold;
 }
 
 .more-questions button:hover {
@@ -62,7 +64,8 @@ START SEARCH BAR COMPONENT */
   font-size: 17px;
   border: none;
   float: left;
-  background-color: #f4e1cd;
+  background-color: #dfa568;
+  color: #ffffff;
 }
 
 .search-bar button {
@@ -72,6 +75,7 @@ START SEARCH BAR COMPONENT */
   height: 50px;
   width: 50px;
   background-color: #2d868b;
+  color: #ffffff;
   border: none;
   cursor: pointer;
 }
@@ -100,7 +104,7 @@ START SHARED MODAL */
 
 .modal-content {
   /* shared modal content div */
-  background-color: #fbf5ee;
+  background-color: #e6b989;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
@@ -126,7 +130,7 @@ START SHARED MODAL */
 
 .close {
   /* shared modal close span */
-  color: #aaa;
+  color: #ffffff;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -140,20 +144,20 @@ START SHARED MODAL */
 
 .modal h2{
   /* modal title */
-  color: #5E5E5E;
+  color: #000000;
 }
 
 .modal h3{
   /* modal subtitle */
-  color: #5E5E5E;
+  color: #000000 ;
   font-weight: bold;
 }
 
 .modal button, .submit-button {
   /* modal buttons */
-  color: #5E5E5E;
-  border-color: #5E5E5E;
-  background-color: #fbf5ee;
+  color: #000000;
+  border-color: #000000;
+  background-color: #e6b989;
   margin: 10px;
   padding: 10px;
   font-size: medium;
@@ -176,19 +180,35 @@ START SUBMIT ANSWER COMPONENT */
 START PHOTO THUMBNAIL COMPONENT */
 
 .photo-thumbnails {
-  /* photo thumbnails div */
+  /* image and remove icon div */
+  height: 100px;
+  width: fit-content;
+  max-width: 200px;
+  padding: 0px;
+  position: relative;
+  display: inline;
 }
 
 .photo-thumbnail {
-  /* photo thumbnails */
+  /* actual image */
   height: 100px;
+  width: fit-content;
   max-width: 200px;
+  margin: 0px;
 }
 
 .photo-remove {
   /* icon for removing thumbnails */
-  color: red;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color:black;
   z-index: 2;
+  float:right;
+}
+
+.photo-remove:hover {
+  color: red;
 }
 
 /* END PHOTO THUMBNAIL COMPONENT
@@ -209,7 +229,7 @@ START QUESTIONS LIST COMPONENT */
   padding: 10px;
   max-height: 80%;
   overflow-y: auto;
-  background-color: #f8ebde;
+  background-color: #e6b989;
 }
 
 /* END QUESTIONS LIST COMPONENT
@@ -231,7 +251,7 @@ START QUESTION ENTRY COMPONENT */
   /* question text */
   margin: 5px;
   grid-area: 1 / 1 / 2 / 3;
-  color: #5E5E5E;
+  color: #ffffff;
 
 }
 
@@ -239,7 +259,7 @@ START QUESTION ENTRY COMPONENT */
   /* answer form button */
   color: #5E5E5E;
   border-style: hidden;
-  background-color: #f8ebde;
+  background-color: #e6b989;
   font-size: smaller;
   margin-left: 3px;
 }
@@ -277,6 +297,7 @@ START SHARED RATE REPORT BAR */
   /* rate helpful or report unhelpful elements in rate-report */
   display: inline;
   color: #5E5E5E;
+  text-decoration: underline;
 }
 
 
@@ -298,13 +319,13 @@ START ANSWERS LIST COMPONENT */
   grid-template-columns: 2em auto;
   grid-template-rows: 2em 1fr 2em;
   overflow: hidden;
-  background-color: #fbf5ee;
+  background-color: #edcdab;
 }
 
 .answers-list h3 {
   /* A */
   grid-area: 1 / 1 / 2 / 2;
-  color: #5E5E5E;
+  color: #ffffff;
 }
 
 .show-more-answers {
@@ -313,8 +334,8 @@ START ANSWERS LIST COMPONENT */
   grid-area: 3 / 2 / 4 / 3;
   width: fit-content;
   border-style: hidden;
-  background-color: #fbf5ee;
-  color: #5E5E5E;
+  background-color: #edcdab;
+  color: #ffffff;
 }
 
 
@@ -328,7 +349,7 @@ START ANSWERS LIST COMPONENT */
 .answers-list .no-answers {
   /* h3 element for when no answers */
   grid-area: 1 / 2 / 2 / 3;
-  color: #5E5E5E;
+  color: #ffffff;
 }
 
 /*  END ANSWERS LIST COMPONENT

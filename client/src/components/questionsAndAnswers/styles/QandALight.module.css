@@ -4,6 +4,7 @@
   /* full component div */
   width: 70%;
   margin: auto;
+  margin-bottom: 20px;
   max-height: 100%;
   padding: 10px;
 }
@@ -20,7 +21,6 @@
 .more-questions {
   /* div for show more and add new buttons */
   margin: 10px;
-  background-color: #f8ebde;
 }
 
 .more-questions button {
@@ -30,6 +30,8 @@
   background-color: #f8ebde;
   margin: 10px;
   font-size: medium;
+  padding: 10px;
+  font-weight: bold;
 }
 
 .more-questions button:hover {
@@ -171,24 +173,41 @@ START SUBMIT ANSWER COMPONENT */
   /* entire submit answer div */
 }
 
+
 /* END SUBMIT ANSWER COMPONENT
 **********************************
 START PHOTO THUMBNAIL COMPONENT */
 
 .photo-thumbnails {
-  /* photo thumbnails div */
+  /* image and remove icon div */
+  height: 100px;
+  width: fit-content;
+  max-width: 200px;
+  padding: 0px;
+  position: relative;
+  display: inline;
 }
 
 .photo-thumbnail {
-  /* photo thumbnails */
+  /* actual image */
   height: 100px;
+  width: fit-content;
   max-width: 200px;
+  margin: 0px;
 }
 
 .photo-remove {
   /* icon for removing thumbnails */
-  color: red;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color:black;
   z-index: 2;
+  float:right;
+}
+
+.photo-remove:hover {
+  color: red;
 }
 
 /* END PHOTO THUMBNAIL COMPONENT
@@ -277,6 +296,7 @@ START SHARED RATE REPORT BAR */
   /* rate helpful or report unhelpful elements in rate-report */
   display: inline;
   color: #5E5E5E;
+  text-decoration: underline;
 }
 
 
