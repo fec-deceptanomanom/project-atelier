@@ -3,6 +3,9 @@ import CSSCommon from '../styles/productOverview.module.css';
 import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
+// For the reviews link
+import RatingsAndReviews_CSSLight from '../../ratingsAndReviews/styles/ratingsAndReviewsLight.modules.css';
+
 const getRoundedRating = function(ratings) {
   let ratingSum = 0;
   let ratingQuantity = 0;
@@ -14,16 +17,11 @@ const getRoundedRating = function(ratings) {
 }
 
 const StarRatings = ( props ) => {
+  console.log('In star count...', props.reviewCount);
   const id = `style-thumbnail-${props.idx}`;
   let ratingsCount = Object.keys(props.ratings).length;
   const roundedRating = getRoundedRating(props.ratings);
   return (
-    // <h5
-    //   style={{visibility: ratingsCount > 0 ? 'visible' : 'hidden'}}
-    //   id={'productinfo-star-rating'}
-    // >
-    //   {`Stars: ${roundedRating}`}
-    // </h5>
     <div id={CSSCommon['rating-stars']}>
       {[1, 2, 3, 4, 5].map((value, idx) => {
         if (roundedRating >= value) {
@@ -34,6 +32,7 @@ const StarRatings = ( props ) => {
           return (<i key={idx} className="far fa-star"></i>)
         }
       })}
+      <a id={CSSCommon['reviews-link']} href={"#" + RatingsAndReviews_CSSLight['ratingsAndReviews']}>See all {props.reviewCount} reviews</a>
     </div>
   );
 }
