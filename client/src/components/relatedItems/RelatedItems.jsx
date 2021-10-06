@@ -52,7 +52,7 @@ class RelatedItems extends React.Component {
             reviews: res.reviewInfo
           };
         });
-        if (results.length < 4) {
+        if (results.length <= 4) {
           this.setState({
             relatedItems: relateds,
             carouselItems: relateds,
