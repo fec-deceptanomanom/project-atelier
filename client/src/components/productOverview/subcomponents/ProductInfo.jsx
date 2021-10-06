@@ -23,7 +23,7 @@ const ProductInfo = ( props ) => {
     return (
       <div id={'product-overview-info'} className={CSSCommon['product-overview-info']}>
         <div id={'product-overview-info-top'} className={CSSCommon['product-overview-info-top']}>
-          <StarRatings ratings={props.info.reviews.ratings}/>
+          <StarRatings ratings={props.info.reviews.ratings} reviewCount={props.info.reviewCount}/>
           <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
           <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
           <ProductPrice currentStyle={props.currentStyle}/>

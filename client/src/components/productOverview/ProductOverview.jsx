@@ -3,8 +3,6 @@ import CSSCommon from './styles/productOverview.module.css';
 import CSSLight from './styles/productOverviewLight.module.css';
 import CSSDark from './styles/productOverviewDark.module.css';
 
-import { withClickTracker } from '../../../lib/interactions.jsx';
-
 import ProductImage from './subcomponents/ProductImage.jsx';
 import ProductInfo from './subcomponents/ProductInfo.jsx';
 import ProductDescription from './subcomponents/ProductDescription.jsx';
@@ -55,7 +53,6 @@ class ProductOverview extends React.Component {
         <div
           id={'product-overview-parent-space'}
           className={CSSCommon['product-overview']}
-          onClick={(e) => {this.props.clickTracker(e.target.attributes.id.value, componentName)}}
         >
           <div id={'product-overview-top'} className={CSSCommon['product-overview-top']} >
             <ProductImage info={this.props.data} currentStyle={this.state.currentStyle}/>
@@ -76,4 +73,4 @@ class ProductOverview extends React.Component {
   }
 }
 
-export default withClickTracker(ProductOverview);
+export default ProductOverview;
