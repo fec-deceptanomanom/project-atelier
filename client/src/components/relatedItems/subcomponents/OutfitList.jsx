@@ -26,7 +26,7 @@ class Outfitlist extends React.Component {
 
     return (
       <div id='outfit-list' className={CSSLight.outfitCarousel}>
-        <h2 id='outfit-list-h2'>Outfit Carousel</h2>
+        <h2 id='outfit-list-h2'>Outfit List</h2>
         <div id='outfit-scroller' className={CSSLight.scroller}>
             <AddToOutfit pageItem={this.props.pageItem} handleClick={this.props.addOutfit}/>
             {outfits}
