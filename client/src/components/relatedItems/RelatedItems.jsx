@@ -138,6 +138,7 @@ class RelatedItems extends React.Component {
       this.setState({
         outfitItems: update
       })
+      this.updateLocalStorage(update);
     } else { //the list is currently full
       alert('The list full please delete an item from the Outfit List')
     }
@@ -157,11 +158,24 @@ class RelatedItems extends React.Component {
         return item;
       }
     })
-    //detect if
     this.setState({
       outfitItems: update
     })
+
+    this.updateLocalStorage(update);
   }
+
+  updateLocalStorage(update) {
+    let ids = update.map(item => {
+      if (item.product) {
+        return item.product.id
+      }
+      return item;
+    });
+    window.localStorage.clear();
+    window.localStorage.setItem('0, 1, 2', JSON.stringify(ids));
+  }
+
   componentDidUpdate() { }
 
   render() {
