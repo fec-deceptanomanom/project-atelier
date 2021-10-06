@@ -267,7 +267,7 @@ class QuestionsAndAnswers extends React.Component {
     }
     const component = 'Questions and Answers';
     let showMoreButton;
-    if (this.state.allQuestions !== this.state.displayedQuestions) {
+    if (this.state.allQuestions.length !== this.state.displayedQuestions.length) {
       showMoreButton = (<button id="show-more-questions" onClick={this.showMoreQuestions}>More Answered Questions</button>);
     }
    // console.log('questions', this.state.allQuestions, this.state.displayedQuestions);
