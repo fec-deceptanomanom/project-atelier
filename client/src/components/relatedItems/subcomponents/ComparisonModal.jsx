@@ -8,27 +8,52 @@ const ComparisonModal = (props) => {
 
   const currentFeatures = props.currentItem.product.features;
   const clickedFeatures = props.clickedItem.product.features;
-  const featKeys = Object.keys(currentFeatures);
-  featKeys.concat(Object.keys(clickedFeatures));
-  featKeys = _.uniq(featKeys); //should have array of each feature for the table rows
-  console.log(featKeys)
-  const numOfRows = featKeys.length;
+  const bothFeaturesList = currentFeatures.concat(clickedFeatures);
+  const allFeats = bothFeaturesList.map( (obj) => obj.feature );
+  let uniqueFeats = [...new Set(allFeats)];
+  uniqueFeats = Array.from(uniqueFeats);
 
-  //iterate over features and build rows
-  const rows = featKeys.map( (feat, ind) => {
+  currentFeatures.forEach( obj => {
+    if (obj.value === null) {
+      obj.value = (<i className="fa fa-check-square-o" aria-hidden="true"></i>);
+    }
+  });
+  clickedFeatures.forEach( obj => {
+    if (obj.value === null) {
+      obj.value = (<i className="fa fa-check-square-o" aria-hidden="true"></i>);
+    }
+  });
+
+  // const numOfRows = uniqueFeats.length;
+  console.log('clickedFeatures', clickedFeatures);
+  console.log('currentFeatures', currentFeatures);
+  //build an object that holds all table data
+
+  console.log('uniqueFeats', (uniqueFeats));
+  const tableData = uniqueFeats.map( (feat, i) => {
+    let clickedFeat = clickedFeatures.filter( obj => obj.feature === uniqueFeats[i] )
+    let currentFeat = currentFeatures.filter( obj => obj.feature === uniqueFeats[i] )
+    console.log('line 36 clickedFeat is ', clickedFeat);
+
+    return ({
+        a: clickedFeat[0] ? clickedFeat[0].value : '',
+        f: uniqueFeats[i],
+        b: currentFeat[0] ? currentFeat[0].value : ''
+      })
+  })
+  console.log('tableDATA is', tableData)
+  // iterate over features and build rows
+  const rows = tableData.map( (obj, ind) => {
     let trId = 'comparison-modal-table-row-' + ind;
-    let tdId = 'comparison-modal-table-td1' + ind;
+    let td1Id = 'comparison-modal-table-td1' + ind;
     let th1Id = 'comparison-modal-table-th-' + ind;
     let td2Id = 'comparison-modal-table-td2-' + ind;
-    if (clickedFeatures[feat] === null) {
-      clickedFeatures[feat] = 'Xmark';
-    }
+
 
     return (<tr id={trId} key={ind}>
-              <td id={th1Id}>{clickedFeatures[feat]}</td>
-              <th id={tdId} scope="row">{feat}</th>
-              {console.log('ind is ', ind)}
-              <td id={th2Id}>{currentFeatures[feat]}</td>
+              <td id={td1Id}>{obj.a}</td>
+              <th id={th1Id} scope="row">{obj.f}</th>
+              <td id={td2Id}>{obj.b}</td>
             </tr>);
   });
 
