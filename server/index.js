@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const secrets = require('../.secret.json');
@@ -10,6 +11,7 @@ const { uploadFile } = require('./s3');
 const app = express();
 const port = 3000;
 
+app.use(compression())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 // Set the static served page for landing page
