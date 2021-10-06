@@ -64,7 +64,6 @@ class RelatedCarousel extends React.Component {
       return (
         <div id='related-card-container' className={CSSLight.card} key={i}>
           <RelatedCard info={item}
-
                        stars={this.getRoundedRating}
                        toggleModal={this.toggleModal}/>
         </div>
