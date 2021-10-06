@@ -1,28 +1,59 @@
 import React from 'react';
 import style from './ComparisonModal.module.css';
-
+import _ from 'underscore';
+// need to go off of product/features
+//fabric cut lenses uv protection, frames
+//if feature is null replace with a checkmark
 const ComparisonModal = (props) => {
-  const clickedStars = props.clickedItem.reviews.ratings;
-  const currentStars = props.currentItem.reviews.ratings;
-  const clickedRating = props.stars(clickedStars);
-  const currentRating = props.stars(currentStars);
 
-  const current = {
-    name: props.currentItem.product.name,
-    category: props.currentItem.product.category,
-    price: props.currentItem.product.default_price,
-    currentRating
-  };
+  const currentFeatures = props.currentItem.product.features;
+  const clickedFeatures = props.clickedItem.product.features;
+  const bothFeaturesList = currentFeatures.concat(clickedFeatures);
+  const allFeats = bothFeaturesList.map( (obj) => obj.feature );
+  let uniqueFeats = [...new Set(allFeats)];
+  uniqueFeats = Array.from(uniqueFeats);
 
-  const clicked = {
-    name: props.clickedItem.product.name,
-    category: props.clickedItem.product.category,
-    price: props.clickedItem.product.default_price,
-    clickedRating
-  };
+  currentFeatures.forEach( obj => {
+    if (obj.value === null) {
+      obj.value = (<i className="fa fa-check-square-o" aria-hidden="true"></i>);
+    }
+  });
+  clickedFeatures.forEach( obj => {
+    if (obj.value === null) {
+      obj.value = (<i className="fa fa-check-square-o" aria-hidden="true"></i>);
+    }
+  });
+
+  const tableData = uniqueFeats.map( (feat, i) => {
+    let clickedFeat = clickedFeatures.filter( obj => obj.feature === uniqueFeats[i] )
+    let currentFeat = currentFeatures.filter( obj => obj.feature === uniqueFeats[i] )
+
+    return ({
+        a: clickedFeat[0] ? clickedFeat[0].value : '',
+        f: uniqueFeats[i],
+        b: currentFeat[0] ? currentFeat[0].value : ''
+      })
+  })
+  // console.log('tableDATA is', tableData)
+  const rows = tableData.map( (obj, ind) => {
+    let trId = 'comparison-modal-table-row-' + ind;
+    let td1Id = 'comparison-modal-table-td1' + ind;
+    let th1Id = 'comparison-modal-table-th-' + ind;
+    let td2Id = 'comparison-modal-table-td2-' + ind;
+
+    return (<tr id={trId} key={ind}>
+              <td id={td1Id}>{obj.a}</td>
+              <th id={th1Id} scope="row">{obj.f}</th>
+              <td id={td2Id}>{obj.b}</td>
+            </tr>);
+  });
+
+  const tableBody = (
+    <tbody id='comparison-modal-table-body'>{rows}</tbody>
+  )
 
   return (
-    <div id='comparison-modal' className={style.modal}>
+  <div id='comparison-modal' className={style.modal}>
       <div id='comparison-modal-content' className={style.modalContent}>
         <i id='comparison-modal-close'className="fa fa-times-circle fa=lg"
           aria-hidden="true"
@@ -38,33 +69,12 @@ const ComparisonModal = (props) => {
             </colgroup>
             <thead id='comparison-modal-table-head'>
             <tr id='comparison-modal-table-row-labels' className={style.labels}>
-              <th id='comparison-modal-table-th-current' scope="col">Current Product</th>
+              <th id='comparison-modal-table-th-current' scope="col">{props.currentItem.product.name}</th>
               <th id='comparison-modal-table-th-chars' scope="col">Characteristic</th>
-              <th id='comparison-modal-table-th-compare' scope="col">Compared Product</th>
+              <th id='comparison-modal-table-th-compare' scope="col">{props.clickedItem.product.name}</th>
             </tr>
             </thead>
-            <tbody id='comparison-modal-table-body'>
-              <tr id='comparison-modal-table-row-name'>
-                <td id='comparison-modal-table-td1name'>{current.name}</td>
-                <th id='comparison-modal-table-th-name' scope="row">Name</th>
-                <td id='comparison-modal-table-td2name'>{clicked.name}</td>
-              </tr>
-              <tr id='comparison-modal-table-row-category'>
-                <td id='comparison-modal-table-td1category'>{current.category}</td>
-                <th id='comparison-modal-table-th-category' scope="row">Dept</th>
-                <td id='comparison-modal-table-td2category'>{clicked.category}</td>
-              </tr>
-              <tr id='comparison-modal-table-row-price'>
-                <td id='comparison-modal-table-td1price'>${current.price}</td>
-                <th id='comparison-modal-table-th-price' scope="row">Price</th>
-                <td id='comparison-modal-table-td2price'>${clicked.price}</td>
-              </tr>
-              <tr id='comparison-modal-table-row-rating'>
-                <td id='comparison-modal-table-td1rating'>{currentRating}</td>
-                <th id='comparison-modal-table-th-price' scope="row">Rating</th>
-                <td id='comparison-modal-table-td2rating'>{clickedRating}</td>
-              </tr>
-            </tbody>
+            {tableBody}
           </table>
         </div>
       </div>
