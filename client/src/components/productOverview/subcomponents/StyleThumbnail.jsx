@@ -4,11 +4,10 @@ import CSSLight from '../styles/productOverviewLight.module.css';
 import CSSDark from '../styles/productOverviewDark.module.css';
 
 const StyleThumbnail = ( props ) => {
-  const id = `style-thumbnail-${props.idx}`;
   return (
-    <div className={CSSCommon['style-thumbnail-wrapper']}>
+    <div id={'style-thumbnail-wrapper'} className={CSSCommon['style-thumbnail-wrapper']}>
       <button
-        id={id}
+        id={`style-thumbnail-${props.idx}`}
         className={CSSCommon['style-thumbnail']}
         onClick={() => {props.onStyleClick(props.style)}}
       >
