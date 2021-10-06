@@ -14,7 +14,8 @@ class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStyle: null
+      currentStyle: null,
+      imageExpanded: false
     };
     this.setDefaultStyle = this.setDefaultStyle.bind(this);
   }
@@ -27,7 +28,15 @@ class ProductOverview extends React.Component {
         currentStyle: defaultStyle
       });
       this.setNewStyle = this.setNewStyle.bind(this);
+      this.toggleExpandImage = this.toggleExpandImage.bind(this);
     }
+  }
+
+  toggleExpandImage() {
+    this.setState({
+      ...this.state,
+      imageExpanded: !this.state.imageExpanded
+    });
   }
 
   setNewStyle(style) {
@@ -55,8 +64,8 @@ class ProductOverview extends React.Component {
           className={CSSCommon['product-overview']}
         >
           <div id={'product-overview-top'} className={CSSCommon['product-overview-top']} >
-            <ProductImage info={this.props.data} currentStyle={this.state.currentStyle}/>
-            <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle}/>
+            <ProductImage info={this.props.data} currentStyle={this.state.currentStyle} toggleExpandImage={this.toggleExpandImage}/>
+            <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle} imageExpanded={this.state.imageExpanded}/>
           </div>
           <div id={'product-overview-bottom'} className={CSSCommon['product-overview-bottom']}>
             <ProductDescription info={this.props.data}/>

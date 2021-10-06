@@ -48,7 +48,6 @@ class ProductImage extends React.Component {
   }
 
   render() {
-    console.log(this.state.numberOfPhotos);
     if (this.props.currentStyle) {
       let imageElement;
       if (this.state.currentPhoto && this.state.currentPhoto.url !== null) {
@@ -70,7 +69,12 @@ class ProductImage extends React.Component {
             <i className="fas fa-chevron-left"></i>
           </button>
 
-          <ImageCarousel images={this.props.currentStyle.photos} setImage={this.setImage} currentStyleId={this.props.currentStyle.style_id}/>
+          <ImageCarousel
+            images={this.props.currentStyle.photos}
+            setImage={this.setImage}
+            currentStyleId={this.props.currentStyle.style_id}
+          />
+
           {imageElement}
 
           <button
@@ -79,6 +83,14 @@ class ProductImage extends React.Component {
             onClick={this.changeToRightImage}
           >
             <i className="fas fa-chevron-right"></i>
+          </button>
+
+          <button
+            id={'image-expand'}
+            className={CSSCommon['img-expand-btn']}
+            onClick={this.props.toggleExpandImage}
+          >
+            <i className="fas fa-expand"></i>
           </button>
         </div>
       );

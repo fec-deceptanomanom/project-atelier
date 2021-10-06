@@ -62,6 +62,15 @@
   object-fit: cover;
 }
 
+.product-overview-image button {
+  border: none;
+  background-color: transparent;
+}
+
+.product-overview-image button i {
+  cursor: pointer;
+}
+
 .img-shift-left-arrow {
   position: absolute;
   left: 5%;
@@ -72,6 +81,12 @@
   position: absolute;
   right: 5%;
   top: 50%;
+}
+
+.img-expand-btn {
+  position: absolute;
+  top: 5%;
+  right: 5%;
 }
 
 #img-carousel {
