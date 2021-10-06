@@ -46,7 +46,7 @@ class ProductImage extends React.Component {
           onClick={this.props.onClick}
           id={'product-overview-image-space'}
         >
-          <ImageCarousel images={this.props.currentStyle.photos} setImage={this.setImage}/>
+          <ImageCarousel images={this.props.currentStyle.photos} setImage={this.setImage} currentStyleId={this.props.currentStyle.style_id}/>
           {imageElement}
         </div>
       );
