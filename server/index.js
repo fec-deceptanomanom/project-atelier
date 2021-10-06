@@ -139,9 +139,9 @@ app.post('/questions', upload.array('files'), (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    product_id: req.body.productID,
+    product_id: parseInt(req.body.productID),
   };
-  console.log('question data', questionData);
+  //console.log('question data', questionData);
   // POST request to API -> destination /qa/questions
   axios.post(API_URL + '/qa/questions', questionData)
     .then((response) => {
@@ -160,7 +160,7 @@ app.post('/questions', upload.array('files'), (req, res) => {
 
 app.post('/answers', upload.array('files'), (req, res) => {
   console.log('RECIEVED ANSWER POST REQUEST', req.body);
-  console.log('FILES', req.files)
+  //console.log('FILES', req.files)
   let photoUploads = [];
   // send photo files to AWS CloudFront and retrieve URLs for them
   for (let i = 0; i < req.files.length; i++) {

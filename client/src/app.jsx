@@ -83,14 +83,18 @@ class App extends React.Component {
           </label>
           <h1 id="top-banner" className={CSSStyle.testBanner}>{bannerText}</h1>
           </div>
-          <ProductOverview data={{product: this.state.productInfo, styles: this.state.styleInfo, reviews: this.state.reviewInfo}}/>
+          <ProductOverview data={{
+            product: this.state.productInfo,
+            styles: this.state.styleInfo,
+            reviews: this.state.reviewInfo,
+            reviewCount: this.state.reviews.results ? this.state.reviews.results.length : null}}/>
           <RelatedItems pageItem={{
                           product: this.state.productInfo,
                           styles: this.state.styleInfo,
                           reviews: this.state.reviewInfo
                         }}
                         ids={this.state.relatedIDs}/>
-          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} productName={this.state.productInfo.name} />
+          <QuestionsAndAnswers darkmode={this.state.darkmode} questionsList={this.state.questionsList} productName={this.state.productInfo.name} productID={this.state.productInfo.id} />
           <RatingsAndReviews reviewList={this.state.reviews} reviewsInfo={this.state.reviewInfo} />
         </div>
       );

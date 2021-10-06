@@ -9,7 +9,13 @@ const StyleThumbnailGrid = ( props ) => {
   return (
     <div id={'style-thumbnail-grid'} className={CSSCommon['style-thumbnail-grid']}>
       {props.styles.results ? props.styles.results.map((style, idx) => {
-        return <StyleThumbnail style={style} onStyleClick={props.onStyleClick} key={idx} idx={idx}/>
+        return <StyleThumbnail
+          style={style}
+          onStyleClick={props.onStyleClick}
+          key={idx}
+          idx={idx}
+          isCurrent={props.currentStyle.style_id === style.style_id}
+        />
       }) : <></>}
     </div>
   );

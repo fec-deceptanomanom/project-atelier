@@ -138,6 +138,7 @@ class RelatedItems extends React.Component {
       this.setState({
         outfitItems: update
       })
+      this.updateLocalStorage(update);
     } else { //the list is currently full
       alert('The list full please delete an item from the Outfit List')
     }
@@ -147,17 +148,34 @@ class RelatedItems extends React.Component {
     let copy = this.state.outfitItems.slice();
     //find which elem has the same product.id
     let update = copy.map( (item, i) => {
-      if (typeof item === 'object') {
+      let count = 0;
+      if (!!count) {
+        return item;
+      } else if (typeof item === 'object' && item.product.id === e.target.id) {
+        count++;
         return 1;
       } else {
         return item;
       }
-
     })
     this.setState({
       outfitItems: update
     })
+
+    this.updateLocalStorage(update);
   }
+
+  updateLocalStorage(update) {
+    let ids = update.map(item => {
+      if (item.product) {
+        return item.product.id
+      }
+      return item;
+    });
+    window.localStorage.clear();
+    window.localStorage.setItem('0, 1, 2', JSON.stringify(ids));
+  }
+
   componentDidUpdate() { }
 
   render() {
