@@ -377,6 +377,7 @@ START ANSWER ENTRY COMPONENT */
 .answer-photo {
   /* the little photos for answers, singular */
   height: 100px;
+  width: auto;
   max-width: 200px;
   display: inline;
 }

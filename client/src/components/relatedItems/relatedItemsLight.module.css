@@ -69,6 +69,8 @@
 }
 
 .thumbnail {
+  height: auto;
+  width: auto;
   min-height: 50%;
   min-width: 60%;
   max-width: 75%;
