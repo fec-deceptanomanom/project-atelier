@@ -25,9 +25,26 @@ class RelatedCard extends React.Component {
     return photo.thumbnail_url;
   }
 
+  priceIs(defaultItem) {
+    let originalPrice = defaultItem.original_price || 'ERROR Price not Found';
+    let onSale = !!defaultItem.sale_price;
+    let price;
+    if (onSale) {
+      price = <div>
+                <strike>{'$' + originalPrice}</strike> {'$' + defaultItem.sale_price}
+              </div>;
+    } else {
+      price = '$' + originalPrice;
+    }
+    return price;
+  }
   render() {
     const defaultItem = this.findDefaultResult(this.props.info.style.results);
+    console.log('default', defaultItem)
+
     const thumbnail = this.findThumbnail(defaultItem);
+    const price = this.priceIs(defaultItem);
+    console.log('price', price);
     const btnID = this.props.info.product.id;
     const starButton = (
       <div id='related-card-star-container'className={CSSLight.starContainer}>
@@ -40,6 +57,7 @@ class RelatedCard extends React.Component {
         </p>
       </div>
     );
+    // const price = {onSale} ? (<strike> {originalPrice} </strike> {defaultItem.sale_price}) : {originalPrice};
     const product = this.props.info.product;
     const ratings = this.props.info.reviews.ratings;
 
@@ -52,7 +70,7 @@ class RelatedCard extends React.Component {
         <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
 
         <ul id='related-card-list'>
-          <li id='related-card-price'>Price: {product.default_price}</li>
+          <li id='related-card-price'>Only! {price}</li>
           <li id='related-card-stars'>Stars: {this.props.stars(ratings)}</li>
         </ul>
       </div>
