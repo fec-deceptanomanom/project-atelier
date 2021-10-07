@@ -17,7 +17,6 @@ const getRoundedRating = function(ratings) {
 }
 
 const StarRatings = ( props ) => {
-  console.log('In star count...', props.reviewCount);
   const id = `style-thumbnail-${props.idx}`;
   let ratingsCount = Object.keys(props.ratings).length;
   const roundedRating = getRoundedRating(props.ratings);
