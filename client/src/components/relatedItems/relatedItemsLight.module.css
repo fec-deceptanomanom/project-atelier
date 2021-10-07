@@ -76,6 +76,14 @@
   margin: .2em;
 }
 
+.price {
+  align-content: right;
+  margin: .2em;
+}
+
+.stars {
+  margin: .2em;
+}
 
 .outfitCarousel {
   border: 2px dashed rgba(224, 88, 88, 0.507);
