@@ -63,13 +63,16 @@ class RelatedCard extends React.Component {
 
     return (
       <div id='related-card' className={CSSLight.relatedCard}>
-        <p id='related-card-name' className={CSSLight.name}>{product.name}</p>
-        <p id='related-card-categoryKey' className={CSSLight.category}>Department:    </p>
-        <p id='related-card-categoryVaue' className={CSSLight.categoryValue}>{product.category}</p>
+        <a id='go-to-page' href={'http://localhost:3000/p/' + product.id}>
           {starButton}
-        <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
-        <div id='related-card-price' className={CSSLight.price}>Only! {price}</div>
-        <div id='related-card-stars' className={CSSLight.stars}>Stars: {this.props.stars(ratings)}</div>
+        {/* maybe seprate div for rest of card for functionality */}
+          <p id='related-card-name' className={CSSLight.name}>{product.name}</p>
+          <p id='related-card-categoryKey' className={CSSLight.category}>Department:    </p>
+          <p id='related-card-categoryVaue' className={CSSLight.categoryValue}>{product.category}</p>
+          <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
+          <div id='related-card-price' className={CSSLight.price}>Only! {price}</div>
+          <div id='related-card-stars' className={CSSLight.stars}>Stars: {this.props.stars(ratings)}</div>
+        </a>
       </div>
     )
   }
