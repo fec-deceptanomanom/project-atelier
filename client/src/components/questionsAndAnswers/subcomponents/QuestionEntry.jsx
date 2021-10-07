@@ -66,7 +66,7 @@ class QuestionEntry extends React.Component {
           {reportThisQuestion}
           <button id={'answer-form-btn-on-question-' + questionID} className={CSSStyle['add-new']} onClick={this.props.openAnswerForm}>Add Answer</button>
         </div>
-      <AnswersList CSSStyle={CSSStyle} answerList={this.props.questionData.answers} />
+      <AnswersList CSSStyle={CSSStyle} answerList={this.props.questionData.answers} questionID={questionID} />
     </div>
     )
   }

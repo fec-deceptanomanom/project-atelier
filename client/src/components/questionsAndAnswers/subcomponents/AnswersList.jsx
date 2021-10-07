@@ -33,7 +33,7 @@ class AnswersList extends React.Component {
 
     if (sortedList.length > 2) {
       answerList = [sortedList[0], sortedList[1]];
-      let button = document.getElementById('show-more-answers' + this.props.questionID);
+      let button = document.getElementById('show-more-answers-' + this.props.questionID);
       button.style.display = 'inline-block';
     } else if (sortedList.length === 2 ) {
       answerList = [sortedList[0], sortedList[1]];
@@ -74,9 +74,9 @@ class AnswersList extends React.Component {
   render() {
     const CSSStyle = this.props.CSSStyle;
     let answerList = this.state.displayedAnswers;
-    let showMoreButton = (<button id={"show-more-answers" + this.props.questionID} className={CSSStyle['show-more-answers']} onClick={this.showMoreAnswers} >Show More Answers</button>);
+    let showMoreButton = (<button id={"show-more-answers-" + this.props.questionID} className={CSSStyle['show-more-answers']} onClick={this.showMoreAnswers} >Show More Answers</button>);
     if (this.state.displayedAnswers === this.state.sortedAnswers) {
-      showMoreButton = (<button id={"show-fewer-answers" + this.props.questionID} className={CSSStyle['show-more-answers']} onClick={this.showFewerAnswers} >Collapse Answers</button>);
+      showMoreButton = (<button id={"show-fewer-answers-" + this.props.questionID} className={CSSStyle['show-more-answers']} onClick={this.showFewerAnswers} >Collapse Answers</button>);
     }
 
     if (answerList === null) {

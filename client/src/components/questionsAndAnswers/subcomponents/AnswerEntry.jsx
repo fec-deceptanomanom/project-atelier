@@ -102,7 +102,7 @@ class AnswerEntry extends React.Component {
         {this.props.answerData.photos.map((photo, index) => {
           return (
             <div id="photo-div" key={index} className={CSSStyle['photo-div']}>
-              <img id="answer-photo" className={CSSStyle['answer-photo']} src={photo} onClick={this.openZoom}></img>
+              <img id="answer-photo" className={CSSStyle['answer-photo']} src={photo} alt="Uploaded Image" onClick={this.openZoom}></img>
             </div>
           )
         })}
