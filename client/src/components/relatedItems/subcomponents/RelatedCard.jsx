@@ -26,7 +26,7 @@ class RelatedCard extends React.Component {
   }
 
   priceIs(defaultItem) {
-    let originalPrice = defaultItem.original_price || 'ERROR Price not Found';
+    let originalPrice = defaultItem.original_price || 'Price$ not Found';
     let onSale = !!defaultItem.sale_price;
     let price;
     if (onSale) {
@@ -40,21 +40,19 @@ class RelatedCard extends React.Component {
   }
   render() {
     const defaultItem = this.findDefaultResult(this.props.info.style.results);
-    console.log('default', defaultItem)
+    // console.log('default', defaultItem)
 
     const thumbnail = this.findThumbnail(defaultItem);
     const price = this.priceIs(defaultItem);
-    console.log('price', price);
+    // console.log('price', price);
     const btnID = this.props.info.product.id;
     const starButton = (
       <div id='related-card-star-container'className={CSSLight.starContainer}>
-        <p id='related-card-star-caption'>Click to compare:
           <i className="fa fa-star fa-lg"
              aria-hidden="true"
              id={btnID}
              onClick={this.props.toggleModal}>
           </i>
-        </p>
       </div>
     );
     // const price = {onSale} ? (<strike> {originalPrice} </strike> {defaultItem.sale_price}) : {originalPrice};
@@ -63,15 +61,17 @@ class RelatedCard extends React.Component {
 
     return (
       <div id='related-card' className={CSSLight.relatedCard}>
-        <a id='go-to-page' href={'http://localhost:3000/p/' + product.id}>
           {starButton}
+        <a id='go-to-page' href={'http://localhost:3000/p/' + product.id}>
         {/* maybe seprate div for rest of card for functionality */}
           <p id='related-card-name' className={CSSLight.name}>{product.name}</p>
           <p id='related-card-categoryKey' className={CSSLight.category}>Department:    </p>
           <p id='related-card-categoryVaue' className={CSSLight.categoryValue}>{product.category}</p>
           <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
-          <div id='related-card-price' className={CSSLight.price}>Only! {price}</div>
-          <div id='related-card-stars' className={CSSLight.stars}>Stars: {this.props.stars(ratings)}</div>
+          <div id='related-card-footer' className={CSSLight.thumbnail}>
+            <div id='related-card-price' className={CSSLight.price}>Only {price}!</div>
+            <div id='related-card-stars' className={CSSLight.stars}>Stars: {this.props.stars(ratings)}</div>
+          </div>
         </a>
       </div>
     )

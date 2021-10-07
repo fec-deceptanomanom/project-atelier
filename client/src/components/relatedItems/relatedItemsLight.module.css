@@ -1,27 +1,30 @@
-.testBanner {
-  margin: 1%;
-  color: rgb(124, 93, 34);
-  background-color: lightsalmon;
+a {
+  text-decoration: none;
 }
 
 .related {
-  border: 4px dashed brown;
+  margin: 3em, 4em;
+}
+
+.testBanner {
+  margin: 1%;
+  color: rgb(124, 93, 34);
 }
 
 .relatedCarousel {
-  border: 2px dashed rgb(80, 24, 24);
-  margin: 2px
+  margin: 2px;
+  position: relative;
 }
 
 .scroller {
   align-content: center;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-evenly;
   overflow: hidden;
 }
 
-.arrow {
+.arrow#right {
   /* display: flex; */
   margin: 10% 0%;
   /* line-height: 40%; */
@@ -29,6 +32,23 @@
   width: auto;
   height: fit-content;
   border-radius: 50%;
+  position: absolute;
+  bottom: 20%;
+  right: 1.5%;
+  z-index: 2;
+}
+.arrow#left {
+  /* display: flex; */
+  margin: 10% 0%;
+  /* line-height: 40%; */
+  background-color: grey;
+  width: auto;
+  height: fit-content;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20%;
+  right: 1.5%;
+  z-index: 2;
 }
 
 .arrow:hover {
@@ -39,20 +59,21 @@
   border: .20em inset rgb(232, 245, 158);
   background-color: rgb(79, 102, 124);
   margin: .1em;
-  display: flex;
-  flex-direction: column;
-
+  /* display: flex;
+  flex-direction: column; */
+  position: relative;
   /* justify-content: center; */
   align-items: right;
   width: 14em;
-  height: 28em;
+  height: 24em;
 }
 
 .name {
   /* display: flex; */
+  color:rgb(0, 0, 0);
   text-align: right;
-  font: 600 medium sans-serif;
-  margin: .5em .25em .25em;
+  font: 500 medium sans-serif;
+  margin: 0 .25em .25em;
 }
 
 .categoryValue {
@@ -63,7 +84,7 @@
 }
 
 .category {
-  font: 300 x-small sans-serif;
+  font: small-caps 300 x-small sans-serif;
   white-space: pre;
   color: darkgrey;
   text-align: right;
@@ -73,25 +94,38 @@
 .thumbnail {
   height: auto;
   width: auto;
-  min-width: 60%;
   max-width: 75%;
-  min-height: 50%;
-  max-height: 66%;
-  margin: .2em;
+  max-height: 200px;
+  margin: 0 .75em;
 }
 
+.footer {
+  margin: .1em;
+  position: absolute;
+  bottom: 0;
+}
 .price {
-  text-align: right;
+  text-align: left;
   margin: .2em;
+  color:rgb(0, 0, 0);
+  font-weight: 400;
+  font-size: 1.25em;
+  font-style: italic;
+  position: absolute;
+  bottom: 15%;
+  left: 4%;
 }
 
 .stars {
-  text-align: right;
+  text-align: left;
   margin: .2em;
+  color:rgb(0, 0, 0);
+  position: absolute;
+  bottom: .5%;
+  left: .5%;
 }
 
 .outfitCarousel {
-  border: 2px dashed rgba(224, 88, 88, 0.507);
   margin: 2px
 }
 
@@ -134,7 +168,7 @@
   height: 2em;
   font-size: small;
   text-align: right;
-  margin: .2em;
+  margin: .25em;
   z-index: 1;
 }
 
