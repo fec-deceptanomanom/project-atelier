@@ -35,7 +35,6 @@ class RelatedItems extends React.Component {
         return new Promise((resolve, reject) => {
           axios.get(`${URL_BASE}/productInfo/${id}`)
             .then(response => {
-              // console.log(response.data);
               resolve(response.data);
             })
             .catch(err => {
@@ -151,7 +150,7 @@ class RelatedItems extends React.Component {
       let count = 0;
       if (!!count) {
         return item;
-      } else if (typeof item === 'object' && item.product.id === e.target.id) {
+      } else if (typeof item === 'object') {
         count++;
         return 1;
       } else {
