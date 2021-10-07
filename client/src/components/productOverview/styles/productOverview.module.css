@@ -1,7 +1,3 @@
-/* .product-overview * {
-  margin: 10px;
-} */
-
 .product-overview,
 .product-overview-top,
 .product-overview-bottom,
@@ -47,7 +43,6 @@
 
 .product-overview-image {
   background-color: darkgray;
-  /* border: 2px dashed greenyellow; */
   order: 0;
   flex: 2 0 0;
   position: relative;
@@ -112,19 +107,16 @@
 }
 
 .product-overview-info {
-  /* border: 2px dashed blue; */
   order: 1;
   flex: 1 0 0;
 }
 
 .product-overview-description {
-  /* border: 2px dashed purple; */
   order: 0;
   flex: 3 0 0;
 }
 
 .product-overview-features {
-  /* border: 2px dashed cyan; */
   order: 1;
   flex: 1 0 0;
 }
@@ -135,7 +127,6 @@
 }
 
 .style-thumbnail-grid {
-  /* margin: 0px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
