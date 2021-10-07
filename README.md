@@ -7,10 +7,10 @@ Project Atelier is a capstone project made to represent a product display page. 
 * Ratings & Reviews (not fully implemented due to short staffing)
 
 ## Table of Contents
-[Description](##Description)
-[Installation](##Installation)
-[Usage](##Usage)
-[Team Members](##Team Members)
+* [Description](##Description)
+* [Installation](##Installation)
+* [Usage](##Usage)
+* [Team Members](##Team-Members)
 
 ## Description
 
