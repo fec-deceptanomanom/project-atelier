@@ -1,5 +1,24 @@
-# project-atelier
-Totally not phase one of world domination. Not at all
+# Project Atelier
+## Overview
+Project Atelier is a capstone project made to represent a product display page. This contains four main sections:
+* Product Overview
+* Related Items
+* Questions & Answers
+* Ratings & Reviews (not fully implemented due to short staffing)
+
+## Table of Contents
+[Description](##Description)
+[Installation](##Installation)
+[Usage](##Usage)
+[Team Members](##Team Members)
+
+## Description
+
+## Installation
+
+## Usage
+
+## Team Members
 
 What steps do people need to take to get this app running?
 1) Clone the repo
