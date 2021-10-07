@@ -1,9 +1,9 @@
 # Project Atelier
 ## Overview
 Project Atelier is a capstone project made to represent a product display page. This contains four main sections:
-* Product Overview
-* Related Items
-* Questions & Answers
+* Product Overview - an area to view product information and photos
+* Related Items - a carousel of items that may interest the user
+* Questions & Answers - a collection of inquiries and responses to the current product
 * Ratings & Reviews (not fully implemented due to short staffing)
 
 ## Table of Contents
@@ -13,6 +13,7 @@ Project Atelier is a capstone project made to represent a product display page. 
 * [Team Members](##Team-Members)
 
 ## Description
+On starting this project, the user will be brought to a landing page
 
 ## Installation
 
