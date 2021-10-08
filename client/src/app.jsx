@@ -6,7 +6,6 @@ import ProductOverview from './components/productOverview/ProductOverview';
 import RelatedItems from './components/relatedItems/RelatedItems';
 import RatingsAndReviews from './components/ratingsAndReviews/RatingsAndReviews';
 import QuestionsAndAnswers from './components/questionsAndAnswers/QuestionsAndAnswers';
-
 import { withClickTracker } from '../lib/interactions.jsx';
 
 import { URL_BASE } from '../../.secretURL.json';
@@ -65,23 +64,23 @@ class App extends React.Component {
 
   render() {
     let CSSStyle = AppCSSLight;
-    let bannerText = 'I\'m loaded in Light Mode!';
     if (this.state.darkmode === true) {
       CSSStyle = AppCSSDark;
-      bannerText = 'And now I\'m loaded in Dark Mode!';
     }
+
     if (this.state.validProduct && this.state.productInfo.id) {
       return (
         <div id="App" className={CSSStyle.App}>
           <div id="top-page" onClick={(e) => {
               postInteraction(e.target.attributes.id.value, 'Main App');
-            }}>
-          <label id="nightmode-toggle-container" className={CSSStyle.switch}>
-            <label id="nightmode-label" htmlFor="nightmode">Nightmode:</label>
-            <input id="nightmode-toggle" name="nightmode" onChange={this.darkmodeToggle} type="checkbox"></input>
-            <span id="nightmode-toggle-slider" className={CSSStyle.slider}></span>
-          </label>
-          <h1 id="top-banner" className={CSSStyle.testBanner}>{bannerText}</h1>
+          }}>
+            <div className={CSSStyle['app-top-span']}>
+              <h1 id="top-banner" className={CSSStyle.testBanner}>Deceptive Designs</h1>
+              <label id="nightmode-toggle-container" className={CSSStyle.switch}>
+                <input id="nightmode-toggle" aria-label="Nightmode Toggle" onChange={this.darkmodeToggle} type="checkbox"></input>
+                <span id="nightmode-toggle-slider" className={CSSStyle.slider}></span>
+              </label>
+            </div>
           </div>
           <ProductOverview data={{
             product: this.state.productInfo,

@@ -3,17 +3,32 @@
   padding: 0px;
 }
 
+.app-top-span {
+  background-color: #0F2D2E;
+  position: relative;
+}
+
 .testBanner {
-  color: aqua;
-  background-color: darkslategray;
+  color: white;
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: xx-large;
+  justify-content: space-around;
+  font-weight: 900;
+  width: 500px;
+  margin: auto;
+  padding: 10px;
 }
 
 /* TOGGLE SWITCH START */
 .switch {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  display: block;
+  top: 0px;
+  right: 0px;
   width: 60px;
   height: 35px;
+  margin: 10px;
 }
 
 .switch input {
@@ -29,7 +44,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: lavender;
+  background-color: #F4E1CD;
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 35px;
@@ -42,18 +57,18 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: lavender;
+  background-color: #F4E1CD;
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: purple;
+  background-color: #DFA568;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px lavender;
+  box-shadow: 0 0 1px #F4E1CD;
 }
 
 input:checked + .slider:before {
