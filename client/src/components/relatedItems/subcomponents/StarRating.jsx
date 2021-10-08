@@ -14,7 +14,7 @@ const getRoundedRating = function(ratings) {
 
 const StarRatings = ( props ) => { //props = info.reviews
   // const id = `style-thumbnail-${props.idx}`;
-  let ratingsCount = Object.keys(props.ratings).length;
+  let ratingsCount = Object.keys(props.ratings).length; //<--- error hear.
   const roundedRating = getRoundedRating(props.ratings);
   return (
     <div id='related-card-stars'>
