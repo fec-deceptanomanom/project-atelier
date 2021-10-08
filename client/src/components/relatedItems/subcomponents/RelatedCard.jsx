@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRating from './StarRating.jsx';
 import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
 
@@ -7,6 +8,7 @@ class RelatedCard extends React.Component {
     super(props);
     this.state = {
       photo: 'Loading...',
+      notFound: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.seilevel.com%2Frequirements%2Fwp-content%2Fplugins%2Fstormhill_author_page%2Fimg%2Fimage-not-found.png&f=1&nofb=1',
       crutches: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn15.bestreviews.com%2Fimages%2Fv4desktop%2Fproduct-matrix%2Fdmi-crutches--push-button-adjustable-crutches-f94027.jpg&f=1&nofb=1',
     }
   }
@@ -19,18 +21,18 @@ class RelatedCard extends React.Component {
 
   findThumbnail(item) {
     //select the first thumbnail found or give'em some crutches
-    if (item === 'Not Found') { return this.state.crutches; }
+    if (item === 'Not Found') { return this.state.notFound; }
     let photo = item.photos.find( photo => photo.thumbnail_url);
     if (!photo) { return this.state.crutches; }
     return photo.thumbnail_url;
   }
 
   priceIs(defaultItem) {
-    let originalPrice = defaultItem.original_price || 'Price$ not Found';
+    let originalPrice = defaultItem.original_price || ' 404 not found';
     let onSale = !!defaultItem.sale_price;
     let price;
     if (onSale) {
-      price = <div>
+      price = <div id='sale-price'>
                 <strike>{'$' + originalPrice}</strike> {'$' + defaultItem.sale_price}
               </div>;
     } else {
@@ -55,7 +57,6 @@ class RelatedCard extends React.Component {
           </i>
       </div>
     );
-    // const price = {onSale} ? (<strike> {originalPrice} </strike> {defaultItem.sale_price}) : {originalPrice};
     const product = this.props.info.product;
     const ratings = this.props.info.reviews.ratings;
 
@@ -68,9 +69,9 @@ class RelatedCard extends React.Component {
           <p id='related-card-categoryKey' className={CSSLight.category}>Department:    </p>
           <p id='related-card-categoryVaue' className={CSSLight.categoryValue}>{product.category}</p>
           <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
-          <div id='related-card-footer' className={CSSLight.thumbnail}>
-            <div id='related-card-price' className={CSSLight.price}>Only {price}!</div>
-            <div id='related-card-stars' className={CSSLight.stars}>Stars: {this.props.stars(ratings)}</div>
+          <div id='related-card-footer' className={CSSLight.footer}>
+            <div id='related-card-price' className={CSSLight.price}>{price}!</div>
+            <div id='related-card-stars' className={CSSLight.stars}>{StarRating(ratings)}</div>
           </div>
         </a>
       </div>
