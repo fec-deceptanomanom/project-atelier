@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSCommon from '/Users/ryanhorowitz/hack_reactor/RPP30/senior/FEC/project-atelier/client/src/components/productOverview/styles/productOverview.module.css';
+import CSSCommon from '../../productOverview/styles/productOverview.module.css';
 // import CSSCommon from '../../components/productOverview/styles/productOverview.module.css';
 import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
