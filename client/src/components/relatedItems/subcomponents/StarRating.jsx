@@ -1,7 +1,8 @@
 import React from 'react';
+import CSSCommon from '/Users/ryanhorowitz/hack_reactor/RPP30/senior/FEC/project-atelier/client/src/components/productOverview/styles/productOverview.module.css';
+// import CSSCommon from '../../components/productOverview/styles/productOverview.module.css';
 import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
-
 const getRoundedRating = function(ratings) {
   let ratingSum = 0;
   let ratingQuantity = 0;
@@ -14,8 +15,10 @@ const getRoundedRating = function(ratings) {
 
 const StarRatings = ( props ) => { //props = info.reviews
   // const id = `style-thumbnail-${props.idx}`;
-  let ratingsCount = Object.keys(props.ratings).length; //<--- error hear.
-  const roundedRating = getRoundedRating(props.ratings);
+  // console.log('StarRatings props', props);
+  let ratingsCount = Object.keys(props).length;
+  console.log('StarRatings ratingsCount', ratingsCount);
+  const roundedRating = getRoundedRating(props);
   return (
     <div id='related-card-stars'>
       {[1, 2, 3, 4, 5].map((value, idx) => {
@@ -27,7 +30,7 @@ const StarRatings = ( props ) => { //props = info.reviews
           return (<i key={idx} className="far fa-star"></i>)
         }
       })}
-      <a id={CSSCommon['reviews-link']} href={"#" + RatingsAndReviews_CSSLight['ratingsAndReviews']}>See all {props.reviewCount} reviews</a>
+      <a id={CSSCommon['reviews-link']}>{props.reviewCount}</a>
     </div>
   );
 }

@@ -116,6 +116,10 @@ a {
   left: 4%;
 }
 
+#sale-price {
+  color: red;
+}
+
 .stars {
   text-align: left;
   margin: .2em;
