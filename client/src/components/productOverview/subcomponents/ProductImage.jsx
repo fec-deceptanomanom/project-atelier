@@ -15,6 +15,7 @@ class ProductImage extends React.Component {
     this.setImage = this.setImage.bind(this);
     this.changeToLeftImage = this.changeToLeftImage.bind(this);
     this.changeToRightImage = this.changeToRightImage.bind(this);
+    this.expandOrZoom = this.expandOrZoom.bind(this);
   }
 
   changeToLeftImage() {
@@ -47,6 +48,10 @@ class ProductImage extends React.Component {
     }
   }
 
+  expandOrZoom() {
+    this.props.isExpanded ? console.log('Zooming!') : this.props.toggleExpandImage();
+  }
+
   render() {
     if (this.props.currentStyle) {
       let imageElement;
@@ -58,8 +63,9 @@ class ProductImage extends React.Component {
       return (
         <div
           className={CSSCommon['product-overview-image']}
-          onClick={this.props.onClick}
+          onClick={this.expandOrZoom}
           id={'product-overview-image-space'}
+          style={{cursor: this.props.isExpanded ? "crosshair" : "zoom-in"}}
         >
           <button
             id={'image-button-left'}
