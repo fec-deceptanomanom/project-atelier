@@ -46,7 +46,7 @@ class RelatedCard extends React.Component {
 
     const thumbnail = this.findThumbnail(defaultItem);
     const price = this.priceIs(defaultItem);
-    // console.log('price', price);
+    console.log('price', price);
     const btnID = this.props.info.product.id;
     const starButton = (
       <div id='related-card-star-container'className={CSSLight.starContainer}>
@@ -72,7 +72,7 @@ class RelatedCard extends React.Component {
           <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
           <div id='related-card-footer' className={CSSLight.footer}>
             <div id='related-card-price' className={CSSLight.price}>{price}!</div>
-            <div id='related-card-stars' className={CSSLight.stars}>Stars: {StarRating(ratings)}</div>
+            {/* <div id='related-card-stars' className={CSSLight.stars}>Stars: {StarRating(ratings)}</div> */}
           </div>
         </a>
       </div>

@@ -24,7 +24,7 @@ a {
   overflow: hidden;
 }
 
-.arrow#right {
+.arrow {
   /* display: flex; */
   margin: 10% 0%;
   /* line-height: 40%; */
@@ -37,7 +37,7 @@ a {
   right: 1.5%;
   z-index: 2;
 }
-.arrow#left {
+.arrow {
   /* display: flex; */
   margin: 10% 0%;
   /* line-height: 40%; */
