@@ -18,8 +18,8 @@ class RelatedCarousel extends React.Component {
     this.getRoundedRating = this.getRoundedRating.bind(this);
     this.findProdByID = this.findProdByID.bind(this);
   }
-  componentDidMount() { }
-  componentDidUpdate() { }
+  componentDidMount() {}
+  componentDidUpdate() {}
 
   getRoundedRating(ratings) {
     let ratingSum = 0;
@@ -53,19 +53,19 @@ class RelatedCarousel extends React.Component {
   findThumbnail(item) {
     //select the first thumbnail found or give'em some crutches
     if (item === 'Not Found') { return this.state.crutches; }
-    let photo = item.photos.find(photo => photo.thumbnail_url);
+    let photo = item.photos.find( photo => photo.thumbnail_url);
     if (!photo) { return this.state.crutches; }
     return photo.thumbnail_url;
   }
 
-  render() {
+  render () {
 
-    const cards = this.props.items.map((item, i) => {
+    const cards = this.props.items.map( (item, i) => {
       return (
         <div id='related-card-container' className={CSSLight.card} key={i}>
           <RelatedCard info={item}
-            stars={this.getRoundedRating}
-            toggleModal={this.toggleModal} />
+                       stars={this.getRoundedRating}
+                       toggleModal={this.toggleModal}/>
         </div>
       )
     })
@@ -74,19 +74,20 @@ class RelatedCarousel extends React.Component {
       <div id='related-carousel' className={CSSLight.relatedCarousel}>
         {/* conditional render */}
         {this.state.modal && <ComparisonModal toggleModal={this.toggleModal}
-          currentItem={this.props.pageItem}
-          stars={this.getRoundedRating}
-          clickedItem={this.state.clickedItem} />}
-        <div id='related-carousel-leftarrow' id='left' className={CSSLight.arrow}>
-          <LeftButton left={this.props.left}
-            handleClick={this.props.goDir} />
-        </div>
+                                              currentItem={this.props.pageItem}
+                                              stars={this.getRoundedRating}
+                                              clickedItem={this.state.clickedItem}/>}
+        <h3 id='related-carousel-h3'>Carousel</h3>
         <div id='related-carousel-scroller' className={CSSLight.scroller}>
-          {cards}
-        </div>
-        <div id='related-carousel-rightarrow' id='right' className={CSSLight.arrow}>
-          <RightButton right={this.props.right}
-            handleClick={this.props.goDir} />
+          <div id='related-carousel-leftarrow' className={CSSLight.arrow}>
+            <LeftButton left={this.props.left}
+                        handleClick={this.props.goDir} />
+          </div>
+            {cards}
+          <div id='related-carousel-rightarrow' className={CSSLight.arrow}>
+            <RightButton right={this.props.right}
+                         handleClick={this.props.goDir} />
+          </div>
         </div>
       </div>
     )
