@@ -74,7 +74,7 @@ class RelatedCard extends React.Component {
           <p id='related-card-name' className={CSSLight.name}>{product.name}</p>
           <p id='related-card-categoryKey' className={CSSLight.category}>Department:    </p>
           <p id='related-card-categoryVaue' className={CSSLight.categoryValue}>{product.category}</p>
-          <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt={this.state.notFound}></img>
+          <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='image not found'></img>
           <div id='related-card-footer' className={CSSLight.footer}>
             <div id='related-card-price' className={CSSLight.price}>{price}</div>
             <div id='related-card-stars' className={CSSLight.stars}>{StarRating(ratings)}</div>
