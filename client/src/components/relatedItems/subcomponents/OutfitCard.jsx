@@ -1,6 +1,6 @@
 import React from 'react';
 import CSSLight from './../relatedItemsLight.module.css';
-
+import StarRating from './StarRating.jsx';
 class OufitCard extends React.Component {
   constructor(props) {
     super(props);
@@ -10,23 +10,28 @@ class OufitCard extends React.Component {
     }
   }
 
-  getStars(ratings) {
-    let ratingSum = 0;
-    let ratingQuantity = 0;
-    for (const [key, value] of Object.entries(ratings)) {
-      ratingSum += (Number(key) * Number(value));
-      ratingQuantity += Number(value);
+  priceIs(defaultItem) {
+    let originalPrice = defaultItem.original_price || ' 404 not found';
+    let onSale = !!defaultItem.sale_price;
+    let price;
+    if (onSale) {
+      price = <div id='sale-price'>
+                <strike>{'$' + originalPrice}</strike> {'$' + defaultItem.sale_price}
+              </div>;
+    } else {
+      price = '$' + originalPrice;
     }
-    return (Math.round((ratingSum / ratingQuantity) * 4) / 4).toFixed(2);
+    return price;
   }
   findDefaultResult(results) {
     //Find the default object
-    let defal = results.find(result => result['default?']) || 'Not Found';
+    let defal = results.find(result => result['default?']) || results[0];
     return defal;
   }
   findThumbnail(item) {
     //select the first thumbnail found or give'em some crutches
     if (item === 'Not Found') { return this.state.crutches; }
+
     let photo = item.photos.find( photo => photo.thumbnail_url);
     if (!photo) { return this.state.crutches; }
     return photo.thumbnail_url;
@@ -35,21 +40,15 @@ class OufitCard extends React.Component {
     if (this.props.info === 1) {
       return (
         <div id='outfit-card' className={CSSLight.outfitCard}>
-          <h4 id='outfit-card-h4'>Outfit Card</h4>
-          <p id='outfit-card-name' className={CSSLight.name}>Empty Card</p>
-          <p id='outfit-card-category-key' className={CSSLight.category}>Department:    </p>
-          <p id='outfit-card-category-value' className={CSSLight.categoryValue}>category</p>
-          {/* <img id='outfit-card-thumbnail' className={CSSLight.thumbnail} alt='Image not Found'></img> */}
-          <ul id='outfit-card-list'>
-            <li id='outfit-card-price'>Price: ???</li>
-            <li id='outfit-card-stars'>Stars: ???</li>
-          </ul>
+          <h4 id='outfit-card-h4'>Your new fav item!!</h4>
+
         </div>
       )
     } else { //there is info
       const product = this.props.info.product;
       const ratings = this.props.info.reviews.ratings;
       const defaultItem = this.findDefaultResult(this.props.info.styles.results);
+      const price = this.priceIs(defaultItem);
       const thumbnail = this.findThumbnail(defaultItem);
       const XButton = (
         <div id='remove-outfit-container'>
@@ -61,16 +60,15 @@ class OufitCard extends React.Component {
       );
       return (
         <div id='outfit-card' className={CSSLight.outfitCard}>
-          <h4 id='outfit-card-h4'>Outfit Card</h4>
           <p id='outfit-card-name' className={CSSLight.name}>{product.name}</p>
           <p id='outfit-card-category-key' className={CSSLight.category}>Department:    </p>
           <p id='outfit-card-category-value' className={CSSLight.categoryValue}>{product.category}</p>
           {XButton}
           <img id='outfit-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
-          <ul id='outfit-card-list'>
-            <li id='outfit-card-price'>Price: {product.default_price}</li>
-            <li id='outfit-card-stars'>Stars: {this.getStars(ratings)}</li>
-          </ul>
+          <div id='outfit-card-footer' className={CSSLight.footer}>
+            <div id={CSSLight['outfit-card-price']} className={CSSLight.price}>{price}!</div>
+            <div id='outfit-card-stars' className={CSSLight.stars}>{StarRating(ratings)}</div>
+          </div>
         </div>
       )
     }
