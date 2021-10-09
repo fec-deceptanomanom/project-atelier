@@ -56,7 +56,7 @@ a {
 }
 
 .relatedCard {
-  border: .20em inset rgb(232, 245, 158);
+  border: .20em inset rgb(58, 65, 19);
   background-color: rgb(79, 102, 124);
   margin: .1em;
   /* display: flex;
@@ -158,7 +158,7 @@ a {
   position: relative;
   height: 16em;
   width: 14em;
-  background-color: lightgrey;
+  background-color: #919191;
 }
 #outfit-card-h4 {
   margin: 0 auto;
@@ -173,7 +173,7 @@ a {
   max-height: 100%;
   width: 14em;
   justify-content: center;
-  background-color: rgb(137, 207, 216);
+  background-color: #919191;
 }
 
 .plusIcon {

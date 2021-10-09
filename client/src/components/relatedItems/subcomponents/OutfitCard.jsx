@@ -49,7 +49,6 @@ class OufitCard extends React.Component {
       const ratings = this.props.info.reviews.ratings;
       const defaultItem = this.findDefaultResult(this.props.info.styles.results);
       const price = this.priceIs(defaultItem);
-      console.log('price is', price);
       const thumbnail = this.findThumbnail(defaultItem);
       const XButton = (
         <div id='remove-outfit-container'>
