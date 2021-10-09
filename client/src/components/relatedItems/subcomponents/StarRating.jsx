@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSCommon from './client/src/components/productOverview/styles/productOverview.module.css';
+// import CSSCommon from './client/src/components/productOverview/styles/productOverview.module.css';
 import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
 const getRoundedRating = function(ratings) {
@@ -13,10 +13,9 @@ const getRoundedRating = function(ratings) {
 }
 
 const StarRatings = ( props ) => { //props = info.reviews
-  // const id = `style-thumbnail-${props.idx}`;
   // console.log('StarRatings props', props);
   let ratingsCount = Object.keys(props).length;
-  console.log('StarRatings ratingsCount', ratingsCount);
+  // console.log('StarRatings ratingsCount', ratingsCount);
   const roundedRating = getRoundedRating(props);
   return (
     <div id='related-card-stars'>
@@ -29,7 +28,6 @@ const StarRatings = ( props ) => { //props = info.reviews
           return (<i key={idx} className="far fa-star"></i>)
         }
       })}
-      <a id={CSSCommon['reviews-link']}>{props.reviewCount}</a>
     </div>
   );
 }

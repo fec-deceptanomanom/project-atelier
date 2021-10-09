@@ -1,4 +1,5 @@
 import React from 'react';
+import { URL_BASE } from '../../../../../.secretURL.json';
 import StarRating from './StarRating.jsx';
 import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
