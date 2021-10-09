@@ -46,9 +46,10 @@ class OufitCard extends React.Component {
         </div>
       )
     } else { //there is info
-      const product = this.props.info.productInfo;
-      const ratings = this.props.info.reviewInfo.ratings;
-      const defaultItem = this.findDefaultResult(this.props.info.styleInfo.results);
+      const product = this.props.info.product;
+      console.log('review info', this.props.info)
+      const ratings = this.props.info.reviews.ratings || {'0': 0};
+      const defaultItem = this.findDefaultResult(this.props.info.styles.results) || 'ERROR';
       const price = this.priceIs(defaultItem);
       const thumbnail = this.findThumbnail(defaultItem);
       const XButton = (

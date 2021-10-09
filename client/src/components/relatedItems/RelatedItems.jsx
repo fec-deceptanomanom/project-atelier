@@ -23,8 +23,7 @@ class RelatedItems extends React.Component {
     this.goRight = this.goRight.bind(this);
     this.goLeft = this.goLeft.bind(this);
     this.whichDir = this.whichDir.bind(this);
-    this.updateOutfitItems = this.updateOutfitItems.bind(this);
-    this.deleteOutfitCard = this.deleteOutfitCard.bind(this);
+
   }
 
   componentDidMount() {
@@ -123,58 +122,6 @@ class RelatedItems extends React.Component {
     dir === 'l' ? this.goLeft() : this.goRight();
   }
 
-  updateOutfitItems (e) {
-    //find Index of props.pageItem;
-    if (this.state.outfitItems.indexOf(this.props.pageItem) !== -1) {
-      alert('This item has already been added to the Outfit list')
-      return;
-    }
-    let update = this.state.outfitItems.slice();
-    let index = update.indexOf(1);
-    //organize pageItem
-    if (index !== -1) {
-      update[index] = this.props.pageItem;
-      this.setState({
-        outfitItems: update
-      })
-      this.updateLocalStorage(update);
-    } else { //the list is currently full
-      alert('The list full please delete an item from the Outfit List')
-    }
-  }
-
-  deleteOutfitCard(e) {
-    let copy = this.state.outfitItems.slice();
-    //find which elem has the same product.id
-    let update = copy.map( (item, i) => {
-      let count = 0;
-      if (!!count) {
-        return item;
-      } else if (typeof item === 'object') {
-        count++;
-        return 1;
-      } else {
-        return item;
-      }
-    })
-    this.setState({
-      outfitItems: update
-    })
-
-    this.updateLocalStorage(update);
-  }
-
-  updateLocalStorage(update) {
-    let ids = update.map(item => {
-      if (item.product) {
-        return item.product.id
-      }
-      return item;
-    });
-    window.localStorage.clear();
-    window.localStorage.setItem('0, 1, 2', JSON.stringify(ids));
-  }
-
   componentDidUpdate() { }
 
   render() {
@@ -192,10 +139,7 @@ class RelatedItems extends React.Component {
             left={this.state.leftButton}
             right={this.state.rightButton}
             goDir={this.whichDir} />
-          <OutfitList outfits={this.state.outfitItems}
-                      pageItem={this.props.pageItem}
-                      addOutfit={this.updateOutfitItems}
-                      deleteCard={this.deleteOutfitCard}/>
+          <OutfitList pageItem={this.props.pageItem}/>
         </div>
       </div>
     );
