@@ -47,7 +47,7 @@ class ProductImage extends React.Component {
     $('#product-overview-image-space').click(e => {
       if (e.target.id === 'product-overview-image-space' || e.target.id === 'product-overview-image') {
         this.expandOrZoom();
-        console.log(this.getCursorPos(e));
+        // console.log(this.getCursorPos(e));
       }
     });
   }
@@ -73,7 +73,7 @@ class ProductImage extends React.Component {
       isExtraZoomed: !extraZoom
     });
     if (!extraZoom) {
-      console.log(this.toggleExtraZoom);
+      // console.log(this.toggleExtraZoom);
       imageZoom('product-overview-image', 'zoom-output', this.toggleExtraZoom);
     } else {
       $('.img-zoom-lens').remove();

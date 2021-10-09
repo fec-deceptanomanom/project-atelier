@@ -18,7 +18,7 @@ function imageZoom(imgID, resultID, toggle) {
   /*calculate the ratio between result DIV and lens:*/
   cx = result.offsetWidth / lens.offsetWidth;
   cy = result.offsetHeight / lens.offsetHeight;
-  console.log(lens.offsetWidth, lens.offsetHeight);
+  // console.log(lens.offsetWidth, lens.offsetHeight);
   /*set background properties for the result DIV:*/
   result.style.backgroundImage = "url('" + img.src + "')";
   result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
