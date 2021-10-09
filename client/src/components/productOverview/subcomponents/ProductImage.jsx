@@ -12,13 +12,15 @@ class ProductImage extends React.Component {
       currentPhoto: props.currentStyle ? props.currentStyle.photos[0] : null,
       currentPhotoIndex: 0,
       currentStyleId: props.currentStyle.style_id,
-      numberOfPhotos: Object.keys(props.currentStyle.photos).length
+      numberOfPhotos: Object.keys(props.currentStyle.photos).length,
+      isExtraZoomed: false
     };
     this.setImage = this.setImage.bind(this);
     this.changeToLeftImage = this.changeToLeftImage.bind(this);
     this.changeToRightImage = this.changeToRightImage.bind(this);
     this.expandOrZoom = this.expandOrZoom.bind(this);
     this.getCursorPos = this.getCursorPos.bind(this);
+    this.toggleExtraZoom = this.toggleExtraZoom.bind(this);
   }
 
   changeToLeftImage() {
@@ -48,7 +50,6 @@ class ProductImage extends React.Component {
         console.log(this.getCursorPos(e));
       }
     });
-    imageZoom('product-overview-image', 'zoom-output');
   }
 
   componentDidUpdate() {
@@ -62,7 +63,21 @@ class ProductImage extends React.Component {
   }
 
   expandOrZoom() {
-    this.props.isExpanded ? console.log('Zooming!') : this.props.toggleExpandImage();
+    this.props.isExpanded ? this.toggleExtraZoom() : this.props.toggleExpandImage();
+  }
+
+  toggleExtraZoom() {
+    let extraZoom = this.state.isExtraZoomed;
+    this.setState({
+      ...this.state,
+      isExtraZoomed: !extraZoom
+    });
+    if (!extraZoom) {
+      console.log(this.toggleExtraZoom);
+      imageZoom('product-overview-image', 'zoom-output', this.toggleExtraZoom);
+    } else {
+      $('.img-zoom-lens').remove();
+    }
   }
 
   getCursorPos(e) {
@@ -124,7 +139,11 @@ class ProductImage extends React.Component {
           >
             <i className="fas fa-expand"></i>
           </button>
-          <div id={"zoom-output"} className={CSSCommon["img-zoom-result"]}></div>
+          <div
+            id={"zoom-output"}
+            className={CSSCommon["img-zoom-result"]}
+            style={{visibility: this.state.isExtraZoomed ? 'visible' : 'hidden'}}
+          ></div>
         </div>
       );
     } else {
