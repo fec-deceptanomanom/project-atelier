@@ -23,14 +23,18 @@ const ProductInfo = ( props ) => {
     return (
       <div id={'product-overview-info'} className={CSSCommon['product-overview-info']} style={{display: props.imageExpanded ? 'none' : 'initial'}}>
         <div id={'product-overview-info-top'} className={CSSCommon['product-overview-info-top']}>
-          <StarRatings ratings={props.info.reviews.ratings} reviewCount={props.info.reviewCount}/>
+          <StarRatings
+            ratings={props.info.reviews.ratings}
+            reviewCount={props.info.reviewCount}
+            darkmode={props.darkmode}
+          />
           <h3 id={'productinfo-category'}>{props.info.product.category}</h3>
           <h2 id={'productinfo-name'}>{props.info.product.name}</h2>
-          <ProductPrice currentStyle={props.currentStyle}/>
+          <ProductPrice currentStyle={props.currentStyle} darkmode={props.darkmode}/>
           <h3 id={'productinfo-stylename'}>STYLE > {props.currentStyle.name}</h3>
-          <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick} currentStyle={props.currentStyle}/>
+          <StyleThumbnailGrid styles={props.info.styles} onStyleClick={props.onStyleClick} currentStyle={props.currentStyle} darkmode={props.darkmode}/>
         </div>
-        <ProductSelections currentStyle={props.currentStyle}/>
+        <ProductSelections currentStyle={props.currentStyle} darkmode={props.darkmode}/>
       </div>
     );
   } else {

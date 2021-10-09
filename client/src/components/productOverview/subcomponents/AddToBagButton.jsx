@@ -18,13 +18,13 @@ const AddToBagButton = (props) => {
   const id = 'add-to-bag-button';
   if (!props.outOfStock) {
     return (
-      <button id={id} onClick={() => {
+      <button id={id} className={CSSCommon[id]} onClick={() => {
         onAddClick();
       }}>Add To Bag</button>
     );
   } else {
     return (
-      <button id={id} disabled={true}>Add To Bag</button>
+      <button id={id} className={CSSCommon[id]} disabled={true}>Add To Bag</button>
     )
   }
 }

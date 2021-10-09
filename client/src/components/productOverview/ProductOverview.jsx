@@ -72,13 +72,20 @@ class ProductOverview extends React.Component {
               currentStyle={this.state.currentStyle}
               toggleExpandImage={this.toggleExpandImage}
               isExpanded={this.state.imageExpanded}
+              darkmode={this.props.darkmode}
             />
-            <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle} imageExpanded={this.state.imageExpanded}/>
+            <ProductInfo
+              info={this.props.data}
+              currentStyle={this.state.currentStyle}
+              onStyleClick={this.setNewStyle}
+              imageExpanded={this.state.imageExpanded}
+              darkmode={this.props.darkmode}
+            />
           </div>
           <div id={'product-overview-bottom'} className={CSSCommon['product-overview-bottom']}>
-            <ProductDescription info={this.props.data}/>
+            <ProductDescription info={this.props.data} darkmode={this.props.darkmode}/>
             <div id={'vertical-bar'} className={CSSCommon.vl}></div>
-            <ProductFeatures info={this.props.data}/>
+            <ProductFeatures info={this.props.data} darkmode={this.props.darkmode}/>
           </div>
         </div>
       );

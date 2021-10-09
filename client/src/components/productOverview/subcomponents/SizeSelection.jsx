@@ -9,7 +9,9 @@ const SizeSelection = (props) => {
     return (
       <select id={'product-size-selection'}
         defaultValue="default"
-        onChange={() => {props.onSelect()}}>
+        onChange={() => {props.onSelect()}}
+        className={CSSCommon['product-size-selection']}
+      >
         <option value="default" disabled hidden>Select size</option>
         {availableItems.map((sku, idx) => (
           <option key={idx}>{props.currentStyle.skus[sku].size}</option>
@@ -18,7 +20,7 @@ const SizeSelection = (props) => {
     );
   } else {
     return (
-      <select id={'product-size-selection'} defaultValue="default" disabled>
+      <select id={'product-size-selection'} defaultValue="default" className={CSSCommon['product-size-selection']} disabled>
         <option value="default">OUT OF STOCK</option>
       </select>
     );

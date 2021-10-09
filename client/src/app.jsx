@@ -86,7 +86,8 @@ class App extends React.Component {
             product: this.state.productInfo,
             styles: this.state.styleInfo,
             reviews: this.state.reviewInfo,
-            reviewCount: this.state.reviews.results ? this.state.reviews.results.length : null}}/>
+            reviewCount: this.state.reviews.results ? this.state.reviews.results.length : null}}
+            darkmode={this.state.darkmode}/>
           <RelatedItems pageItem={{
                           product: this.state.productInfo,
                           styles: this.state.styleInfo,
