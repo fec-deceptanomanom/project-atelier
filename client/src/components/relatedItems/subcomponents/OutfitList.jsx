@@ -36,20 +36,18 @@ class Outfitlist extends React.Component {
   }
 
   deleteOutfitCard(e) {
-    console.log('deleteOutfit Target', e.target.id)
     let copy = this.state.outfitItems.slice();
+    let index;
     //find which elem has the same product.id
-    let update = copy.map( (item, i) => {
-      console.log('item in delete loop', item)
-      if (e.target.id === item.product.id) {
-        return
-      }
-      return item;
+    let update = copy.filter( (item, i) => {
+
+      return (e.target.id !== item.product.id.toString())
+
     })
     this.setState({
       outfitItems: update
     })
-
+    console.log('update', update)
     this.updateLocalStorage(update);
   }
 
@@ -59,7 +57,6 @@ class Outfitlist extends React.Component {
         return item.product.id
       }
     });//
-    console.log(ids);
     window.localStorage.clear();
     window.localStorage.setItem('0, 1, 2', JSON.stringify(ids));
   }
@@ -71,7 +68,7 @@ class Outfitlist extends React.Component {
     }
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     let ids = [];
-    console.log('storage', storage);
+    // console.log('storage', storage);
     storage.forEach( (item) => {
       console.log('item', typeof item)
       if (item !== 1) {
