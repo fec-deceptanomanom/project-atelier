@@ -106,12 +106,13 @@ class ProductImage extends React.Component {
           className={CSSCommon['product-overview-image']}
           // onClick={this.expandOrZoom}
           id={'product-overview-image-space'}
-          style={{cursor: this.props.isExpanded ? "crosshair" : "zoom-in"}}
+          style={{cursor: this.props.isExpanded ? (this.state.isExtraZoomed ? "vertical-text" : "crosshair") : "zoom-in"}}
         >
           <button
             id={'image-button-left'}
             className={CSSCommon['img-shift-left-arrow']}
             onClick={this.changeToLeftImage}
+            aria-label={'button to change main image to left image'}
           >
             <i className="fas fa-chevron-left"></i>
           </button>
@@ -128,6 +129,7 @@ class ProductImage extends React.Component {
             id={'image-button-right'}
             className={CSSCommon['img-shift-right-arrow']}
             onClick={this.changeToRightImage}
+            aria-label={'button to change main image to right image'}
           >
             <i className="fas fa-chevron-right"></i>
           </button>
@@ -136,6 +138,7 @@ class ProductImage extends React.Component {
             id={'image-expand'}
             className={CSSCommon['img-expand-btn']}
             onClick={this.props.toggleExpandImage}
+            aria-label={'button to expand main image'}
           >
             <i className="fas fa-expand"></i>
           </button>

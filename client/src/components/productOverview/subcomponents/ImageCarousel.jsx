@@ -67,6 +67,7 @@ class ImageCarousel extends React.Component {
           id={CSSCommon['test-button-up']}
           className={CSSCommon[`test-button-up`]}
           onClick={this.moveTilesUpOne}
+          aria-label={'button to shift image tiles up'}
         >
           <i id={'up-arrow'} className="fas fa-chevron-up"></i>
         </button>
@@ -78,6 +79,7 @@ class ImageCarousel extends React.Component {
                 id={`tile-img-${idx}`}
                 className={CSSCommon['tile-img']}
                 src={this.props.images[slot.toString()].thumbnail_url}
+                aria-label={'image carousel button'}
               ></img>
             </button>);
           }
@@ -88,6 +90,7 @@ class ImageCarousel extends React.Component {
           id={CSSCommon['test-button-down']}
           className={CSSCommon[`test-button-down`]}
           onClick={this.moveTilesDownOne}
+          aria-label={'button to shift image tiles down'}
         >
           <i id={'down-arrow'} className="fas fa-chevron-down"></i>
         </button>
