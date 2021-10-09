@@ -63,7 +63,7 @@ class RelatedCard extends React.Component {
     return (
       <div id='related-card' className={CSSLight.relatedCard}>
           {starButton}
-        <a id='go-to-page' href={'http://localhost:3000/p/' + product.id}>
+        <a id='go-to-page' href={URL_BASE + '/p/' + product.id}>
         {/* maybe seprate div for rest of card for functionality */}
           <p id='related-card-name' className={CSSLight.name}>{product.name}</p>
           <p id='related-card-categoryKey' className={CSSLight.category}>Department:    </p>
