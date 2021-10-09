@@ -1,6 +1,5 @@
 import React from 'react';
-// import CSSCommon from './client/src/components/productOverview/styles/productOverview.module.css';
-import CSSLight from '.././relatedItemsLight.module.css';
+.import CSSLight from '.././relatedItemsLight.module.css';
 import CSSDark from '.././relatedItemsDark.module.css';
 const getRoundedRating = function(ratings) {
   let ratingSum = 0;
