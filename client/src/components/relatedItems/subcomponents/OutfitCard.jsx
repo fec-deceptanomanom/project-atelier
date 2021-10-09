@@ -44,7 +44,7 @@ class OufitCard extends React.Component {
           <h4 id='outfit-card-h4'>Your new fav item!!</h4>
 
         </div>
-      )
+      ) n
     } else { //there is info
       const product = this.props.info.product;
       console.log('review info', this.props.info)
