@@ -55,8 +55,9 @@ a {
 }
 
 .relatedCard {
-  border: .20em inset rgb(58, 65, 19);
-  background-color: rgb(79, 102, 124);
+  border: .20em inset rgb(80, 105, 128);
+  padding: 1%;
+  background-color: rgb(113, 161, 206);
   margin: .1em;
   /* display: flex;
   flex-direction: column; */
@@ -85,7 +86,7 @@ a {
 .category {
   font: small-caps 300 x-small sans-serif;
   white-space: pre;
-  color: darkgrey;
+  color: rgb(70, 66, 56);
   text-align: right;
   margin: .25em .25em .05em;
 }
@@ -173,7 +174,7 @@ a {
   position: relative;
   height: 16em;
   width: 14em;
-  background-color: #919191;
+  background-color: #71a5c4;
 }
 #outfit-card-h4 {
   margin: 0 auto;
