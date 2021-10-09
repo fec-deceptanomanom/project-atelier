@@ -19,7 +19,7 @@ class Outfitlist extends React.Component {
 
   updateOutfitItems (e) {
     //find Index of props.pageItem;
-    if (this.state.outfitItems && this.state.outfitItems.indexOf(this.props.pageItem) !== -1) {
+    if (this.state.outfitItems && this.state.outfitItems.indexOf(this.props.pageItem.product.id) !== -1) {
       alert('This item has already been added to the Outfit list')
       return;
     }
@@ -30,23 +30,25 @@ class Outfitlist extends React.Component {
     this.setState({
       outfitItems: update
     })
-    this.updateLocalStorage(update.productInfo.id);
+    console.log('update', update)
+    this.updateLocalStorage(update);
 
   }
 
   deleteOutfitCard(e) {
-    console.log('deleteOutfit Target', e.target)
     let copy = this.state.outfitItems.slice();
+    let index;
     //find which elem has the same product.id
-    let update = copy.map( (item, i) => {
+    let update = copy.filter( (item, i) => {
 
-      if (e.target === item.productInfo.id) {}
+      return (e.target.id !== item.product.id.toString())
+
     })
     this.setState({
       outfitItems: update
     })
-
-    this.updateLocalStorage(update.productInfo.id);
+    console.log('update', update)
+    this.updateLocalStorage(update);
   }
 
   updateLocalStorage(update) {
@@ -54,23 +56,19 @@ class Outfitlist extends React.Component {
       if (item.product) {
         return item.product.id
       }
-      return item;
-    });
-
+    });//
     window.localStorage.clear();
     window.localStorage.setItem('0, 1, 2', JSON.stringify(ids));
   }
 
   componentDidMount() {
-    //check local storage
     let storage = JSON.parse(localStorage.getItem('0, 1, 2'));
     if (!storage) {
       return;
     }
     const urlId = window.location.href.split('/p/')[1].replace('/', '');
     let ids = [];
-    console.log('storage', storage);
-    // if any outfits have a length of 5
+    // console.log('storage', storage);
     storage.forEach( (item) => {
       console.log('item', typeof item)
       if (item !== 1) {
@@ -115,7 +113,6 @@ class Outfitlist extends React.Component {
 
 
   render() {
-    console.log('outfits', outfits)
     let outfits;
     if (this.state.outfitItems.length === 0) {
       outfits = (<div id='outfit-card-container' className={CSSLight.card}></div>);
@@ -125,7 +122,7 @@ class Outfitlist extends React.Component {
           <div id='outfit-card-container' className={CSSLight.card} key={i}>
             <OutfitCard key={i}
             info={item}
-            deleteCard={this.deleteCard}/>
+            deleteCard={this.deleteOutfitCard}/>
           </div>
         )
       });
