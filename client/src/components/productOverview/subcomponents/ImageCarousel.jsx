@@ -72,13 +72,15 @@ class ImageCarousel extends React.Component {
         </button>
 
         {this.state.photoIndexRange.map((slot, idx) => {
-          return (<button key={idx} id={`test-button-${slot}`} className={CSSCommon['tile']} onClick={() => this.props.setImage(slot)}>
-            <img
-              id={`tile-img-${idx}`}
-              className={CSSCommon['tile-img']}
-              src={this.props.images[slot.toString()].thumbnail_url}
-            ></img>
-          </button>);
+          if (this.props.images[slot.toString()]) {
+            return (<button key={idx} id={`test-button-${slot}`} className={CSSCommon['tile']} onClick={() => this.props.setImage(slot)}>
+              <img
+                id={`tile-img-${idx}`}
+                className={CSSCommon['tile-img']}
+                src={this.props.images[slot.toString()].thumbnail_url}
+              ></img>
+            </button>);
+          }
         })}
 
         <button

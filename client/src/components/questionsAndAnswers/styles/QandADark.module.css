@@ -5,7 +5,7 @@
   width: 70%;
   margin: auto;
   margin-bottom: 20px;
-  max-height: 100%;
+  max-height: 100vh;
   padding: 10px;
 }
 
@@ -25,8 +25,8 @@
 
 .more-questions button {
   /* specifically select the two button elements */
-  color: #ffffff;
-  border-color: #ffffff;
+  color: #303030;
+  border-color: #303030;
   background-color: #dfa568;
   margin: 10px;
   font-size: medium;
@@ -36,7 +36,7 @@
 
 .more-questions button:hover {
   background-color: #2d868b;
-  color: #ffffff;
+  color: #303030;
 }
 
 /* END MAIN COMPONENT
@@ -227,7 +227,7 @@ START QUESTIONS LIST COMPONENT */
   /* entire questions list div */
   margin: 10px;
   padding: 10px;
-  max-height: 80%;
+  max-height: 80vh;
   overflow-y: auto;
   background-color: #e6b989;
 }
@@ -241,7 +241,7 @@ START QUESTION ENTRY COMPONENT */
   box-sizing: border-box;
   width: 100%;
   display: grid;
-  grid-template-columns: 2em 1fr auto;
+  grid-template-columns: 2em 1fr 30%;
   grid-template-rows: auto 1fr 2em;
   height: fit-content;
   max-height: 40%;
@@ -251,7 +251,7 @@ START QUESTION ENTRY COMPONENT */
   /* question text */
   margin: 5px;
   grid-area: 1 / 1 / 2 / 3;
-  color: #ffffff;
+  color: #303030;
 
 }
 
@@ -272,6 +272,7 @@ START QUESTION ENTRY COMPONENT */
   grid-area: 1 / 3 / 2 / 4;
   padding: 0px;
   margin: 0px;
+  justify-self: right;
 }
 
 /* END QUESTION ENTRY COMPONENT
@@ -325,7 +326,7 @@ START ANSWERS LIST COMPONENT */
 .answers-list h3 {
   /* A */
   grid-area: 1 / 1 / 2 / 2;
-  color: #ffffff;
+  color: #303030;
 }
 
 .show-more-answers {
@@ -335,21 +336,20 @@ START ANSWERS LIST COMPONENT */
   width: fit-content;
   border-style: hidden;
   background-color: #edcdab;
-  color: #ffffff;
+  color: #303030;
 }
-
 
 .answers-sublist {
   box-sizing: border-box;
   grid-area: 1 / 2 / 3 / 3;
-  max-height: 100%;
+  max-height: 40vh;
   overflow-y: auto;
 }
 
 .answers-list .no-answers {
   /* h3 element for when no answers */
   grid-area: 1 / 2 / 2 / 3;
-  color: #ffffff;
+  color: #5e5e5e;
 }
 
 /*  END ANSWERS LIST COMPONENT
@@ -395,7 +395,8 @@ START ANSWER ENTRY COMPONENT */
 .answer-entry .rate-report {
   /* includes user info */
   grid-area: 2 / 1 / 3 / 2;
-  padding-bottom: 10px;;
+  padding-bottom: 10px;
+  justify-self: left;
 }
 
 /* END ANSWER ENTRY COMPONENT
