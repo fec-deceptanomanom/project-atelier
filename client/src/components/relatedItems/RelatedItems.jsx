@@ -185,7 +185,7 @@ class RelatedItems extends React.Component {
            onClick={(e)=> {
              this.props.clickTracker((e.target.attributes.id.value), compon)
             }}>
-        <h1 id="related-items-h1" className={CSSLight.testBanner}>Related Items</h1>
+        <h1 id={CSSLight['related-items-h1']}>Related Items</h1>
         <div id="related-items-container">
           <RelatedCarousel items={this.state.carouselItems}
             pageItem={this.props.pageItem}

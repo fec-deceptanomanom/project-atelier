@@ -15,9 +15,10 @@ class OufitCard extends React.Component {
     let onSale = !!defaultItem.sale_price;
     let price;
     if (onSale) {
-      price = <div id='sale-price'>
-                <strike>{'$' + originalPrice}</strike> {'$' + defaultItem.sale_price}
-              </div>;
+      price = <div>
+                <div id={CSSLight['original-price']}>{'$' + originalPrice} </div>
+                <span id={CSSLight['sale-price']}>{'$' + defaultItem.sale_price}!</span>
+              </div>
     } else {
       price = '$' + originalPrice;
     }
@@ -66,7 +67,7 @@ class OufitCard extends React.Component {
           {XButton}
           <img id='outfit-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
           <div id='outfit-card-footer' className={CSSLight.footer}>
-            <div id={CSSLight['outfit-card-price']} className={CSSLight.price}>{price}!</div>
+            <div id={CSSLight['outfit-card-price']} className={CSSLight.price}>{price}</div>
             <div id='outfit-card-stars' className={CSSLight.stars}>{StarRating(ratings)}</div>
           </div>
         </div>

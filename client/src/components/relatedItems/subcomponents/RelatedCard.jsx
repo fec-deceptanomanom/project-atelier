@@ -32,8 +32,8 @@ class RelatedCard extends React.Component {
     let originalPrice = defaultItem.original_price || ' 404 not found';
     let onSale = !!defaultItem.sale_price;
     let price;
-    console.log('onSale', onSale)
-    console.log('price', price)
+    // console.log('onSale', onSale)
+    // console.log('price', price)
 
     if (onSale) {
       price = <div>

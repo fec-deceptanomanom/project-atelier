@@ -5,11 +5,10 @@ a {
 .related {
   margin: 3em, 4em;
 }
-
-.testBanner {
-  margin: 1%;
-  color: rgb(124, 93, 34);
+#related-items-h1 {
+  padding-left: 1em;
 }
+
 
 .relatedCarousel {
   margin: 2px;
@@ -127,7 +126,7 @@ a {
   font-size: 1.2em;
   font-style: italic;
   position: absolute;
-  bottom: 10%;
+  bottom: -22%;
   right: 5%
 }
 
@@ -164,6 +163,7 @@ a {
   margin: 2px
 }
 
+
 .outfitCard {
   border: .20em inset rgb(93, 93, 93);
   margin: .1em;
@@ -178,6 +178,10 @@ a {
 #outfit-card-h4 {
   margin: 0 auto;
   font-size: larger;
+}
+
+#outfit-list-h2 {
+    padding-left: 2em;
 }
 .btnAdd {
   border: .20em inset rgb(93, 93, 93);
