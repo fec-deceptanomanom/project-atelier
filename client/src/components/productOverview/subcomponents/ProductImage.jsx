@@ -1,7 +1,9 @@
 import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
+const $ = require('jquery');
 
 import ImageCarousel from './ImageCarousel.jsx';
+import imageZoom from '../../../../lib/zoomBox.js';
 
 class ProductImage extends React.Component {
   constructor(props) {
@@ -16,6 +18,7 @@ class ProductImage extends React.Component {
     this.changeToLeftImage = this.changeToLeftImage.bind(this);
     this.changeToRightImage = this.changeToRightImage.bind(this);
     this.expandOrZoom = this.expandOrZoom.bind(this);
+    this.getCursorPos = this.getCursorPos.bind(this);
   }
 
   changeToLeftImage() {
@@ -38,6 +41,16 @@ class ProductImage extends React.Component {
     })
   }
 
+  componentDidMount() {
+    $('#product-overview-image-space').click(e => {
+      if (e.target.id === 'product-overview-image-space' || e.target.id === 'product-overview-image') {
+        this.expandOrZoom();
+        console.log(this.getCursorPos(e));
+      }
+    });
+    imageZoom('product-overview-image', 'zoom-output');
+  }
+
   componentDidUpdate() {
     if (this.state.currentStyleId !== this.props.currentStyle.style_id) {
       this.setState({
@@ -52,6 +65,19 @@ class ProductImage extends React.Component {
     this.props.isExpanded ? console.log('Zooming!') : this.props.toggleExpandImage();
   }
 
+  getCursorPos(e) {
+    // Adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_image_zoom
+    var img = document.getElementById('product-overview-image');
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    a = img.getBoundingClientRect();
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+
   render() {
     if (this.props.currentStyle) {
       let imageElement;
@@ -63,7 +89,7 @@ class ProductImage extends React.Component {
       return (
         <div
           className={CSSCommon['product-overview-image']}
-          onClick={this.expandOrZoom}
+          // onClick={this.expandOrZoom}
           id={'product-overview-image-space'}
           style={{cursor: this.props.isExpanded ? "crosshair" : "zoom-in"}}
         >
@@ -98,6 +124,7 @@ class ProductImage extends React.Component {
           >
             <i className="fas fa-expand"></i>
           </button>
+          <div id={"zoom-output"} className={CSSCommon["img-zoom-result"]}></div>
         </div>
       );
     } else {

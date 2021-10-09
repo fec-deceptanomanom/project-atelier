@@ -32,7 +32,7 @@ const StarRatings = ( props ) => {
         }
       })}
       <a id={CSSCommon['reviews-link']} href={"#" + RatingsAndReviews_CSSLight['ratingsAndReviews']}>See all {props.reviewCount} reviews</a>
-      <img src={'/client/dist/resources/star-one-quarter-black.png'} />
+      {/* <img src={'/client/dist/resources/star-one-quarter-black.png'} /> */}
     </div>
   );
 }
