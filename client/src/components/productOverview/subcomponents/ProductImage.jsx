@@ -1,5 +1,7 @@
 import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
+import CSSLight from '../styles/productOverviewLight.module.css';
+import CSSDark from '../styles/productOverviewDark.module.css';
 const $ = require('jquery');
 
 import ImageCarousel from './ImageCarousel.jsx';
@@ -94,6 +96,7 @@ class ProductImage extends React.Component {
   }
 
   render() {
+    let CSS = this.props.darkmode ? CSSDark : CSSLight;
     if (this.props.currentStyle) {
       let imageElement;
       if (this.state.currentPhoto && this.state.currentPhoto.url !== null) {
@@ -103,15 +106,16 @@ class ProductImage extends React.Component {
       }
       return (
         <div
-          className={CSSCommon['product-overview-image']}
+          className={CSSCommon['product-overview-image'] + " " + CSS['product-overview-image']}
           // onClick={this.expandOrZoom}
           id={'product-overview-image-space'}
-          style={{cursor: this.props.isExpanded ? "crosshair" : "zoom-in"}}
+          style={{cursor: this.props.isExpanded ? (this.state.isExtraZoomed ? "vertical-text" : "crosshair") : "zoom-in"}}
         >
           <button
             id={'image-button-left'}
             className={CSSCommon['img-shift-left-arrow']}
             onClick={this.changeToLeftImage}
+            aria-label={'button to change main image to left image'}
           >
             <i className="fas fa-chevron-left"></i>
           </button>
@@ -120,6 +124,7 @@ class ProductImage extends React.Component {
             images={this.props.currentStyle.photos}
             setImage={this.setImage}
             currentStyleId={this.props.currentStyle.style_id}
+            currentIdx={this.state.currentPhotoIndex}
           />
 
           {imageElement}
@@ -128,6 +133,7 @@ class ProductImage extends React.Component {
             id={'image-button-right'}
             className={CSSCommon['img-shift-right-arrow']}
             onClick={this.changeToRightImage}
+            aria-label={'button to change main image to right image'}
           >
             <i className="fas fa-chevron-right"></i>
           </button>
@@ -136,6 +142,7 @@ class ProductImage extends React.Component {
             id={'image-expand'}
             className={CSSCommon['img-expand-btn']}
             onClick={this.props.toggleExpandImage}
+            aria-label={'button to expand main image'}
           >
             <i className="fas fa-expand"></i>
           </button>

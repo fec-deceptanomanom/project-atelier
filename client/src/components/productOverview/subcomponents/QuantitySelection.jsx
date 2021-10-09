@@ -17,7 +17,7 @@ const QuantitySelection = (props) => {
 
     // Build the options list based on the quantityRange
     return (
-      <select id={'product-quantity-selection'} defaultValue="default">
+      <select id={'product-quantity-selection'} defaultValue="default" className={CSSCommon['product-quantity-selection']}>
         <option value="default">1</option>
         {quantityRange.map((value, idx) => (
           <option key={idx}>{value}</option>
@@ -26,7 +26,7 @@ const QuantitySelection = (props) => {
     );
   } else {
     return (
-      <select id={'product-quantity-selection'} defaultValue="default" disabled>
+      <select id={'product-quantity-selection'} defaultValue="default" className={CSSCommon['product-quantity-selection']} disabled>
         <option value="default" disabled>-</option>
       </select>
     );

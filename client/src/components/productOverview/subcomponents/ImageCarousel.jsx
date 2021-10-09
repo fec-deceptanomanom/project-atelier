@@ -67,18 +67,29 @@ class ImageCarousel extends React.Component {
           id={CSSCommon['test-button-up']}
           className={CSSCommon[`test-button-up`]}
           onClick={this.moveTilesUpOne}
+          aria-label={'button to shift image tiles up'}
         >
           <i id={'up-arrow'} className="fas fa-chevron-up"></i>
         </button>
 
         {this.state.photoIndexRange.map((slot, idx) => {
           if (this.props.images[slot.toString()]) {
-            return (<button key={idx} id={`test-button-${slot}`} className={CSSCommon['tile']} onClick={() => this.props.setImage(slot)}>
+            return (<button
+              key={idx}
+              id={`tile-button-${slot}`}
+              className={CSSCommon['tile']}
+              onClick={() => this.props.setImage(slot)}
+              // style={{border: this.props.currentIdx === idx ? 'none' : 'none'}}
+              >
               <img
                 id={`tile-img-${idx}`}
                 className={CSSCommon['tile-img']}
                 src={this.props.images[slot.toString()].thumbnail_url}
+                aria-label={'image carousel button'}
               ></img>
+              <i style={{visibility: this.props.currentIdx === slot ? 'visible' : 'hidden'}}
+                className={CSSCommon['current-image-checkmark'] + " fas fa-grip-lines"}
+              ></i>
             </button>);
           }
         })}
@@ -88,6 +99,7 @@ class ImageCarousel extends React.Component {
           id={CSSCommon['test-button-down']}
           className={CSSCommon[`test-button-down`]}
           onClick={this.moveTilesDownOne}
+          aria-label={'button to shift image tiles down'}
         >
           <i id={'down-arrow'} className="fas fa-chevron-down"></i>
         </button>
