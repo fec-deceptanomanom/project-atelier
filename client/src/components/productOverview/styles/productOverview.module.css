@@ -46,6 +46,7 @@
   order: 0;
   flex: 2 0 0;
   position: relative;
+  z-index: 1;
 }
 
 .product-overview-image .main-img {
@@ -68,6 +69,7 @@
 
 .img-shift-left-arrow {
   position: absolute;
+  z-index: 2;
   left: 5%;
   top: 50%;
 }
@@ -172,4 +174,20 @@
 #rating-stars {
   display: flex;
   flex-direction: row;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 100px;
+  height: 100px;
+}
+
+.img-zoom-result {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 300px;
+  height: 300px;
 }

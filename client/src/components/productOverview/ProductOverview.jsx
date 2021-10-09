@@ -67,7 +67,12 @@ class ProductOverview extends React.Component {
           className={CSSCommon['product-overview']}
         >
           <div id={'product-overview-top'} className={CSSCommon['product-overview-top']} >
-            <ProductImage info={this.props.data} currentStyle={this.state.currentStyle} toggleExpandImage={this.toggleExpandImage}/>
+            <ProductImage
+              info={this.props.data}
+              currentStyle={this.state.currentStyle}
+              toggleExpandImage={this.toggleExpandImage}
+              isExpanded={this.state.imageExpanded}
+            />
             <ProductInfo info={this.props.data} currentStyle={this.state.currentStyle} onStyleClick={this.setNewStyle} imageExpanded={this.state.imageExpanded}/>
           </div>
           <div id={'product-overview-bottom'} className={CSSCommon['product-overview-bottom']}>

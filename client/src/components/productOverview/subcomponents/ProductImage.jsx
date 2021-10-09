@@ -1,7 +1,9 @@
 import React from 'react';
 import CSSCommon from '../styles/productOverview.module.css';
+const $ = require('jquery');
 
 import ImageCarousel from './ImageCarousel.jsx';
+import imageZoom from '../../../../lib/zoomBox.js';
 
 class ProductImage extends React.Component {
   constructor(props) {
@@ -10,11 +12,15 @@ class ProductImage extends React.Component {
       currentPhoto: props.currentStyle ? props.currentStyle.photos[0] : null,
       currentPhotoIndex: 0,
       currentStyleId: props.currentStyle.style_id,
-      numberOfPhotos: Object.keys(props.currentStyle.photos).length
+      numberOfPhotos: Object.keys(props.currentStyle.photos).length,
+      isExtraZoomed: false
     };
     this.setImage = this.setImage.bind(this);
     this.changeToLeftImage = this.changeToLeftImage.bind(this);
     this.changeToRightImage = this.changeToRightImage.bind(this);
+    this.expandOrZoom = this.expandOrZoom.bind(this);
+    this.getCursorPos = this.getCursorPos.bind(this);
+    this.toggleExtraZoom = this.toggleExtraZoom.bind(this);
   }
 
   changeToLeftImage() {
@@ -37,6 +43,15 @@ class ProductImage extends React.Component {
     })
   }
 
+  componentDidMount() {
+    $('#product-overview-image-space').click(e => {
+      if (e.target.id === 'product-overview-image-space' || e.target.id === 'product-overview-image') {
+        this.expandOrZoom();
+        // console.log(this.getCursorPos(e));
+      }
+    });
+  }
+
   componentDidUpdate() {
     if (this.state.currentStyleId !== this.props.currentStyle.style_id) {
       this.setState({
@@ -45,6 +60,37 @@ class ProductImage extends React.Component {
         currentStyleId: this.props.currentStyle.style_id
       });
     }
+  }
+
+  expandOrZoom() {
+    this.props.isExpanded ? this.toggleExtraZoom() : this.props.toggleExpandImage();
+  }
+
+  toggleExtraZoom() {
+    let extraZoom = this.state.isExtraZoomed;
+    this.setState({
+      ...this.state,
+      isExtraZoomed: !extraZoom
+    });
+    if (!extraZoom) {
+      // console.log(this.toggleExtraZoom);
+      imageZoom('product-overview-image', 'zoom-output', this.toggleExtraZoom);
+    } else {
+      $('.img-zoom-lens').remove();
+    }
+  }
+
+  getCursorPos(e) {
+    // Adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_image_zoom
+    var img = document.getElementById('product-overview-image');
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    a = img.getBoundingClientRect();
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
   }
 
   render() {
@@ -58,8 +104,9 @@ class ProductImage extends React.Component {
       return (
         <div
           className={CSSCommon['product-overview-image']}
-          onClick={this.props.onClick}
+          // onClick={this.expandOrZoom}
           id={'product-overview-image-space'}
+          style={{cursor: this.props.isExpanded ? "crosshair" : "zoom-in"}}
         >
           <button
             id={'image-button-left'}
@@ -92,6 +139,11 @@ class ProductImage extends React.Component {
           >
             <i className="fas fa-expand"></i>
           </button>
+          <div
+            id={"zoom-output"}
+            className={CSSCommon["img-zoom-result"]}
+            style={{visibility: this.state.isExtraZoomed ? 'visible' : 'hidden'}}
+          ></div>
         </div>
       );
     } else {
