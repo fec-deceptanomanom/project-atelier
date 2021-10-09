@@ -32,10 +32,15 @@ class RelatedCard extends React.Component {
     let originalPrice = defaultItem.original_price || ' 404 not found';
     let onSale = !!defaultItem.sale_price;
     let price;
+    console.log('onSale', onSale)
+    console.log('price', price)
+
     if (onSale) {
-      price = <div id='sale-price'>
-                <strike>{'$' + originalPrice}</strike> {'$' + defaultItem.sale_price}
-              </div>;
+      price = <div>
+                <div id={CSSLight['original-price']}>{'$' + originalPrice} </div>
+                <span id={CSSLight['sale-price']}>{'$' + defaultItem.sale_price}!</span>
+              </div>
+
     } else {
       price = '$' + originalPrice;
     }
@@ -71,7 +76,7 @@ class RelatedCard extends React.Component {
           <p id='related-card-categoryVaue' className={CSSLight.categoryValue}>{product.category}</p>
           <img id='related-card-thumbnail' className={CSSLight.thumbnail} src={thumbnail} alt='Image not Found'></img>
           <div id='related-card-footer' className={CSSLight.footer}>
-            <div id='related-card-price' className={CSSLight.price}>{price}!</div>
+            <div id='related-card-price' className={CSSLight.price}>{price}</div>
             <div id='related-card-stars' className={CSSLight.stars}>{StarRating(ratings)}</div>
           </div>
         </a>

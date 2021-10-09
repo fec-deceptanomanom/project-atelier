@@ -112,8 +112,12 @@ a {
   font-size: 1.25em;
   font-style: italic;
   position: absolute;
-  bottom: 15%;
+  bottom: -10%;
   left: 4%;
+  display: inline; /* the default for span */
+  width: 100px;
+  height: 100px;
+  padding: 5px;
 }
 #outfit-card-price {
   text-align: right;
@@ -131,9 +135,20 @@ a {
 
 }
 
-
-#sale-price {
+#original-price {
+  text-decoration: line-through;
   color: red;
+  display: inline; /* the default for span */
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+}
+#sale-price {
+
+  display: inline; /* the default for span */
+  width: 100px;
+  height: 100px;
+  padding: 5px;
 }
 
 .stars {
